@@ -8,3 +8,9 @@ Installation:
 - cd ResponseMonster
 - bundle install
 - rake db:migrate
+
+Testing:
+========
+
+- rake db:test:prepare
+- guard
