@@ -11,7 +11,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'capybara', '1.1.2'
-  gem 'rb-inotify', '0.8.8'
+  gem 'rb-inotify' if RUBY_PLATFORM.downcase.include?("linux")
+  gem 'rb-fsevent' if RUBY_PLATFORM.downcase.include?("darwin")
   gem 'libnotify', '0.5.9'
 end
 
