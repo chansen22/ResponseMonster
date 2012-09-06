@@ -1,7 +1,7 @@
 %h1
   Listing users
 
-%table
+%table{:style => "text-align: left;"}
   %tr
     %th
       Email
@@ -9,9 +9,8 @@
       First name
     %th
       Last name
-    %th
-    %th
-    %th
+    %th{:colspan => "3"}
+      Actions
 
   - @users.each do |user|
     %tr
