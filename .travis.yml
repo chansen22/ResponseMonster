@@ -5,3 +5,4 @@ env:
  - DB=sqlite
 script:
  - RAILS_ENV=test rake --trace db:migrate test
+ - RAILS_ENV=test guard
