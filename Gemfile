@@ -16,6 +16,7 @@ group :development, :test do
   gem 'rb-fsevent' if RUBY_PLATFORM.downcase.include?("darwin")
   gem 'terminal-notifier-guard' if RUBY_PLATFORM.downcase.include?("darwin")
   gem 'libnotify', '0.5.9'
+  gem 'travis-lint' 
 end
 
 
