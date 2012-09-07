@@ -45,7 +45,7 @@ Code Standards
 - There should be a space after an opening { and a space before a }
 - {'s should start on the same line that the block they describe starts on.
 * ex: 
-	it { should respond_to(:first_name) }
+    it { should respond_to(:first_name) }
 - Code that extends past a reasonable amout of space should get split up into multiple lines
 * ex: 
     before { @user = User.new(first_name: "Test",
