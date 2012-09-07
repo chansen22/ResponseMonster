@@ -1,4 +1,4 @@
-ResponseMonster!
+ResponseMonster! [![Build Status](https://secure.travis-ci.org/bafipawi/ResponseMonster.png?branch=master)](http://travis-ci.org/bafipawi/ResponseMonster)
 ================
 
 ResponseMonster is an attempt to replace classroom-based [audience response][1]

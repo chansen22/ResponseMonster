@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+ - "1.9.3"
+env:
+ - DB=sqlite
+script:
+ - RAILS_ENV=test rake --trace db:migrate test
+ - RAILS_ENV=test rspec .
