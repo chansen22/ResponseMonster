@@ -89,22 +89,25 @@ questions inside of each class. Servers will have one administrator account, whi
 will, if the user chooses to, be able to make multiple administrator accounts. 
 The use of multiple admin accounts will be discouraged.
 
-Installation:
-=============
+Running ResponseMonster
+=======================
+
+Installation
+-------------
 
 - git clone git@github.com:bafipawi/ResponseMonster
 - cd ResponseMonster
 - bundle install
 - rake db:migrate
 
-Testing:
-========
+Testing
+--------
 
 - rake db:test:prepare
 - guard
 
-Code Standards
-==============
+Code standards
+--------------
 
 - Camel case variables
 - Variables should be as descriptive as they need to be
