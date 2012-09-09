@@ -17,7 +17,10 @@ The application runs on Ruby on Rails and uses an SQLite database to store
 surveys and responses. Each class has one teacher and many students.
 
 ResponseMonster will be designed to handle multiple choice questions, but short
-answer questions may be implemented somewhere down the road.
+answer questions may be implemented somewhere down the road. There is also a
+possibility of having code answers be submitted which are compiled on the server
+and the output is returned to the teacher. These answers can be saved, along
+with the generated output, which can then be inspected by the teacher.
 
 User interface
 --------------
@@ -47,6 +50,15 @@ Each of these fields will have a corresponding index in order to allow for easy
 searching.
 
 [1]: http://en.wikipedia.org/wiki/Audience_response
+
+Devices Supported
+-----------------
+Initially ResponseMonster will be built for laptop browsers, then branching out into
+smart phone devices using a simple WebView App. After those devices are supported, we
+plan on either implementing an SMS server to recieve text answers from regular cell phones,
+or trying to reverse engineer the clicker devices to make them work with our application.
+The first option (SMS) seems more realistic, considering that trying to support clickers
+would require an actual desktop application and some kind of reciever.
 
 Survey data
 -----------
