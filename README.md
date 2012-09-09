@@ -83,11 +83,12 @@ for a response.
 
 Administration
 --------------
-The administrator account will have the ability to view, modify, and delete any and
-all users and classes. They will also have the ability to view, modify, and delete
-questions inside of each class. Servers will have one administrator account, which 
-will, if the user chooses to, be able to make multiple administrator accounts. 
-The use of multiple admin accounts will be discouraged.
+ResponseMonster has one administration role. This role has the ability to view,
+modify, and delete users, classes, and questions without being given permission.
+In addition, it has the ability to grant other accounts the administration role.
+On its first run, ResponseMonster sets up one administrator account. The
+granting of the administrator role to further accounts should be done with
+caution and forethought.
 
 Running ResponseMonster
 =======================
