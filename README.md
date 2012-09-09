@@ -20,14 +20,18 @@ questions.
 
 Students who visit the class page will be presented with the class's open
 question if one exists, and a list of previously answered questions below it.
-Each previously opened question is accompanied by the class-wide data for that
-question, if the teacher chooses to make it available.
+Each previously opened question is accompanied by the answer that the student gave, 
+and the class-wide data for that question, if the teacher chooses to make it 
+available.
 
 The application runs on Ruby on Rails and uses an SQLite database to store
 surveys and responses. Each class has one teacher and many students.
 
 ResponseMonster will be designed to handle multiple choice questions, but short
-answer questions may be implemented somewhere down the road.
+answer questions may be implemented somewhere down the road. There is also a 
+possibility of having code answers be submitted which are compiled on the server
+and the output is returned to the teacher. These answers can be saved, along with
+the generated output, which can then be inspected by the teacher.
 
 The class page will have all the questions the teacher has saved on it as well
 as a spot to make a new question.  After a question has been answered by a
