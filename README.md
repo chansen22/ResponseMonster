@@ -29,6 +29,17 @@ surveys and responses. Each class has one teacher and many students.
 ResponseMonster will be designed to handle multiple choice questions, but short
 answer questions may be implemented somewhere down the road.
 
+The class page will have all the questions the teacher has saved on it as well
+as a spot to make a new question.  After a question has been answered by a
+class, the view for the question will change on the class page.  It will be
+accompanied by a link to some data about the question.  Which students answered
+which way and a few charts about how the data is laid out.  Described further 
+in Survey Data.  Each class has a field for a class name and a spot for the 
+class title.  The name being something like "Software Engineering" and the 
+title being "Csci 430".  Both the title and the name will have an index on 
+them so it will be easy to search for one or the other as a student looking 
+for their classes.
+
 [1]: http://en.wikipedia.org/wiki/Audience_response
 
 Survey data
