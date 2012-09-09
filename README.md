@@ -31,6 +31,22 @@ answer questions may be implemented somewhere down the road.
 
 [1]: http://en.wikipedia.org/wiki/Audience_response
 
+Survey data
+-----------
+Response data for each question is stored until a teacher decides to remove it.
+By default, response data is considered private -- only the teacher of the class
+the data was collected for may view it. If a teacher decides to make response
+data for a question public, students of that class may then view the data.
+
+Teachers may also mark a question as anonymous. ResponseMonster will not record
+any identifying information sent in response to an anonymous question.
+
+The default view for response data is a pie chart generated using
+[Highcharts][2], a JavaScript library. Users may also view raw, tabular data
+for a response.
+
+[2]: http://www.highcharts.com/
+
 Installation:
 =============
 
