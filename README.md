@@ -9,9 +9,19 @@ How it works
 ------------
 One ResponseMonster server handles any number of teachers, students, and
 classes. Teachers can set up questions to be answered ahead of time or
-on-the-spot. A maximum of one question per class can be opened at a time; when
-the question closes, response data can be viewed by the teacher and optionally
-publicized to students. Surveys can be anonymous.
+on-the-spot. A maximum of one question per class can be opened for responses at
+a time; when the question closes, response data can be viewed by the teacher and
+optionally publicized to students. Surveys can be anonymous.
+
+Teachers who visit their class page will have the option to select a previously
+entered question to open for responses, or to enter in a new question that
+should be opened immediately. They can also view data for previously opened
+questions.
+
+Students who visit the class page will be presented with the class's open
+question if one exists, and a list of previously answered questions below it.
+Each previously opened question is accompanied by the class-wide data for that
+question, if the teacher chooses to make it available.
 
 The application runs on Ruby on Rails and uses an SQLite database to store
 surveys and responses. Each class has one teacher and many students.
