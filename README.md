@@ -81,6 +81,14 @@ for a response.
 
 [2]: http://www.highcharts.com/
 
+Administration
+--------------
+The administrator account will have the ability to view, modify, and delete any and
+all users and classes. They will also have the ability to view, modify, and delete
+questions inside of each class. Servers will have one administrator account, which 
+will, if the user chooses to, be able to make multiple administrator accounts. 
+The use of multiple admin accounts will be discouraged.
+
 Installation:
 =============
 
