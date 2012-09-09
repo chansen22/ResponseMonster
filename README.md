@@ -76,11 +76,6 @@ for a response.
 
 [2]: http://www.highcharts.com/
 
-Mobile
-------
-In addition to its desktop website, ResponseMonster will have a fully functional
-response interface on mobile platforms.
-
 Installation:
 =============
 
