@@ -51,14 +51,19 @@ searching.
 
 [1]: http://en.wikipedia.org/wiki/Audience_response
 
-Devices Supported
+Devices supported
 -----------------
-Initially ResponseMonster will be built for laptop browsers, then branching out into
-smart phone devices using a simple WebView App. After those devices are supported, we
-plan on either implementing an SMS server to recieve text answers from regular cell phones,
-or trying to reverse engineer the clicker devices to make them work with our application.
-The first option (SMS) seems more realistic, considering that trying to support clickers
-would require an actual desktop application and some kind of reciever.
+Initially, ResponseMonster will be built for laptop browsers. Applications for
+smartphones and other mobile devices are planned to come soon after, built most
+likely using [WebView][3]. After support for these devices is finalized, we plan
+on taking the next step either into SMS territory, allowing students to send in
+responses using text messages, or into an attempt to reverse engineer the modern
+clicker device in order to allow it to operate as a ResponseMonster response
+device. An SMS response system is the more realistic option after considering
+that support for clickers would require a desktop application and a hardware
+reciever.
+
+[3]: http://developer.android.com/reference/android/webkit/WebView.html
 
 Survey data
 -----------
