@@ -133,9 +133,9 @@ Code standards
 * ex:
 
 ```ruby
-    before { @user = User.new(first_name: "Test",
-                              last_name: "User",
-                              email: "test@test.com",
-                              password: "password",
-                              password_confirmation: "password) }
+before { @user = User.new(first_name: "Test",
+                          last_name: "User",
+                          email: "test@test.com",
+                          password: "password",
+                          password_confirmation: "password") }
 ```
