@@ -131,10 +131,10 @@ Code standards
     it { should respond_to(:first_name) }
 - Code should be attempted to be wrapped at column 80
 * ex: 
-{% highlight ruby lineos %}
-before { @user = User.new(first_name: "Test",
-												  last_name: "User",
-												  email: "test@test.com",
-												  password: "password", 
-												  password_confirmation: "password) }
-{% endhighlight %}
+```
+before { @user = User.new(first_name: "Test",\n
+												  last_name: "User",\n
+												  email: "test@test.com",\n
+												  password: "password", \n
+												  password_confirmation: "password) }\n
+```
