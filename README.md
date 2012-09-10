@@ -118,10 +118,10 @@ Code standards
 - {'s should start on the same line that the block they describe starts on.
 * ex: 
     it { should respond_to(:first_name) }
-- Code that extends past a reasonable amout of space should get split up into multiple lines
+- Code should be attempted to be wrapped at column 80
 * ex: 
-    before { @user = User.new(first_name: "Test",
-							  last_name: "User",
-							  email: "test@test.com",
-							  password: "password",
-							  password_confirmation: "password")  }
+```before { @user = User.new(first_name: "Test",
+												  last_name: "User",
+												  email: "test@test.com",
+												  password: "password", 
+												  password_confirmation: "password")  }```
