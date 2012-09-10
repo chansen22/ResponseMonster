@@ -137,5 +137,5 @@ Code standards
                               last_name: "User",
                               email: "test@test.com",
                               password: "password",
-                              password_confirmation: "password) }
+                              password_confirmation: "password") }
 ```
