@@ -133,8 +133,9 @@ Code standards
 * ex: 
 <pre>
 before { @user = User.new(first_name: "Test",
-												  last_name: "User",
-												  email: "test@test.com",
-												  password: "password", 
-												  password_confirmation: "password) }
+		  last_name: "User",
+		  email: "test@test.com",
+		  password: "password", 
+		  password_confirmation: "password) }
+                    
 </pre>
