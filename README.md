@@ -90,6 +90,17 @@ On its first run, ResponseMonster sets up one administrator account. The
 granting of the administrator role to further accounts should be done with
 caution and forethought.
 
+Features
+========
+
+Things that will definitely be implemented
+------------------------------------------
+
+Things that will hopefully be implemented
+-----------------------------------------
+* The ability for teachers to preset a time window for a survey to be open
+  during (i.e. online quizzes)
+
 Running ResponseMonster
 =======================
 
