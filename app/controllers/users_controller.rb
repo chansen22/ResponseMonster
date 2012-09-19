@@ -33,6 +33,13 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+    if @user.save
+      sign_in @user
+      flash[:success] = "Welcome to Response Monster"
+      redirect_to @user
+    else
+      render 'new'
+    end
 
     respond_to do |format|
       if @user.save
