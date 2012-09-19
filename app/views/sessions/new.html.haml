@@ -1,17 +1,25 @@
-= form_for(:session, url: sessions_path) do |f|
-  = f.label :email
-  %br
-  = f.text_field :email
-  %br
+- provide(:title, "Sign In")
+%h1
+  Sign In
 
-  %br
-  = f.label :password
-  %br
-  = f.password_field :password
-  %br
-  %br
+#form
+  = form_for(:session, url: sessions_path) do |f|
+    = f.label :email
+    %br
+    = f.text_field :email
+    %br
 
-  = f.submit "Sign in"
+    %br
+    = f.label :password
+    %br
+    = f.password_field :password
+    %br
+    %br
 
-New user? 
-= link_to "Sign up now!", signup_path
+    = f.submit "Sign In"
+
+#newUser
+  New user? 
+  %br
+  %br
+  .btn.btn-large.btn-primary= link_to "Sign up now!", signup_path

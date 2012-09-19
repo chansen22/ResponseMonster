@@ -2,11 +2,16 @@
 
 /* Colors */
 
+$lighterGray: #eee;
 $lightGray: #999;
 $white: #fff;
 $grayMediumLight: #eaeaea;
 $gray: #555;
 $grayDarker: #222;
+$errorRed: #900;
+$shadowGray: #ccc;
+
+/* Site Wide */
 
 body {
   padding: 81px 10px 10px 10px;
@@ -29,6 +34,10 @@ textarea {
   h1 {
     margin-bottom: 10px;
   }
+}
+
+a {
+  color: #fff;
 }
 
 /* typography */
@@ -76,6 +85,18 @@ p {
   }
 }
 
+/* Form theming */
+
+#form {
+  text-align: center;
+  margin-left:  150px;
+  margin-right: 150px;
+  background-color: $grayMediumLight;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-radius: 5px;
+}
+
 /* footer */
 
 footer {
@@ -100,4 +121,24 @@ footer {
       margin-left: 10px;
     }
   }
+}
+
+/* User */
+
+#newUser {
+  padding: 40px;
+  text-align: center;
+}
+
+#error_explanation {
+  h2 {
+    color: $errorRed;
+  }
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: $lighterGray;
+  box-shadow: 0px 1px 3px $shadowGray;
 }

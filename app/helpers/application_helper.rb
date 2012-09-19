@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include SessionsHelper
 
   def full_title(page_title)
     base_title = "Response Monster"
