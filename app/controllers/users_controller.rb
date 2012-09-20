@@ -65,4 +65,13 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def home
+    if current_user
+      render 'home'
+    else
+      render 'sessions/new'
+    end
+  end
+
 end

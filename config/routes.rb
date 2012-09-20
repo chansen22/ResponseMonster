@@ -4,7 +4,7 @@ ResponseMonster::Application.routes.draw do
 
   get "static_pages/help"
 
-  root to: "sessions#new"
+  root to: "users#home"
 
   resources :users
 
