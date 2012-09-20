@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to Response Monster"
-      redirect_to @user
+      redirect_to '/home'
     else
       render 'new'
     end
@@ -73,5 +73,4 @@ class UsersController < ApplicationController
       render 'sessions/new'
     end
   end
-
 end

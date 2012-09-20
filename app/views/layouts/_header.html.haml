@@ -7,6 +7,13 @@
           %li= link_to "Home", root_path
           %li= link_to "Help", '#'
           - if signed_in?
-            %li= link_to "Sign Out", signout_path, method: "delete"
+            %li#fat-menu.dropdown
+              %a{ :class => "dropdown-toggle", "data-toggle" => "dropdown", :href => "#"}
+                Profile
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to "Settings", current_user
+                %li.divider
+                %li= link_to "Sign Out", signout_path, method: "delete"
           - else
             %li= link_to "Sign In", signin_path
