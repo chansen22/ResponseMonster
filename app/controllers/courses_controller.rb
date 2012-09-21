@@ -80,4 +80,24 @@ class CoursesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def add
+    @course = Course.find(params[:id])
+    if @course.add_user(current_user)
+      redirect_to root_path, notice: "Successfully Enrolled"
+    else
+      redirect_to root_path, notice: "Could Not Enroll"
+    end
+  end
+
+  def drop
+    @course = Course.find(params[:id])
+    if @course.drop_user(current_user)
+      redirect_to root_path, notice: "Successfully Dropped"
+    else
+      redirect_to root_path, notice: "Could Not Drop Class"
+    end
+  end
+
+
 end

@@ -10,6 +10,7 @@ $gray: #555;
 $grayDarker: #222;
 $errorRed: #900;
 $shadowGray: #ccc;
+$btngray: #666;
 
 /* Site Wide */
 
@@ -36,8 +37,8 @@ textarea {
   }
 }
 
-a {
-  color: #fff;
+btn a:hover {
+  color: $btngray;
 }
 
 /* typography */

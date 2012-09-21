@@ -68,6 +68,15 @@ class UsersController < ApplicationController
 
   def home
     if current_user
+      @courses = Course.all
+      @enrolled = false
+      @courses.each do |course|
+        course.users.each do |user|
+          if current_user == user
+            @enrolled = true
+          end
+        end
+      end
       render 'home'
     else
       render 'sessions/new'

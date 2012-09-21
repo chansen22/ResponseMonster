@@ -3,6 +3,31 @@
 %br
 %h2
   Classes
-%p
-  List some stuff about the classes user is taking
-%br
+
+%table
+  %tr
+    %th
+      Name
+    %th
+      Title
+    %th
+      Section
+    %th
+      Term
+    %th
+      Add/Drop Class
+  - @courses.each do |course|
+    %tr
+      %td
+        = course.name
+      %td
+        = course.title
+      %td
+        = course.section
+      %td
+        = course.term
+      %td
+        - if @enrolled
+          .btn= link_to "Drop Class", drop_course_path(course)
+        - else
+          .btn= link_to "Add Class", add_course_path(course)

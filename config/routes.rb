@@ -1,7 +1,5 @@
 ResponseMonster::Application.routes.draw do
   
-  resources :courses
-
   get "static_pages/about"
 
   get "static_pages/help"
@@ -12,6 +10,12 @@ ResponseMonster::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
+  resources :courses do
+    member do
+      get 'add'
+      get 'drop'
+    end
+  end
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

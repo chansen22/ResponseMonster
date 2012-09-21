@@ -9,6 +9,6 @@ class AddCoursesUsersJoinTable < ActiveRecord::Migration
   end
 
   def down
-    drop_table :courses_user    s
+    drop_table :courses_users
   end
 end
