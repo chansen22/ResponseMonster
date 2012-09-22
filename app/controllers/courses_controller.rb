@@ -25,6 +25,7 @@ class CoursesController < ApplicationController
   # GET /courses/new.json
   def new
     @course = Course.new
+    @users = User.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class CoursesController < ApplicationController
   # GET /courses/1/edit
   def edit
     @course = Course.find(params[:id])
+    @users = User.all
   end
 
   # POST /courses
@@ -98,6 +100,4 @@ class CoursesController < ApplicationController
       redirect_to root_path, notice: "Could Not Drop Class"
     end
   end
-
-
 end
