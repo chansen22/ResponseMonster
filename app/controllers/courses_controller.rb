@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  before_filter :authenticate
+  before_filter :admin_user, only: [:new, :create, :destroy]
   # GET /courses
   # GET /courses.json
   def index
@@ -100,4 +102,14 @@ class CoursesController < ApplicationController
       redirect_to root_path, notice: "Could Not Drop Class"
     end
   end
+
+  private
+
+    def authenticate
+      redirect_to signin_path unless signed_in?
+    end
+
+    def admin_user
+      redirect_to root_path unless is_admin?
+    end
 end

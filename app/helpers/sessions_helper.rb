@@ -21,4 +21,8 @@ module SessionsHelper
   def current_user
     @current_user ||= User.find_by_remember_token(cookies[:remember_token])
   end
+
+  def is_admin?
+    @current_user.admin?
+  end
 end
