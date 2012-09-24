@@ -37,7 +37,8 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(params[:course])
-    logger.info("\n\n\n\n\n\n\n\n Course is #{params[:term]}")
+
+    @course.teacher_id = params[:teacher][:user_id]
 
     if params[:term] == "Fall"
       @course.term = Date.new(Date.today.year, 8, 1)

@@ -1,29 +1,42 @@
 %h1
   Listing courses
 
-%table
-  %tr
-    %th
-      Name
-    %th
-      Title
-    %th
-      Section
-    %th
-      Term
-    %th
-    %th
-    %th
+%table.table.table-hover.table-condensed
+  %thead
+    %tr
+      %th
+        Name
+      %th
+        Title
+      %th
+        Section
+      %th
+        Term
+      %th
+        Teacher
+      - if is_admin?
+        %th
+        %th
 
-- @courses.each do |course|
-  %tr
-    %td= course.name
-    %td= course.title
-    %td= course.section
-    %td= course.term
-    %td= link_to 'Show', course
-    %td= link_to 'Edit', edit_course_path(course)
-    %td= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
+  %tbody
+    - @courses.each do |course|
+      %tr
+        %td= link_to course.name, course
+        %td= course.title
+        %td= course.section
+        - if Date.new(Date.today.year, 8, 1)
+          %td
+            Fall
+        - else
+          %td
+            Spring
+        %td= "#{User.find_by_id(course.teacher_id).first_name} #{User.find_by_id(course.teacher_id).last_name}"
+        - if is_admin?
+          %td
+            .btn= link_to 'Edit', edit_course_path(course)
+          %td
+            .btn= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
 %br
 
-= link_to 'New Course', new_course_path
+- if is_admin?
+  .btn= link_to 'New Course', new_course_path

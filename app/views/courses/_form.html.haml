@@ -25,5 +25,9 @@
       = f.label :term
       %br
       = select_tag "term", "<option>Fall</option><option>Spring</option>".html_safe
+    .field
+      = f.label "Teacher"
+      %br
+      = select("teacher", "user_id", @users.collect { |user| ["#{user.first_name} #{user.last_name} - #{user.email}", user.id] })
     .actions
       = f.submit

@@ -21,7 +21,12 @@
       %th
         Term
       %th
+        Teacher
+      %th
         Add/Drop Class
+      - if is_admin?
+        %th
+          Edit
   %tbody
     - @courses.each do |course|
       - @enrolled = false
@@ -36,9 +41,16 @@
         %td
           = course.section
         %td
-          = course.term
+          - if Date.new(Date.today.year, 8, 1)
+            Fall
+          - else
+            Spring
+        %td= "#{User.find_by_id(course.teacher_id).first_name} #{User.find_by_id(course.teacher_id).last_name}"
         %td
           - if @enrolled
             .btn= link_to "Drop Class", drop_course_path(course)
           - else
             .btn= link_to "Add Class", add_course_path(course)
+        - if is_admin?
+          %td
+            .btn= link_to "Edit", edit_course_path(course)
