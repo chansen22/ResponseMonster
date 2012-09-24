@@ -1,8 +1,7 @@
 class CoursesController < ApplicationController
   before_filter :authenticate
   before_filter :admin_user, only: [:new, :create, :destroy]
-  # GET /courses
-  # GET /courses.json
+
   def index
     @courses = Course.all
 
@@ -12,8 +11,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # GET /courses/1
-  # GET /courses/1.json
   def show
     @course = Course.find(params[:id])
 
@@ -23,8 +20,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # GET /courses/new
-  # GET /courses/new.json
   def new
     @course = Course.new
     @users = User.all
@@ -35,14 +30,11 @@ class CoursesController < ApplicationController
     end
   end
 
-  # GET /courses/1/edit
   def edit
     @course = Course.find(params[:id])
     @users = User.all
   end
 
-  # POST /courses
-  # POST /courses.json
   def create
     @course = Course.new(params[:course])
 
@@ -57,8 +49,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # PUT /courses/1
-  # PUT /courses/1.json
   def update
     @course = Course.find(params[:id])
 
@@ -73,8 +63,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # DELETE /courses/1
-  # DELETE /courses/1.json
   def destroy
     @course = Course.find(params[:id])
     @course.destroy
