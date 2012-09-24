@@ -24,8 +24,7 @@
         %td= course.title
         %td= course.section
         %td= course.term
-        - @user = User.find_by_id(course.teacher_id)
-        %td= "#{@user.first_name} #{user.last_name}"
+        %td= "#{User.find_by_id(course.teacher_id).first_name} #{User.find_by_id(course.teacher_id).last_name}"
         %td= link_to 'Show', course
         %td= link_to 'Edit', edit_course_path(course)
         %td= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
