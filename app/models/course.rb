@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
   has_and_belongs_to_many :users
+  has_many :surveys
   attr_accessible :name, :section, :term, :title
 
   validates( :name, :title, :section, presence: true )
