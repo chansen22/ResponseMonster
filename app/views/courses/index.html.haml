@@ -14,20 +14,29 @@
         Term
       %th
         Teacher
-      %th
-      %th
+      - if is_admin?
+        %th
+        %th
 
   %tbody
     - @courses.each do |course|
       %tr
-        %td= course.name
+        %td= link_to course.name, course
         %td= course.title
         %td= course.section
-        %td= course.term
+        - if Date.new(Date.today.year, 8, 1)
+          %td
+            Fall
+        - else
+          %td
+            Spring
         %td= "#{User.find_by_id(course.teacher_id).first_name} #{User.find_by_id(course.teacher_id).last_name}"
-        %td= link_to 'Show', course
-        %td= link_to 'Edit', edit_course_path(course)
-        %td= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
+        - if is_admin?
+          %td
+            .btn= link_to 'Edit', edit_course_path(course)
+          %td
+            .btn= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
 %br
 
-= link_to 'New Course', new_course_path
+- if is_admin?
+  .btn= link_to 'New Course', new_course_path

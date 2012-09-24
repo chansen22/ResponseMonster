@@ -18,8 +18,13 @@
 %p
   %b
     Term:
-  = @course.term
+  - if Date.new(Date.today.year, 8, 1) == @course.term
+    Fall
+  - else
+    Spring
 
-= link_to 'Edit', edit_course_path(@course)
-%br
-= link_to 'Back', courses_path
+- if is_admin?
+  .btn= link_to 'Edit', edit_course_path(@course)
+  %br
+  %br
+  .btn= link_to 'Back', courses_path
