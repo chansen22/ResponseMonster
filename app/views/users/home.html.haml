@@ -21,6 +21,8 @@
       %th
         Term
       %th
+        Teacher
+      %th
         Add/Drop Class
   %tbody
     - @courses.each do |course|
@@ -37,6 +39,7 @@
           = course.section
         %td
           = course.term
+        %td= "#{User.find_by_id(course.teacher_id).first_name} #{User.find_by_id(course.teacher_id).last_name}"
         %td
           - if @enrolled
             .btn= link_to "Drop Class", drop_course_path(course)

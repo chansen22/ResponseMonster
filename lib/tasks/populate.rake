@@ -23,7 +23,8 @@ namespace :dev do
       Course.create!(name:  "Course #{n}",
                      title: "COUR 00#{n}",
                      section: "01",
-                     term:  Date.new(Date.today.year, 8, 1)
+                     term:  Date.new(Date.today.year, 8, 1),
+                     teacher_id: 1
                     )
     end
   end
