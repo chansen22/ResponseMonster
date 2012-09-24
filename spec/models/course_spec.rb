@@ -4,7 +4,7 @@ describe Course do
   before { @course = Course.new(name: "Test Course",
                                 title: "Test Title",
                                 section: "01",
-                                term: Time.now) }
+                                term: Date.today) }
   subject { @course }
 
   it { should respond_to(:name) }

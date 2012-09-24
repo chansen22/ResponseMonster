@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
     @courses = Course.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @courses }
     end
   end
@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @course }
     end
   end
@@ -25,7 +25,7 @@ class CoursesController < ApplicationController
     @users = User.all
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @course }
     end
   end
@@ -37,15 +37,17 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(params[:course])
+    logger.info("\n\n\n\n\n\n\n\n Course is #{params[:term]}")
 
-    respond_to do |format|
-      if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render json: @course, status: :created, location: @course }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
+    if params[:term] == "Fall"
+      @course.term = Date.new(Date.today.year, 8, 1)
+    else
+      @course.term = Date.new(Date.today.year, 1, 1)
+    end
+    if @course.save
+      redirect_to @course, notice: 'Course was successfully created.'
+    else
+      render "new"
     end
   end
 

@@ -24,6 +24,6 @@
     .field
       = f.label :term
       %br
-      = f.datetime_select :term
+      = select_tag "term", "<option>Fall</option><option>Spring</option>".html_safe
     .actions
       = f.submit

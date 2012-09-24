@@ -2,7 +2,7 @@ class Course < ActiveRecord::Base
   has_and_belongs_to_many :users
   attr_accessible :name, :section, :term, :title
 
-  validates( :name, :title, :section, :term, presence: true )
+  validates( :name, :title, :section, presence: true )
 
   def add_user(user)
     self.users << user
