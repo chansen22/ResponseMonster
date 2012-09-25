@@ -55,14 +55,17 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find(params[:id])
 
-    respond_to do |format|
-      if @course.update_attributes(params[:course])
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
+    @course.teacher_id = params[:teacher][:user_id]
+
+    if params[:term] == "Fall"
+      @course.term = Date.new(Date.today.year, 8, 1)
+    else
+      @course.term = Date.new(Date.today.year, 1, 1)
+    end
+    if @course.update_attributes(params[:course])
+      redirect_to @course, notice: 'Course was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 

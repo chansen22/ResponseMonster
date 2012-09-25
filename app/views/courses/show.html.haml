@@ -23,7 +23,7 @@
   - else
     Spring
 
-- if is_admin?
+- if is_admin? || @course.teacher_id == current_user.id
   .btn= link_to 'Edit', edit_course_path(@course)
   %br
   %br
