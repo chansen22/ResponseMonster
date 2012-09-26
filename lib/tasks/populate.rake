@@ -19,12 +19,13 @@ namespace :dev do
                    password_confirmation: "password"
                   )
     end
+    puts "Creating Courses"
     10.times do |n|
       Course.create!(name:  "Course #{n}",
                      title: "COUR 00#{n}",
                      section: "01",
                      term:  Date.new(Date.today.year, 8, 1),
-                     teacher_id: 1
+                     teacher_id: n+1
                     )
     end
   end
