@@ -1,44 +1,40 @@
 class SurveysController < ApplicationController
-  # GET /surveys
-  # GET /surveys.json
+
   def index
     @surveys = Survey.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @surveys }
     end
   end
 
-  # GET /surveys/1
-  # GET /surveys/1.json
   def show
     @survey = Survey.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @survey }
     end
   end
 
-  # GET /surveys/new
-  # GET /surveys/new.json
   def new
     @survey = Survey.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @survey }
+    if params[:course].nil?
+      redirect_to root_path, notice: "Surveys must be created from inside courses"
+    else
+      course = Course.find_by_id(params[:course])
+      @course_id = course.id
+      if course.teacher_id != current_user.id
+        redirect_to root_path, notice: "You are not a teacher of this class"
+      end
     end
   end
 
-  # GET /surveys/1/edit
   def edit
     @survey = Survey.find(params[:id])
   end
 
-  # POST /surveys
-  # POST /surveys.json
   def create
     @survey = Survey.new(params[:survey])
 
@@ -53,8 +49,6 @@ class SurveysController < ApplicationController
     end
   end
 
-  # PUT /surveys/1
-  # PUT /surveys/1.json
   def update
     @survey = Survey.find(params[:id])
 
@@ -69,8 +63,6 @@ class SurveysController < ApplicationController
     end
   end
 
-  # DELETE /surveys/1
-  # DELETE /surveys/1.json
   def destroy
     @survey = Survey.find(params[:id])
     @survey.destroy

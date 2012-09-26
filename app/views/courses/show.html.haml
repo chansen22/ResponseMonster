@@ -23,6 +23,9 @@
   - else
     Spring
 
+- if @course.teacher_id == current_user.id || is_admin?
+  .btn= link_to 'Create New Survey', new_survey_path(course: @course.id)
+
 - if is_admin?
   .btn= link_to 'Edit', edit_course_path(@course)
   %br
