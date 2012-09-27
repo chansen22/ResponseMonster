@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :authenticate
+  before_filter :admin_user, only: [:index]
   
   def index
     @users = User.all
@@ -74,4 +76,14 @@ class UsersController < ApplicationController
       render 'sessions/new'
     end
   end
+
+  private
+
+    def authenticate
+      redirect_to signin_path unless signed_in?
+    end
+
+    def admin_user
+      redirect_to root_path unless is_admin?
+    end
 end
