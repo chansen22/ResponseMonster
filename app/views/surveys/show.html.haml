@@ -1,7 +1,20 @@
-%p{id => "notice"}
- - notice
+%p#notice
+  = notice
+
+%h1
+  Survey
+
+#surveyDetails
+  %h2
+    Details
+  %p
+    %b
+      Name
+    %br
+    = @survey.name
+
+#surveyQuestions
+  %h2
+    Questions
 
 
-- link_to 'Edit', edit_survey_path(@survey)
-|
-- link_to 'Back', surveys_path

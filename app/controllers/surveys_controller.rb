@@ -1,34 +1,12 @@
 class SurveysController < ApplicationController
 
-  def index
-    @surveys = Survey.all
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @surveys }
-    end
-  end
-
   def show
     @survey = Survey.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @survey }
-    end
+    @course = @survey.course
   end
 
   def new
     @survey = Survey.new
-    if params[:course].nil?
-      redirect_to root_path, notice: "Surveys must be created from inside courses"
-    else
-      course = Course.find_by_id(params[:course])
-      @course_id = course.id
-      if course.teacher_id != current_user.id
-        redirect_to root_path, notice: "You are not a teacher of this class"
-      end
-    end
   end
 
   def edit
@@ -36,40 +14,55 @@ class SurveysController < ApplicationController
   end
 
   def create
-    @survey = Survey.new(params[:survey])
+    @course = Course.find(params[:course_id])
+    @survey = @course.surveys.create(params[:survey])
 
-    respond_to do |format|
-      if @survey.save
-        format.html { redirect_to @survey, notice: 'Survey was successfully created.' }
-        format.json { render json: @survey, status: :created, location: @survey }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @survey.errors, status: :unprocessable_entity }
-      end
+    if @survey.save
+      redirect_to course_path(@course), notice: "Survey was successfully created"
+    else
+      render new_course_survey_path(@course.id)
     end
   end
 
   def update
     @survey = Survey.find(params[:id])
+    @course = @survey.course
 
-    respond_to do |format|
-      if @survey.update_attributes(params[:survey])
-        format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @survey.errors, status: :unprocessable_entity }
-      end
+    if @survey.update_attributes(params[:survey])
+      redirect_to course_path(@course), notice: 'Survey was successfully updated'
+    else
+      render action: "edit", notice: "There were some errors"
     end
   end
 
   def destroy
     @survey = Survey.find(params[:id])
-    @survey.destroy
+    @course = @survey.course
+    
+    if @survey.destroy
+      redirect_to course_path(@course), notice: "Survey successfully deleted"
+    else
+      redirect_to course_path(@course), notice: "Survey was not deleted"
+    end
+  end
 
-    respond_to do |format|
-      format.html { redirect_to surveys_url }
-      format.json { head :no_content }
+  def activate
+    @survey = Survey.find(params[:id])
+    @course = @survey.course
+    if @survey.toggle_survey(@survey)
+      redirect_to course_path(@course), notice: "Activated survey"
+    else
+      redirect_to course_path(@course), notice: "Could not activate survey"
+    end
+  end
+
+  def deactivate
+    @survey = Survey.find(params[:id])
+    @course = @survey.course
+    if @survey.toggle_survey(@survey)
+      redirect_to course_path(@course), notice: "Deactivated survey"
+    else
+      redirect_to course_path(@course), notice: "Could not deactivate survey"
     end
   end
 end

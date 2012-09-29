@@ -7,15 +7,15 @@
     %th
     %th
 
-- @surveys.each do |survey|
+= @surveys.each do |survey|
   %tr
     %td
-      - link_to 'Show', survey
+      = link_to 'Show', survey
     %td
-      - link_to 'Edit', edit_survey_path(survey)
+      = link_to 'Edit', edit_survey_path(survey)
     %td
-      - link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' }
+      = link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-- link_to 'New Survey', new_survey_path
+= link_to 'New Survey', new_survey_path

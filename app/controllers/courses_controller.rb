@@ -13,6 +13,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @surveys = @course.surveys.all
   end
 
   def new

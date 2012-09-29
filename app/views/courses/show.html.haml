@@ -23,8 +23,49 @@
   - else
     Spring
 
+%br
 - if @course.teacher_id == current_user.id || is_admin?
-  .btn= link_to 'Create New Survey', new_survey_path(course: @course.id)
+  .btn= link_to 'Create New Survey', new_course_survey_path(@course)
+%br
+
+%h2
+  Surveys
+%table.table
+  %tr
+    %th
+      Name
+    %th
+      Start Time
+    %th
+      End Time
+    %th
+      Edit
+    %th
+      Activate
+    %th
+      Delete
+  %tbody
+    - @surveys.each do |survey|
+      %tr
+        %td
+          = survey.name
+        %td
+          = survey.start_time
+        %td
+          = survey.end_time
+        %td
+          .btn= link_to "Edit", edit_course_survey_path(@course, survey)
+        %td
+          - if survey.is_active
+            .btn= link_to "Deactive Survey", deactivate_course_survey_path(@course, survey)
+          - else
+            .btn= link_to "Activate Survey", activate_course_survey_path(@course, survey)
+        %td
+          .btn.btn-warning= link_to "Delete", [@course, survey], method: :delete, confirm: "Are you sure you want to delete this survey?", title: "Delete #{survey.name}"
+
+
+- if @course.teacher_id == current_user.id || is_admin?
+  .btn= link_to 'Create New Survey', new_course_survey_path(@course)
 
 - if is_admin?
   .btn= link_to 'Edit', edit_course_path(@course)

@@ -15,9 +15,14 @@ ResponseMonster::Application.routes.draw do
       get 'add'
       get 'drop'
     end
+    resources :surveys, except: :index do
+      member do
+        get 'activate'
+        get 'deactivate'
+      end
+    end
   end
 
-  resources :surveys
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

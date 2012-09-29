@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
   has_and_belongs_to_many :users
-  has_many :surveys
+  has_many :surveys, dependent: :destroy
   attr_accessible :name, :section, :term, :title, :teacher_id
 
   validates( :name,  :title, :section, presence: true )
