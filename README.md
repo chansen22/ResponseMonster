@@ -107,16 +107,16 @@ Running ResponseMonster
 Installation
 -------------
 
-- git clone git@github.com:bafipawi/ResponseMonster
-- cd ResponseMonster
-- bundle install
-- rake db:migrate
+- `git clone git@github.com:bafipawi/ResponseMonster`
+- `cd ResponseMonster`
+- `bundle install`
+- `rake db:migrate`
 
 Testing
 --------
 
-- rake db:test:prepare
-- guard
+- `rake db:test:prepare`
+- `guard`
 
 Code standards
 --------------
@@ -139,3 +139,17 @@ before { @user = User.new(first_name: "Test",
                           password: "password",
                           password_confirmation: "password") }
 ```
+
+Software Development Risks
+--------------------------
+
+* Requirements don't match what we need.  For example: requirements could conflict with one another or don't include enough detail to implment directly. Unclear specification.
+* Estimation of Time to Completion incorrect for a/some milestone(s).  This could affect the quality of the final product if we're unable to implment everything that we anticipated.
+* Ability to learn Ruby on Rails.  The learning curve could prove to be challenging for us.  All of us are relatively unfamiliar with RoR except for Chris.
+* We don't have professional design experience. 
+* Not enough testing, software could have too many bugs at release.
+* Not enough features after completion (No value-add).
+* Users (Difficulty of using application, users don't have laptops/smartphones, etc)
+* Application not being adopted by general population (Mitigate by carefully designing for simplicty).
+* Planning unecessary features that may or may not be used.  We should not try to anticipate what you need before you need it.
+* Schoolwork load becomes too heavy (Bad time management).
