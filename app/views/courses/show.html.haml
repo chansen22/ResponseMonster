@@ -48,7 +48,7 @@
     - @surveys.each do |survey|
       %tr
         %td
-          = survey.name
+          .btn= link_to survey.name, course_survey_path(@course, survey)
         %td
           = survey.start_time
         %td
