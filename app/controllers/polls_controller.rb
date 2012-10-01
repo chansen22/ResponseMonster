@@ -34,7 +34,7 @@ class PollsController < ApplicationController
     @poll = Poll.find(params[:id])
 
     if @poll.update_attributes(params[:poll])
-      redirect_to @poll, notice: 'Poll was successfully updated'
+      redirect_to course_path(@course), notice: 'Poll was successfully updated'
     else
       render action: "edit"
     end
@@ -45,6 +45,6 @@ class PollsController < ApplicationController
     @survey = Survey.find(params[:survey_id])
     @poll = Poll.find(params[:id])
     @poll.destroy
-    redirect_to polls_url
+    redirect_to course_path(@course)
   end
 end
