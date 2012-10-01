@@ -37,6 +37,11 @@ textarea {
   }
 }
 
+.btn a {
+  color: #000;
+  text-decoration: none;
+}
+
 btn a:hover {
   color: $btngray;
   background-color: none;
@@ -72,14 +77,15 @@ p {
 /* header */
 
 #logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
+  border: none;
   color: $white;
-  letter-spacing: -1px;
-  padding-top: 9px;
+  float: left;
+  font-size: 1.7em;
   font-weight: bold;
+  letter-spacing: -1px;
   line-height: 1;
+  margin-right: 10px;
+  padding-top: 9px;
   &:hover {
     color: $white;
     text-decoration: none;
