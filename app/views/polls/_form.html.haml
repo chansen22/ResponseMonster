@@ -1,4 +1,4 @@
-= form_for(@poll) do |f|
+= form_for([:course, :survey, @poll]) do |f|
   - if @poll.errors.any?
     #error_explanation
       %h2= pluralize(@poll.errors.count, "error") 
@@ -9,9 +9,9 @@
         %li= msg
 
   .field
-    = f.label :type
+    = f.label :answer_type
     %br
-    = f.text_field :type
+    = f.text_field :answer_type
   .field
     = f.label :question
     %br
