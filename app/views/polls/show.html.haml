@@ -1,0 +1,14 @@
+%p#notice
+  = notice
+
+%p
+  %b Type:
+  = @poll.type
+
+%p
+  %b Question:
+  = @poll.question
+
+= link_to 'Edit', edit_poll_path(@poll)
+%br
+= link_to 'Back', polls_path
