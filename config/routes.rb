@@ -23,6 +23,7 @@ ResponseMonster::Application.routes.draw do
     end
   end
 
+  resources :polls
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
