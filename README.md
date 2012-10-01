@@ -142,7 +142,7 @@ before { @user = User.new(first_name: "Test",
 
 Software Development Risks
 --------------------------
-1.	Userers (Difficulty of using application, users don't have laptops/smartphones, etc)
+1.	Users (Difficulty of using application, users don't have laptops/smartphones, etc)
 Priority Level: 1
 Level of Impact: 1
 How to Mitigate: Reverse engineer a clicker for cheaper production
