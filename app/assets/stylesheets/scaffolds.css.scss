@@ -1,3 +1,5 @@
+$linkColor: #000;
+
 body {
   background-color: #fff;
   color: #333;
@@ -20,12 +22,13 @@ pre {
 
 a {
   color: #000;
+  text-decoration: none;
   &:visited {
-    color: #666;
+    color: $linkColor;
   }
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: $linkColor;
+    text-decoration: underline;
   }
 }
 
