@@ -142,14 +142,63 @@ before { @user = User.new(first_name: "Test",
 
 Software Development Risks
 --------------------------
+1.	Users (Difficulty of using application, users don't have laptops/smartphones, etc)
+Priority Level: 1
+Level of Impact: 1
+How to Mitigate: Reverse engineer a clicker for cheaper production
+Likelihood: 1
 
-* Requirements don't match what we need.  For example: requirements could conflict with one another or don't include enough detail to implment directly. Unclear specification.
-* Estimation of Time to Completion incorrect for a/some milestone(s).  This could affect the quality of the final product if we're unable to implment everything that we anticipated.
-* Ability to learn Ruby on Rails.  The learning curve could prove to be challenging for us.  All of us are relatively unfamiliar with RoR except for Chris.
-* We don't have professional design experience. 
-* Not enough testing, software could have too many bugs at release.
-* Not enough features after completion (No value-add).
-* Users (Difficulty of using application, users don't have laptops/smartphones, etc)
-* Application not being adopted by general population (Mitigate by carefully designing for simplicty).
-* Planning unecessary features that may or may not be used.  We should not try to anticipate what you need before you need it.
-* Schoolwork load becomes too heavy (Bad time management).
+2.	Incorrect estimation of completion time.  This would affect the quality of the final product.
+Priority Level: 8
+Level of Impact: 8
+How to Mitigate: Constantly reassess our progress and evaluate our goals accordingly.
+Likelihood: 3
+
+3.	Ability to learn “Ruby on Rails”. The learning curve could be challenging for us.
+Priority Level: 8
+Level of Impact: 7
+How to Mitigate: Keep up on tutorials and reading.
+Likelihood: 2
+
+4.	Not enough testing, software could have bugs at release.
+Priority Level: 6
+Level of Impact: 6
+How to Mitigate: Test frequently and often, especially after new implementations of key elements.
+Likelihood: 4
+
+5.	Not enough features after completion.
+Priority Level: 10
+Level of Impact: 10
+How to Mitigate: Keep work/motivation up throughout the semester.
+Likelihood: 2
+
+6.	No professional design experience.
+Priority Level: 1
+Level of Impact: 1
+How to Mitigate: Keep astestics simple.
+Likelihood: 1
+
+7.	Application not being used.
+Priority Level: 8
+Level of Impact: 7
+How to Mitigate: Keep application user friendly and design simple.
+Likelihood: 5
+
+8.	Planning unnecessary features that may not be used. 
+Priority Level: 6
+Level of Impact: 6
+How to Mitigate: We shouldn’t try to anticipate what we need, before we need it.
+Likelihood: 5
+
+9.	Schoolwork load becomes too heavy.
+Priority Level: 6
+Level of Impact: 10
+How to Mitigate: Stay on track with school and manage time.
+Likelihood: 2
+
+10.	Members not working together/getting along.
+Priority Level: 2
+Level of Impact: 8
+How to Mitigate: Be team players.
+Likelihood: 1
+
