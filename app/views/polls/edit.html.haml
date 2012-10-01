@@ -1,8 +1,7 @@
-
-%h1= Editing poll
+%h1 Editing poll
 
 = render 'form'
 
-= link_to 'Show', @poll 
+= link_to 'Show', course_survey_poll_path(@course, @survey, @poll)
 %br
-= link_to 'Back', polls_path
+= link_to 'Back', course_survey_path(@course, @survey)
