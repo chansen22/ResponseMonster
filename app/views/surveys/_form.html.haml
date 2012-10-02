@@ -16,8 +16,12 @@
 
   .well
     = f.fields_for :polls do |polls_form|
-      = polls_form.text_field :question_text
-      = polls_form.link_to_remove "Remove"
+      .well
+        = polls_form.label :question_text
+        = polls_form.text_field :question_text
+        = polls_form.label :answer_type
+        = polls_form.select :answer_type, "<option>Multiple Choice</option><option>Short Answer</option><option>Code</option><option>Essay</option>".html_safe
+        .btn= polls_form.link_to_remove "Remove"
     = f.link_to_add "Add Question", :polls
 
   %br
