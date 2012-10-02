@@ -13,5 +13,15 @@
 #surveyQuestions
   %h2
     Questions
+  .well
+    - @survey.polls.each do |poll|
+      = link_to poll.question_text, course_survey_poll_path(@course, @survey, poll)
+      .well
+        %ol
+          %li
+            Answer
+          %li
+            Answer2
+      %br
 
 = link_to "New Poll", new_course_survey_poll_path(@course, @survey)
