@@ -1,0 +1,14 @@
+%h2 Question
+.well
+  .fields
+    = f.label :question_text
+    = f.text_field :question_text
+    = f.label :answer_type
+    = f.select :answer_type, "<option>Multiple Choice</option><option>Short Answer</option><option>Code</option><option>Essay</option>".html_safe
+    %br
+    %br
+    .btn= link_to_remove_fields "Remove Question", f
+    %h2 Answer(s)
+    = f.fields_for :answers do |builder|
+      = render 'answer_fields', f: builder
+    .btn= link_to_add_fields "Add Answer", f, :answers
