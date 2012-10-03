@@ -1,5 +1,6 @@
 ResponseMonster::Application.routes.draw do
   
+
   get "static_pages/about"
 
   get "static_pages/help"
@@ -16,10 +17,12 @@ ResponseMonster::Application.routes.draw do
       get 'drop'
     end
     resources :surveys, except: :index do
-      resources :polls
       member do
         get 'activate'
         get 'deactivate'
+      end
+      resources :polls do
+        resources :answers
       end
     end
   end
