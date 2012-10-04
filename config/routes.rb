@@ -5,6 +5,8 @@ ResponseMonster::Application.routes.draw do
 
   get "static_pages/help"
 
+  get "static_pages/types"
+
   root to: "users#home"
 
   resources :users
@@ -32,6 +34,7 @@ ResponseMonster::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/about',   to: 'StaticPages#about'
   match '/home',    to: 'users#home'
+  match '/types',   to: 'StaticPages#types'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

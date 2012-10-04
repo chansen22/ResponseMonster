@@ -1,0 +1,24 @@
+%h1 Types
+
+%p
+  * Multiple Choice answers will allow the teacher to select any number of correct answers and the student's will see each of those answers inside of that question and will be able to select any number of answers.
+  %br
+  * Short Answer will attempt to match all the values you put into the answer field. Eg: Question: What is my favorite color? Answer: red green blue. If the student puts in just red, they'll get it wrong, but if they enter red green blue anywhere inside their answer they'll get it right. So if they put in, I have two green dogs, three red spoons and one blue frisbee they'll technically have a correct answer.
+  %br
+  * Essay answers are just like Short Answer answers, except that there is no matching done on them to get a correct answer.
+  %br
+  * Code answers will assume c++ style code and will tack this on to the input.  Then it will attempt to compile the code using g++ input.cpp and if it compiles successfully it will attempt to run the executable, returning the results of the program to the user and to the teacher.
+  %br
+  #include <iostream>
+  %br
+  using namespace std;
+  %br
+  %br
+
+  int main() {
+  %br
+  INPUT HERE
+  %br
+  return 0;
+  %br
+  }
