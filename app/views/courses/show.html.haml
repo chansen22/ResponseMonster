@@ -29,19 +29,20 @@
 %h2
   Surveys
 %table.table
-  %tr
-    %th
-      Name
-    %th
-      Start Time
-    %th
-      End Time
-    %th
-      Edit
-    %th
-      Activate
-    %th
-      Delete
+  %thead
+    %tr
+      %th
+        Name
+      %th
+        Start Time
+      %th
+        End Time
+      %th
+        Edit
+      %th
+        Activate
+      %th
+        Delete
   %tbody
     - @surveys.each do |survey|
       %tr
