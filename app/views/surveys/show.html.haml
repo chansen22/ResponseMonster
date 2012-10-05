@@ -4,6 +4,8 @@
 #surveyDetails
   %h2
     Details
+  .pull-right.btn= link_to "New Survey", new_course_survey_path(@course, @survey)
+  .pull-right.btn= link_to "Edit Survey", edit_course_survey_path(@course, @survey)
   %p
     %b
       Name
@@ -13,15 +15,23 @@
 #surveyQuestions
   %h2
     Questions
-  .well
-    - @survey.polls.each do |poll|
-      = link_to poll.question_text, course_survey_poll_path(@course, @survey, poll)
-      .well
-        %ol
-          %li
-            Answer
-          %li
-            Answer2
+  - @survey.polls.each do |poll|
+    %table.table
+      %thead
+        %tr
+          %td
+            = poll.question_text
+          %td
+            Correct Answer?
+      - poll.answers.each do |answer|
+        %tr
+          %td
+            = answer.answer_text
+          %td
+            = answer.is_right.to_s.capitalize
       %br
 
-= link_to "New Poll", new_course_survey_poll_path(@course, @survey)
+
+.pull-right.btn= link_to "New Survey", new_course_survey_path(@course, @survey)
+.pull-right.btn= link_to "Edit Survey", edit_course_survey_path(@course, @survey)
+%br
