@@ -82,10 +82,4 @@ class AnswersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private
-
-    def authenticate
-      redirect_to signin_path unless signed_in?
-    end
 end

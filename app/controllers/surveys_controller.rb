@@ -66,10 +66,4 @@ class SurveysController < ApplicationController
       redirect_to course_path(@course), notice: "Could not deactivate survey"
     end
   end
-
-  private
-
-    def authenticate
-      redirect_to signin_path unless signed_in?
-    end
 end

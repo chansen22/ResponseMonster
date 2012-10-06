@@ -76,14 +76,4 @@ class UsersController < ApplicationController
       render 'sessions/new'
     end
   end
-
-  private
-
-    def authenticate
-      redirect_to signin_path unless signed_in?
-    end
-
-    def admin_user
-      redirect_to root_path unless is_admin?
-    end
 end
