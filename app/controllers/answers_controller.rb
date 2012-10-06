@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+  before_filter :authenticate
+
   # GET /answers
   # GET /answers.json
   def index
@@ -80,4 +82,10 @@ class AnswersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+    def authenticate
+      redirect_to signin_path unless signed_in?
+    end
 end

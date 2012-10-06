@@ -1,22 +1,24 @@
 class PollsController < ApplicationController
+  before_filter :authenticate
+
   def show
     @course = Course.find(params[:course_id])
     @survey = Survey.find(params[:survey_id])
     @poll = Poll.find(params[:id])
   end
-  
+
   def new
     @course = Course.find(params[:course_id])
     @survey = Survey.find(params[:survey_id])
     @poll = Poll.new
   end
-  
+
   def edit
     @course = Course.find(params[:course_id])
     @survey = Survey.find(params[:survey_id])
     @poll = Poll.find(params[:id])
   end
-  
+
   def create
     @course = Course.find(params[:course_id])
     @survey = Survey.find(params[:survey_id])
@@ -27,7 +29,7 @@ class PollsController < ApplicationController
       render action: "new"
     end
   end
-  
+
   def update
     @course = Course.find(params[:course_id])
     @survey = Survey.find(params[:survey_id])
@@ -39,7 +41,7 @@ class PollsController < ApplicationController
       render action: "edit"
     end
   end
-  
+
   def destroy
     @course = Course.find(params[:course_id])
     @survey = Survey.find(params[:survey_id])
@@ -47,4 +49,10 @@ class PollsController < ApplicationController
     @poll.destroy
     redirect_to course_path(@course)
   end
+
+  private
+
+    def authenticate
+      redirect_to signin_path unless signed_in?
+    end
 end

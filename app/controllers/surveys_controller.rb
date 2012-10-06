@@ -1,4 +1,5 @@
 class SurveysController < ApplicationController
+  before_filter :authenticate
 
   def show
     @survey = Survey.find(params[:id])
@@ -38,7 +39,7 @@ class SurveysController < ApplicationController
   def destroy
     @survey = Survey.find(params[:id])
     @course = @survey.course
-    
+
     if @survey.destroy
       redirect_to course_path(@course), notice: "Survey successfully deleted"
     else
@@ -65,4 +66,10 @@ class SurveysController < ApplicationController
       redirect_to course_path(@course), notice: "Could not deactivate survey"
     end
   end
+
+  private
+
+    def authenticate
+      redirect_to signin_path unless signed_in?
+    end
 end
