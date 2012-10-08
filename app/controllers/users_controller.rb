@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate
   before_filter :admin_user, only: [:index]
-  
+
   def index
     @users = User.all
 
@@ -28,11 +28,11 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  
+
   def edit
     @user = User.find(params[:id])
   end
-  
+
   def create
     @user = User.new(params[:user])
     if @user.save
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
+
   def update
     @user = User.find(params[:id])
 
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
