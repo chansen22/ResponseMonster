@@ -4,9 +4,9 @@
 #surveyDetails
   %h2
     Details
-  .pull-right.btn{:style => "border-top-left-radius: 0px; border-bottom-left-radius: 0px; border-left: 0px;"}
+  .pull-right.btn.pill-button-left
     = link_to "New Survey", new_course_survey_path(@course, @survey)
-  .pull-right.btn{:style => "border-top-right-radius: 0px; border-bottom-right-radius: 0px;"}
+  .pull-right.btn.pill-button-right
     = link_to "Edit Survey", edit_course_survey_path(@course, @survey)
   %p
     %b
@@ -34,8 +34,8 @@
       %br
 
 
-  .pull-right.btn{:style => "border-top-left-radius: 0px; border-bottom-left-radius: 0px; border-left: 0px;"}
+  .pull-right.btn.pill-button-left
     = link_to "New Survey", new_course_survey_path(@course, @survey)
-  .pull-right.btn{:style => "border-top-right-radius: 0px; border-bottom-right-radius: 0px;"}
+  .pull-right.btn.pill-button-right
     = link_to "Edit Survey", edit_course_survey_path(@course, @survey)
 %br
