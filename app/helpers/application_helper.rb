@@ -22,4 +22,8 @@ module ApplicationHelper
     link_to_function(name, ("add_fields(this, '#{association}', '#{escape_javascript(fields)}')"))
  
   end
+
+  def is_teacher?(course)
+    course.teacher_id == current_user.id
+  end
 end

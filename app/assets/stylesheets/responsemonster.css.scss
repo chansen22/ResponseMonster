@@ -45,6 +45,11 @@ textarea {
   text-decoration: none;
 }
 
+.btn-primary a {
+  color: #fff;
+  text-decoration: none;
+}
+
 btn a:hover {
   color: $btngray;
   background-color: none;
@@ -194,6 +199,7 @@ footer {
 }
 
 .half-cell {
+  vertical-align: top;
   width: 50%;
   padding: 10px;
 }

@@ -1,9 +1,19 @@
 class SurveysController < ApplicationController
   before_filter :authenticate
+  before_filter(only: [:show]) { |controller| controller.check_activated(Survey.find(params[:id])) }
+  before_filter(except: [:show]) { |controller| controller.check_permissions(Course.find(params[:course_id])) }
+  before_filter :admin_user, only: [:index]
 
   def show
     @survey = Survey.find(params[:id])
     @course = @survey.course
+    current_user.responses.each do |response|
+      @survey.polls.each do |poll|
+        if response.poll_id == poll.id
+          response.delete
+        end
+      end
+    end
     @responses = []
     @survey.polls.each do |poll|
       poll.answers.each do |answer|
@@ -27,7 +37,7 @@ class SurveysController < ApplicationController
     if @survey.save
       redirect_to course_path(@course), notice: "Survey was successfully created"
     else
-      render new_course_survey_path(@course.id)
+      render new_course_survey_path(@course.id), notice: "There were some errors"
     end
   end
 
@@ -38,7 +48,7 @@ class SurveysController < ApplicationController
     if @survey.update_attributes(params[:survey])
       redirect_to course_path(@course), notice: 'Survey was successfully updated'
     else
-      render action: "edit", notice: "There were some errors"
+      render "edit", notice: "There were some errors"
     end
   end
 
@@ -80,30 +90,3 @@ class SurveysController < ApplicationController
     @responses = current_user.responses.all
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
