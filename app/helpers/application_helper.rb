@@ -24,10 +24,6 @@ module ApplicationHelper
   end
 
   def is_teacher?(course)
-    if course.teacher_id == current_user.id
-      true
-    else
-      false
-    end
+    course.teacher_id == current_user.id
   end
 end
