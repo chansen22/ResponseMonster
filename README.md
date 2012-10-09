@@ -228,17 +228,21 @@ Use Cases
     * Actors: All Users
     * Action: Populate database record with user's info via 
 
+
 2. Course Creation
     * Actors: Administrator
     * Action: Create course and assign teacher to admin course.
+
 
 3. Survey Creation
     * Actors: Professors
     * Action: Create multiple choice or short answer surveys.
 
+
 4. Take Survey
     * Actors: Student
     * Action: Ability to take surveys of courses they're enrolled in.
+
 
 5. Add/Drop Course
     * Actors: Student/Administrator
