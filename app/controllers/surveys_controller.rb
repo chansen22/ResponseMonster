@@ -4,6 +4,13 @@ class SurveysController < ApplicationController
   def show
     @survey = Survey.find(params[:id])
     @course = @survey.course
+    current_user.responses.each do |response|
+      @survey.polls.each do |poll|
+        if response.poll_id == poll.id
+          response.delete
+        end
+      end
+    end
     @responses = []
     @survey.polls.each do |poll|
       poll.answers.each do |answer|
