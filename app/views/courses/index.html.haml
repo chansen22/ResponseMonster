@@ -14,12 +14,17 @@
         Term
       %th
         Teacher
+      %th
       - if is_admin?
         %th
         %th
 
   %tbody
     - @courses.each do |course|
+      - @enrolled = false
+      - course.users.each do |user|
+        - if current_user == user
+          - @enrolled = true
       %tr
         %td= link_to course.name, course
         %td= course.title
@@ -31,6 +36,11 @@
           %td
             Spring
         %td= "#{User.find_by_id(course.teacher_id).first_name} #{User.find_by_id(course.teacher_id).last_name}"
+        %td
+          - if @enrolled
+            .btn= link_to "Drop Course", drop_course_path(course)
+          - else
+            .btn= link_to "Enroll in Course", add_course_path(course)
         - if is_admin?
           %td
             .btn= link_to 'Edit', edit_course_path(course)
