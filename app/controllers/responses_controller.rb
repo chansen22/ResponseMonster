@@ -22,21 +22,21 @@ class ResponsesController < ApplicationController
   end
 
   def create
+    logger.info("\n\n\n\n\n\n\n#{params.keys.count}")
     @course = Course.find(params[:responses].first[1][:course_id])
     @survey = Survey.find(params[:responses].first[1][:survey_id])
-    @polls = @survey.polls
-    params.keys[3..-4].each do |key|
-      @response = Response.new(choiceId: key.split('=>')[-1][0..-1])
-      @response.save
-      current_user.responses << @response
-      @poll = Poll.find(Answer.find_by_id(@response.choiceId).poll_id)
-      @poll.responses << @response
-    end
-
-    if current_user.responses.any?
+    if params.keys.count >= 7
+      @polls = @survey.polls
+      params.keys[3..-4].each do |key|
+        @response = Response.new(choiceId: key.split('=>')[-1][0..-1])
+        @response.save
+        current_user.responses << @response
+        @poll = Poll.find(Answer.find_by_id(@response.choiceId).poll_id)
+        @poll.responses << @response
+      end
       redirect_to summary_course_survey_path(@course, @survey), notice: 'Response was successfully created'
     else
-      render action: "new", notice: "Could not save results"
+      redirect_to course_survey_path(@course, @survey), notice: "Please answer at least one question"
     end
   end
 
