@@ -202,7 +202,7 @@ Level of Impact: 8
 How to Mitigate: Be team players.
 Likelihood: 1
 
-REQUIREMENTS
+Requirements
 ------------
 1. Ability for teachers to administer Surveys they have previously created.
 
@@ -222,7 +222,7 @@ REQUIREMENTS
 
 9. Ability for users to see statistics on their own responses
 
-USE CASES
+Use Cases
 ---------
 1. User login
 
