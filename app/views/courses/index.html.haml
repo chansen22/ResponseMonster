@@ -26,7 +26,10 @@
         - if current_user == user
           - @enrolled = true
       %tr
-        %td= link_to course.name, course
+        - if @enrolled
+          %td= link_to course.name, course
+        - else
+          %td= course.name
         %td= course.title
         %td= course.section
         - if Date.new(Date.today.year, 8, 1)

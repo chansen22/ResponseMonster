@@ -21,6 +21,11 @@
   - else
     Spring
 
+%p
+  %b
+    Teacher:
+  = "#{User.find(@course.teacher_id).first_name} #{User.find(@course.teacher_id).last_name}"
+
 %br
 - if is_teacher?(@course) || is_admin?
   .btn= link_to 'Create New Survey', new_course_survey_path(@course)
@@ -48,7 +53,10 @@
     - @surveys.each do |survey|
       %tr
         %td
-          .btn= link_to survey.name, course_survey_path(@course, survey)
+          - if survey.is_active || is_admin? || is_teacher?(@course)
+            .btn= link_to survey.name, course_survey_path(@course, survey)
+          - else
+            = survey.name
         %td
           - if survey.start_time.nil?
             = @course.term
