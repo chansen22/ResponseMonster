@@ -204,30 +204,59 @@ Likelihood: 1
 
 Requirements
 ------------
-1. Ability for teachers to administer Surveys they have previously created.
+1. Teachers should be able to administer Survey's they've created.
 
-2. Ability for teachers to create questions on the fly
+2. Teachers should be able to create Surveys / Questions on the fly.
 
-3. Ability for users to take Surveys
+3. Admins should be able to create Courses for Teachers and Students to join/enroll in.
 
-4. Ability to create "Courses" to select groups of users to administer surveys to.
+4. Students should be able to take Surveys in Courses they're enrolled in.
 
-5. Ability for Administrators to create teachers
+5. Administrators should be able to assign teachers to Courses.
 
-6. Ability to instantly see results of a user's survey
+6. Surveys should have a method to display results of a survey right after it's completed.
 
-7. Ability to administer both multiple choice and short answer questions
+7. Survey's Question's Results should support short answer and multiple choices.
 
-8. Ability for teachers to be able to see statstics for each student's responses
+8. Statistics tracking should be provided to both the teachers and students.
 
-9. Ability for users to see statistics on their own responses
+9. Ability for users to interact with the site from a mobile interface
 
 Use Cases
 ---------
-1. User login
 
-2. User navigating to a specific Course page out of a list of the classes they are taking
+1. Create Account
+    - Actors: All Users
+    - Action: Populate database record with user's info via 
 
-3. Course signup page - page for user to add a Course to their current Courses
+2. Course Creation
+    - Actors: Administrator
+    - Action: Create course and assign teacher to admin course.
 
-4. Course page - contains current open surveys and old surveys with responses. Also has administration/teaching options on it if you are currently an admin or teaching the class.
+3. Survey Creation
+    - Actors: Professors
+    - Action: Create multiple choice or short answer surveys.
+
+4. Take Survey
+    - Actors: Student
+    - Action: Ability to take surveys of courses they're enrolled in.
+
+5. Add/Drop Course
+    - Actors: Student/Administrator
+    - Action: Users should be able to add or remove courses from the webapp
+
+6. Edit Course
+    - Actors: Teacher/Administrator
+    - Action: Users should be able to add/remove users, add/remove description/surveys
+
+7. Edit Survey
+    - Actors: Teacher/Administrator
+    - Action: Users should be able to change survey details
+
+8. Delete User
+    - Actors: Administrator
+    - Action: Admins should be able to delete users
+
+9. Grade Surveys
+    - Actors: Teachers
+    - Action: Teachers should be able to grade surveys for a score
