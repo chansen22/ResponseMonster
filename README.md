@@ -232,18 +232,30 @@ Use Cases
     - Actors: Administrator
     - Action: Create course and assign teacher to admin course.
 
-
 3. Survey Creation
     - Actors: Professors
     - Action: Create multiple choice or short answer surveys.
-
 
 4. Take Survey
     - Actors: Student
     - Action: Ability to take surveys of courses they're enrolled in.
 
-
 5. Add/Drop Course
     - Actors: Student/Administrator
     - Action: Users should be able to add or remove courses from the webapp
 
+6. Edit Course
+    - Actors: Teacher/Administrator
+    - Action: Users should be able to add/remove users, add/remove description/surveys
+
+7. Edit Survey
+    - Actors: Teacher/Administrator
+    - Action: Users should be able to change survey details
+
+8. Delete User
+    - Actors: Administrator
+    - Action: Admins should be able to delete users
+
+9. Grade Surveys
+    - Actors: Teachers
+    - Action: Teachers should be able to grade surveys for a score
