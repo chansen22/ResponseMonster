@@ -14,12 +14,17 @@ class ApplicationController < ActionController::Base
 
     def member_of_course(course)
       is_enrolled = false
+      if current_user.id == course.teacher_id
+        is_teacher = true
+      else
+        is_teacher = false
+      end
       course.users.each do |user|
         if user == current_user
           is_enrolled = true
         end
       end
       redirect_to root_path, notice: "You must be enrolled in a course to view
-      it." unless is_enrolled
+      it." unless is_enrolled || is_teacher
     end
 end

@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_filter :authenticate
-# before_filter do |controller| controller.member_of_course(Course.find(params[:id])) end
+  before_filter(only: [:show]) {|controller| controller.member_of_course(Course.find(params[:id]))}
   before_filter :admin_user, only: [:new, :create, :destroy]
 
   def index
