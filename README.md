@@ -220,8 +220,7 @@ Requirements
 
 8. Statistics tracking should be provided to both the teachers and students.
 
-
-10. Ability for users to interact with the site from a mobile interface
+9. Ability for users to interact with the site from a mobile interface
 
 Use Cases
 ---------
