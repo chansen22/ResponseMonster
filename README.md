@@ -202,3 +202,32 @@ Level of Impact: 8
 How to Mitigate: Be team players.
 Likelihood: 1
 
+Requirements
+------------
+1. Ability for teachers to administer Surveys they have previously created.
+
+2. Ability for teachers to create questions on the fly
+
+3. Ability for users to take Surveys
+
+4. Ability to create "Courses" to select groups of users to administer surveys to.
+
+5. Ability for Administrators to create teachers
+
+6. Ability to instantly see results of a user's survey
+
+7. Ability to administer both multiple choice and short answer questions
+
+8. Ability for teachers to be able to see statstics for each student's responses
+
+9. Ability for users to see statistics on their own responses
+
+Use Cases
+---------
+1. User login
+
+2. User navigating to a specific Course page out of a list of the classes they are taking
+
+3. Course signup page - page for user to add a Course to their current Courses
+
+4. Course page - contains current open surveys and old surveys with responses. Also has administration/teaching options on it if you are currently an admin or teaching the class.

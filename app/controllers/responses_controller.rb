@@ -26,7 +26,7 @@ class ResponsesController < ApplicationController
     @survey = Survey.find(params[:responses].first[1][:survey_id])
     @polls = @survey.polls
     params.keys[3..-4].each do |key|
-      @response = Response.new(choiceId: key.split('=>')[-1][0])
+      @response = Response.new(choiceId: key.split('=>')[-1][0..-1])
       @response.save
       current_user.responses << @response
       @poll = Poll.find(Answer.find_by_id(@response.choiceId).poll_id)
