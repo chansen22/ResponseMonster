@@ -4,6 +4,12 @@ class SurveysController < ApplicationController
   def show
     @survey = Survey.find(params[:id])
     @course = @survey.course
+    @responses = []
+    @survey.polls.each do |poll|
+      poll.answers.each do |answer|
+        @responses << Response.new()
+      end
+    end
   end
 
   def new
@@ -66,4 +72,38 @@ class SurveysController < ApplicationController
       redirect_to course_path(@course), notice: "Could not deactivate survey"
     end
   end
+
+  def summary
+    @survey = Survey.find(params[:id])
+    @course = @survey.course
+    @polls = @survey.polls.all
+    @responses = current_user.responses.all
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

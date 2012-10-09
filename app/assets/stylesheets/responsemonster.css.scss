@@ -12,6 +12,8 @@ $errorRed: #900;
 $shadowGray: #ccc;
 $btngray: #666;
 $wellGray: #f0f0f0;
+$correctGreen: #90EE90;
+$wrongPink: #FFB6C1;
 
 /* Site Wide */
 
@@ -166,4 +168,21 @@ footer {
 .pill-button-right {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
+}
+
+.correct-answer {
+  background-color: $correctGreen;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.wrong-answer {
+  background-color: $wrongPink;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.not-picked-answer {
+  border-radius: 5px;
+  padding-left: 5px;
 }

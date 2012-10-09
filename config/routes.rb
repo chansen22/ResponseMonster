@@ -1,5 +1,4 @@
 ResponseMonster::Application.routes.draw do
-  
 
   get "static_pages/about"
 
@@ -22,12 +21,15 @@ ResponseMonster::Application.routes.draw do
       member do
         get 'activate'
         get 'deactivate'
+        get 'summary'
       end
       resources :polls do
         resources :answers
       end
     end
   end
+
+  resources :responses
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

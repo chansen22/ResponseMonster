@@ -1,0 +1,22 @@
+= form_for("responses[]", url: { action: 'create', controller: 'responses' }) do |f|
+  = f.hidden_field :course_id, value: params[:course_id]
+  = f.hidden_field :survey_id, value: params[:id]
+  #surveyDetails
+    %h2
+      Details
+    %p
+      %b
+        Name
+      %br
+      = @survey.name
+
+  #surveyQuestions
+    %h2
+      Questions
+    - @survey.polls.each do |poll|
+      = poll.question_text
+      - poll.answers.each do |answer|
+        .well
+          = check_box_tag name: "choiceId#{answer.id}", value: answer.id
+          = answer.answer_text
+  = f.submit "Submit"

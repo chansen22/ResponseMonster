@@ -1,41 +1,44 @@
 %h1
   Survey
 
-#surveyDetails
-  %h2
-    Details
-  .pull-right.btn.pill-button-left
-    = link_to "New Survey", new_course_survey_path(@course, @survey)
-  .pull-right.btn.pill-button-right
-    = link_to "Edit Survey", edit_course_survey_path(@course, @survey)
-  %p
-    %b
-      Name
-    %br
-    = @survey.name
-
-#surveyQuestions
-  %h2
-    Questions
-  - @survey.polls.each do |poll|
-    %table.table
-      %thead
-        %tr
-          %td
-            = poll.question_text
-          %td
-            Correct Answer?
-      - poll.answers.each do |answer|
-        %tr
-          %td
-            = answer.answer_text
-          %td
-            = answer.is_right.to_s.capitalize
+- if @is_teacher
+  #surveyDetails
+    %h2
+      Details
+    .pull-right.btn.pill-button-left
+      = link_to "New Survey", new_course_survey_path(@course, @survey)
+    .pull-right.btn.pill-button-right
+      = link_to "Edit Survey", edit_course_survey_path(@course, @survey)
+    %p
+      %b
+        Name
       %br
+      = @survey.name
+
+  #surveyQuestions
+    %h2
+      Questions
+    - @survey.polls.each do |poll|
+      %table.table
+        %thead
+          %tr
+            %td
+              = poll.question_text
+            %td
+              Correct Answer?
+        - poll.answers.each do |answer|
+          %tr
+            %td
+              = answer.answer_text
+            %td
+              = answer.is_right.to_s.capitalize
+        %br
 
 
-  .pull-right.btn.pill-button-left
-    = link_to "New Survey", new_course_survey_path(@course, @survey)
-  .pull-right.btn.pill-button-right
-    = link_to "Edit Survey", edit_course_survey_path(@course, @survey)
-%br
+    .pull-right.btn.pill-button-left
+      = link_to "New Survey", new_course_survey_path(@course, @survey)
+    .pull-right.btn.pill-button-right
+      = link_to "Edit Survey", edit_course_survey_path(@course, @survey)
+  %br
+- else
+  = render 'user_response'
