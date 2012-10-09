@@ -222,6 +222,8 @@ Requirements
 
 9. Ability for users to see statistics on their own responses
 
+10. Ability for users to interact with the site from a mobile interface
+
 Use Cases
 ---------
 1. User login
