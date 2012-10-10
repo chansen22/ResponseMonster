@@ -11,23 +11,18 @@
 
     .field
       = f.label :name, "Name (e.g. Software Engineering)"
-      %br
       = f.text_field :name, autofocus: "autofocus"
     .field
       = f.label :title, "Title (e.g. CSCI 430)"
-      %br
       = f.text_field :title
     .field
       = f.label :section, "Section (e.g. 01)"
-      %br
       = f.text_field :section
     .field
       = f.label :term
-      %br
       = select_tag "term", "<option>Fall</option><option>Spring</option>".html_safe
     .field
       = f.label "Teacher"
-      %br
       = select("teacher", "user_id", @users.collect { |user| ["#{user.first_name} #{user.last_name} - #{user.email}", user.id] })
     .actions
       = f.submit
