@@ -70,7 +70,7 @@ class UsersController < ApplicationController
 
   def home
     if current_user
-      @courses = Course.all
+      @courses = Course.where(teacher_id: current_user.id)
       render 'home'
     else
       render 'sessions/new'
