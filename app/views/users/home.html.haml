@@ -31,7 +31,7 @@
                 %td Unknown
 %table.wide
   %tr
-    - if !current_user.courses.empty?
+    - if !current_user.courses.empty? || Course.where(teacher_id: current_user.id).empty?
       %td.half-cell
         %h2 Classes you're enrolled in
         %table.table.table-hover.table-condensed
