@@ -1,12 +1,5 @@
-%p
-  %b
-    Name:
-  = @user.first_name + " " + @user.last_name
-%p
-  %b
-    Email:
-  = @user.email
-
-= link_to 'Edit', edit_user_path(@user)
-%br
-= link_to 'Back', users_path
+%h1=@user.first_name + " " + @user.last_name
+%h2=@user.email
+.center
+  .btn=link_to 'Edit', edit_user_path(@user)
+  .btn=link_to 'Back', users_path
