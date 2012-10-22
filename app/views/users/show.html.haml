@@ -1,12 +1,38 @@
-%p
-  %b
-    Name:
-  = @user.first_name + " " + @user.last_name
-%p
-  %b
-    Email:
-  = @user.email
-
-= link_to 'Edit', edit_user_path(@user)
+%h1=@user.first_name + " " + @user.last_name
+%h2=@user.email
+.center
+  .btn=link_to 'Edit', edit_user_path(@user)
+  .btn=link_to 'Back', users_path
 %br
-= link_to 'Back', users_path
+- if is_admin?
+  %table.wide
+    %tr
+      - if !@user.courses.empty? || Course.where(teacher_id: @user.id).empty?
+        %td.half-cell
+          %h2="#{@user.first_name}'s classes"
+          %table.table.table-hover.table-condensed
+            %thead
+              %tr
+                %th Name
+                %th Title
+                %th Section
+                %th Term
+                %th Teacher
+                - if is_admin?
+                  %th
+                    Edit
+            %tbody
+              - @user.courses.each do |course|
+                %tr
+                  %td=link_to course.name, course
+                  %td=course.title
+                  %td=course.section
+                  %td
+                    - if Date.new(Date.today.year, 8, 1)
+                      Fall
+                    - else
+                      Spring
+                  %td= "#{User.find_by_id(course.teacher_id).first_name} #{User.find_by_id(course.teacher_id).last_name}"
+                  - if is_admin?
+                    %td
+                      .btn= link_to "Edit", edit_course_path(course)

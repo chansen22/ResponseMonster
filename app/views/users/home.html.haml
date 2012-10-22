@@ -29,54 +29,24 @@
                 %td=  survey.end_time
               - else
                 %td Unknown
-
 %table.wide
   %tr
-    %td.half-cell
-      %h2 Classes you're enrolled in
-      %table.table.table-hover.table-condensed
-        %thead
-          %tr
-            %th Name
-            %th Title
-            %th Section
-            %th Term
-            %th Teacher
-            - if is_admin?
-              %th
-                Edit
-        %tbody
-          - current_user.courses.each do |course|
+    - if !current_user.courses.empty? || Course.where(teacher_id: current_user.id).empty?
+      %td.half-cell
+        %h2 Classes you're enrolled in
+        %table.table.table-hover.table-condensed
+          %thead
             %tr
-              %td=link_to course.name, course
-              %td=course.title
-              %td=course.section
-              %td
-                - if Date.new(Date.today.year, 8, 1)
-                  Fall
-                - else
-                  Spring
-              %td= "#{User.find_by_id(course.teacher_id).first_name} #{User.find_by_id(course.teacher_id).last_name}"
+              %th Name
+              %th Title
+              %th Section
+              %th Term
+              %th Teacher
               - if is_admin?
-                %td
-                  .btn= link_to "Edit", edit_course_path(course)
-    %td.half-cell
-      %h2 Classes you teach
-
-      %table.table.table-hover.table-condensed
-        %thead
-          %tr
-            %th Name
-            %th Title
-            %th Section
-            %th Term
-            %th Students
-            - if is_admin?
-              %th
-                Edit
-        %tbody
-          - @courses.each do |course|
-            - if course.teacher_id == current_user.id
+                %th
+                  Edit
+          %tbody
+            - current_user.courses.each do |course|
               %tr
                 %td=link_to course.name, course
                 %td=course.title
@@ -86,10 +56,40 @@
                     Fall
                   - else
                     Spring
-                %td=course.users.count
+                %td= "#{User.find_by_id(course.teacher_id).first_name} #{User.find_by_id(course.teacher_id).last_name}"
                 - if is_admin?
                   %td
                     .btn= link_to "Edit", edit_course_path(course)
+    - if !Course.where(teacher_id: current_user.id).empty?
+      %td.half-cell
+        %h2 Classes you teach
+        %table.table.table-hover.table-condensed
+          %thead
+            %tr
+              %th Name
+              %th Title
+              %th Section
+              %th Term
+              %th Students
+              - if is_admin?
+                %th
+                  Edit
+          %tbody
+            - @courses.each do |course|
+              - if course.teacher_id == current_user.id
+                %tr
+                  %td=link_to course.name, course
+                  %td=course.title
+                  %td=course.section
+                  %td
+                    - if Date.new(Date.today.year, 8, 1)
+                      Fall
+                    - else
+                      Spring
+                  %td=course.users.count
+                  - if is_admin?
+                    %td
+                      .btn= link_to "Edit", edit_course_path(course)
     %tr
       %td
         - if is_admin?
