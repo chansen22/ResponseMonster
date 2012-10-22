@@ -8,9 +8,9 @@
     %br
     = f.select :answer_type, "<option>Multiple Choice</option><option>Short Answer</option><option>Code</option><option>Essay</option>".html_safe
     %br
-    Allow users to chose multiple answers?
+    Should users only be allowed to select one answer?
     %br
-    = f.select :is_radio, "<option>No</option><option>Yes</option>".html_safe
+    = f.select :is_radio, "<option>Yes</option><option>No</option>".html_safe
     %h2 Answer(s)
     = f.fields_for :answers do |builder|
       = render 'answer_fields', f: builder
