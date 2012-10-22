@@ -22,13 +22,12 @@ class ResponsesController < ApplicationController
   end
 
   def create
-    logger.info("\n\n\n\n\n\n\n#{params.keys.count}")
     @course = Course.find(params[:responses].first[1][:course_id])
     @survey = Survey.find(params[:responses].first[1][:survey_id])
     if params.keys.count >= 7
       @polls = @survey.polls
       params.keys[3..-4].each do |key|
-        @response = Response.new(choiceId: key.split('=>')[-1][0..-1])
+        @response = Response.new(choiceId: params[key].split("=>")[1].split("}").first)
         @response.save
         current_user.responses << @response
         @poll = Poll.find(Answer.find_by_id(@response.choiceId).poll_id)

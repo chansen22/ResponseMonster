@@ -31,7 +31,8 @@ namespace :dev do
       survey = course.surveys.create!(name: "Test survey")
       3.times do |n|
         poll = survey.polls.create(question_text: "Test question #{n}?",
-                                   answer_type: "Multiple Choice"
+                                   answer_type: "Multiple Choice",
+                                   is_radio: "Yes"
                                   )
         3.times do |n|
           poll.answers.create(answer_text: "Test answer #{n}",

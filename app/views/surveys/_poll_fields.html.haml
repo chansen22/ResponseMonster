@@ -7,6 +7,10 @@
     Question Type, read #{link_to 'This', types_path, target: "_blank"} for more info
     %br
     = f.select :answer_type, "<option>Multiple Choice</option><option>Short Answer</option><option>Code</option><option>Essay</option>".html_safe
+    %br
+    Allow users to chose multiple answers?
+    %br
+    = f.select :is_radio, "<option>No</option><option>Yes</option>".html_safe
     %h2 Answer(s)
     = f.fields_for :answers do |builder|
       = render 'answer_fields', f: builder
