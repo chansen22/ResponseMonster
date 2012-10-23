@@ -15,6 +15,15 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @surveys = @course.surveys.all
+    @finished_surveys = []
+    @surveys.each do |survey|
+      poll = survey.polls.first
+      poll.responses.each do |response|
+        if response.user_id == current_user.id
+          @finished_surveys << [ [survey.id, survey.name, response.updated_at ] ]
+        end
+      end
+    end
   end
 
   def new
