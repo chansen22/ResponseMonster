@@ -9,15 +9,22 @@
   = poll.question_text
   %br
   .well
-    - poll.answers.each do |answer|
-      - @is_choice = false
-      - @responses.each do |response|
-        - if answer.id == response.choiceId
-          - @is_choice = true
-      - if @is_choice && answer.is_right?
-        .correct-answer= answer.answer_text
-      - elsif @is_choice && !answer.is_right?
-        .wrong-answer= answer.answer_text
-      - else
-        .not-picked-answer= answer.answer_text
-      %br
+    - if poll.answers.any?
+      - poll.answers.each do |answer|
+        - @is_choice = false
+        - @responses.each do |response|
+          - if answer.id == response.choiceId
+            - @is_choice = true
+        - if @is_choice && answer.is_right?
+          .correct-answer= answer.answer_text
+        - elsif @is_choice && !answer.is_right?
+          .wrong-answer= answer.answer_text
+        - else
+          .not-picked-answer= answer.answer_text
+        %br
+    - @responses.each do |response|
+      - if response.poll_id == poll.id
+        - if response.short_answer
+          = response.short_answer
+        -# elsif response.essay
+        -# elsif response.code

@@ -1,6 +1,4 @@
-= form_for("responses[]", url: { action: 'create', controller: 'responses' }) do |f|
-  = f.hidden_field :course_id, value: params[:course_id]
-  = f.hidden_field :survey_id, value: params[:id]
+= form_for("responses[]", url: { action: 'create', controller: 'responses', survey: params[:id] }) do |f|
   #surveyDetails
     %h2
       Details
@@ -15,11 +13,15 @@
       Questions
     - @survey.polls.each do |poll|
       = poll.question_text
+      - if !poll.answers.any?
+        %br
+        = text_field_tag "short_answer#{poll.id}"
       - poll.answers.each do |answer|
         .well
-          - if poll.is_radio == "Yes"
-            = radio_button_tag "choiceId#{poll.id}", value: answer.id
-          - else
-            = check_box_tag "choiceId#{answer.id}", value: answer.id
-          = answer.answer_text
+          - if poll.answer_type == "Multiple Choice"
+            - if poll.is_radio == "Yes"
+              = radio_button_tag "pollId#{poll.id}", answer.id
+            - else
+              = check_box_tag "pollId#{answer.id}", answer.id
+            = answer.answer_text
   = f.submit "Submit"
