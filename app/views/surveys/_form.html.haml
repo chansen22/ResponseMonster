@@ -1,17 +1,18 @@
 = javascript_include_tag "add_and_remove_helpers"
 = form_for([:course, @survey]) do |f|
   - if @survey.errors.any?
-    .error_explanation
-      %h2
-        = pluralize(@survey.errors.count, "error")
-        prohibited this survey from being saved:
+    #error_explanation
+      %h2= pluralize(@survey.errors.count, "Error")
+      Prohibited this survey from being saved:
+        
       %ul
       - @survey.errors.full_messages.each do |msg|
-        %li
-          = msg
+        %li= msg
 
   = f.label :name, "Survey Name, eg: Quiz 1"
   = f.text_field :name, autofocus: "autofocus"
+  = f.label :attempts_allowed
+  = f.number_field :attempts_allowed, required: true
 
   .questions
     = f.fields_for :polls do |builder|
