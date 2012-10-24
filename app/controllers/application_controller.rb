@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
         if survey.polls.first.id == response.poll_id
           if survey.attempts_allowed.nil?
             has_more_attempts = true
-          else response.times_submitted < survey.attempts_allowed
+          elsif response.times_submitted < survey.attempts_allowed
             has_more_attempts = true
           end
           break

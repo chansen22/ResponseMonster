@@ -26,7 +26,6 @@ class ResponsesController < ApplicationController
     @course = Course.find(@survey.course_id)
     times_submitted = Response.get_times_submitted(current_user, @survey)
     Response.remove_old_responses(current_user, @survey)
-    logger.info("\n\n\n\n\n\n\nTIMES SUBMITTED #{times_submitted}")
     if params.keys.count >= 7
       if Response.create_response(params, current_user, times_submitted)
         redirect_to summary_course_survey_path(@course, @survey), notice: 'Response was successfully created'
