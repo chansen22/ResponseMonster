@@ -1,34 +1,42 @@
 %h1
   ResponseMonster
 %br
-%h2 Open surveys in your classes
-%table.table.table-hover.table-condensed.wide
-  %thead
-    %tr
-      %th Class
-      %th Survey
-      %th Closes
-  %tbody
-    - if !@courses.empty?
-      - @courses.each do |course|
-        - course.surveys.each do |survey|
-          - if survey.is_active?
-            %tr
-              %td= link_to course.name, course
-              %td= link_to survey.name, course_survey_path(course, survey)
-              - if survey.end_time.nil?
-                %td= link_to "Close Quiz", deactivate_course_survey_path(course, survey)
-    - if !current_user.courses.nil?
-      - current_user.courses.each do |course|
-        - course.surveys.each do |survey|
-          - if survey.is_active?
-            %tr
-              %td= link_to course.name, course_path(course)
-              %td= link_to survey.name, course_survey_path(course, survey)
-              - if !survey.end_time.nil?
-                %td=  survey.end_time
-              - else
-                %td Unknown
+- open_surveys = false
+- current_user.courses.each do |course|
+  - course.surveys.each do |survey|
+    - open_surveys = survey.is_active? || open_surveys
+- @courses.each do |course|
+  - course.surveys.each do |survey|
+    - open_surveys = survey.is_active? || open_surveys
+- if open_surveys
+  %h2 Open surveys in your classes
+  %table.table.table-hover.table-condensed.wide
+    %thead
+      %tr
+        %th Class
+        %th Survey
+        %th Closes
+    %tbody
+      - if !@courses.empty?
+        - @courses.each do |course|
+          - course.surveys.each do |survey|
+            - if survey.is_active?
+              %tr
+                %td= link_to course.name, course
+                %td= link_to survey.name, course_survey_path(course, survey)
+                - if survey.end_time.nil?
+                  %td= link_to "Close quiz", deactivate_course_survey_path(course, survey)
+      - if !current_user.courses.nil?
+        - current_user.courses.each do |course|
+          - course.surveys.each do |survey|
+            - if survey.is_active?
+              %tr
+                %td= link_to course.name, course_path(course)
+                %td= link_to survey.name, course_survey_path(course, survey)
+                - if !survey.end_time.nil?
+                  %td=  survey.end_time
+                - else
+                  %td Unknown
 %table.wide
   %tr
     - if !current_user.courses.empty? || Course.where(teacher_id: current_user.id).empty?

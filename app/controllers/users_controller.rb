@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate, except: [:new, :create]
   before_filter :check_correct_user, only: [:show, :edit]
-  before_filter :admin_user, only: [:index, :show]
+  before_filter :admin_user, only: [:index]
 
   def index
     @users = User.all
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to Response Monster"
+      flash[:success] = "Welcome to ResponseMonster!"
       redirect_to root_path
     else
       render 'new'
@@ -80,6 +80,9 @@ class UsersController < ApplicationController
 
   private
     def check_correct_user
-      redirect_to root_path, notice: "You cannot view other users' profiles." unless is_admin? || @user == current_user
+      @user = User.find(params[:id])
+      if @user != current_user
+        redirect_to root_path, notice: "You cannot view other users' profiles."
+      end
     end
 end
