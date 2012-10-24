@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to Response Monster"
+      flash[:success] = "Welcome to ResponseMonster!"
       redirect_to root_path
     else
       render 'new'
