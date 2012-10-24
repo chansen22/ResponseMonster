@@ -1,19 +1,14 @@
 class SurveysController < ApplicationController
   before_filter :authenticate
   before_filter(only: [:show]) { |controller| controller.check_activated(Survey.find(params[:id])) }
+  before_filter(only: [:show]) { |controller| controller.check_attempts(Survey.find(params[:id])) }
   before_filter(except: [:show, :summary]) { |controller| controller.check_permissions(Course.find(params[:course_id])) }
   before_filter :admin_user, only: [:index]
 
   def show
     @survey = Survey.find(params[:id])
     @course = @survey.course
-    current_user.responses.each do |response|
-      @survey.polls.each do |poll|
-        if response.poll_id == poll.id
-          response.delete
-        end
-      end
-    end
+    @old_submitted = Response.get_times_submitted(current_user, @survey)
     @responses = []
     @survey.polls.each do |poll|
       poll.answers.each do |answer|

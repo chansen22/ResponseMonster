@@ -5,6 +5,7 @@ class CreateSurveys < ActiveRecord::Migration
       t.datetime :start_time
       t.datetime :end_time
       t.boolean :is_active, default: false
+      t.integer :attempts_allowed
 
       t.timestamps
     end

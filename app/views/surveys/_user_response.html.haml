@@ -7,6 +7,14 @@
         Name
       %br
       = @survey.name
+      %br
+      %b
+        Attempts
+      %br
+      - if @survey.attempts_allowed.nil?
+        = @old_submitted
+      - else
+        = "#{@old_submitted} / #{@survey.attempts_allowed}"
 
   #surveyQuestions
     %h2

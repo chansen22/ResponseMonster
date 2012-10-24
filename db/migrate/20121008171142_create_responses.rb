@@ -3,6 +3,7 @@ class CreateResponses < ActiveRecord::Migration
     create_table :responses do |t|
       t.integer :choiceId
       t.string :short_answer
+      t.integer :times_submitted
 
       t.timestamps
     end

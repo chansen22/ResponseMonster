@@ -19,7 +19,23 @@ class ApplicationController < ActionController::Base
 
     def check_activated(survey)
       redirect_to root_path, notice: "That survey is not activated 
-      yet" unless survey.is_active? || is_admin?
+      yet" unless survey.is_active? || is_admin? || current_user.id == survey.course.teacher_id
+    end
+
+    def check_attempts(survey)
+      has_more_attempts = false
+      current_user.responses.each do |response|
+        if survey.polls.first.id == response.poll_id
+          if survey.attempts_allowed.nil?
+            has_more_attempts = true
+          else response.times_submitted < survey.attempts_allowed
+            has_more_attempts = true
+          end
+          break
+        end
+      end
+      redirect_to course_path(survey.course), notice: "You cannot take this quiz anymore 
+      times" unless has_more_attempts || is_admin? || current_user.id == survey.course.teacher_id
     end
 
     def member_of_course(course)

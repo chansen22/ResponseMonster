@@ -22,25 +22,17 @@ class ResponsesController < ApplicationController
   end
 
   def create
-    @survey = Survey.find(params[:survey])
+  @survey = Survey.find(params[:survey])
     @course = Course.find(@survey.course_id)
+    times_submitted = Response.get_times_submitted(current_user, @survey)
+    Response.remove_old_responses(current_user, @survey)
+    logger.info("\n\n\n\n\n\n\nTIMES SUBMITTED #{times_submitted}")
     if params.keys.count >= 7
-      @polls = @survey.polls
-      params.keys[2..-5].each do |key|
-        if key =~ /short_answer/
-          @response = Response.new(short_answer: params[key])
-          @response.save
-          current_user.responses << @response
-          @poll = Poll.find(key.split("r")[2])
-        else
-          @response = Response.new(choiceId: params[key])
-          @response.save
-          current_user.responses << @response
-          @poll = Poll.find(Answer.find_by_id(@response.choiceId).poll_id)
-        end
-        @poll.responses << @response
+      if Response.create_response(params, current_user, times_submitted)
+        redirect_to summary_course_survey_path(@course, @survey), notice: 'Response was successfully created'
+      else
+        redirect_to course_survey_path(@course, @survey), notice: "Response was not successfully created"
       end
-      redirect_to summary_course_survey_path(@course, @survey), notice: 'Response was successfully created'
     else
       redirect_to course_survey_path(@course, @survey), notice: "Please answer at least one question"
     end
