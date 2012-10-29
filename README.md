@@ -144,106 +144,106 @@ Software Development Risks
 --------------------------
 1.	Users (Difficulty of using application, users don't have laptops/smartphones, etc)
 
-Priority Level: 1
+  Priority Level: 1
 
-Level of Impact: 1
+  Level of Impact: 1
 
-How to Mitigate: Reverse engineer a clicker for cheaper production
+  How to Mitigate: Reverse engineer a clicker for cheaper production
 
-Likelihood: 1
+  Likelihood: 1
 
 2.	Incorrect estimation of completion time.  This would affect the quality of the final product.
 
-Priority Level: 8
+  Priority Level: 8
 
-Level of Impact: 8
+  Level of Impact: 8
 
-How to Mitigate: Constantly reassess our progress and evaluate our goals accordingly.
+  How to Mitigate: Constantly reassess our progress and evaluate our goals accordingly.
 
-Likelihood: 3
+  Likelihood: 3
 
 3.	Ability to learn “Ruby on Rails”. The learning curve could be challenging for us.
 
-Priority Level: 8
+  Priority Level: 8
 
-Level of Impact: 7
+  Level of Impact: 7
 
-How to Mitigate: Keep up on tutorials and reading.
+  How to Mitigate: Keep up on tutorials and reading.
 
-Likelihood: 2
+  Likelihood: 2
 
 4.	Not enough testing, software could have bugs at release.
 
-Priority Level: 6
+  Priority Level: 6
 
-Level of Impact: 6
+  Level of Impact: 6
 
-How to Mitigate: Test frequently and often, especially after new implementations of key elements.
+  How to Mitigate: Test frequently and often, especially after new implementations of key elements.
 
-Likelihood: 4
+  Likelihood: 4
 
 5.	Not enough features after completion.
 
-Priority Level: 10
+  Priority Level: 10
 
-Level of Impact: 10
+  Level of Impact: 10
 
-How to Mitigate: Keep work/motivation up throughout the semester.
+  How to Mitigate: Keep work/motivation up throughout the semester.
 
-Likelihood: 2
+  Likelihood: 2
 
 6.	No professional design experience.
 
-Priority Level: 1
+  Priority Level: 1
 
-Level of Impact: 1
+  Level of Impact: 1
 
-How to Mitigate: Keep astestics simple.
+  How to Mitigate: Keep astestics simple.
 
-Likelihood: 1
+  Likelihood: 1
 
 7.	Application not being used.
 
-Priority Level: 8
+  Priority Level: 8
 
-Level of Impact: 7
+  Level of Impact: 7
 
-How to Mitigate: Keep application user friendly and design simple.
-How to Mitigate: Keep application user friendly and design simple.
+  How to Mitigate: Keep application user friendly and design simple.
 
-Likelihood: 5
+  Likelihood: 5
 
 8.	Planning unnecessary features that may not be used. 
 
-Priority Level: 6
+  Priority Level: 6
 
-Level of Impact: 6
+  Level of Impact: 6
 
-How to Mitigate: We shouldn’t try to anticipate what we need, before we need it.
+  How to Mitigate: We shouldn’t try to anticipate what we need, before we need it.
 
-Likelihood: 5
+  Likelihood: 5
 
 9.	Schoolwork load becomes too heavy.
 
-Priority Level: 6
+  Priority Level: 6
 
-Level of Impact: 10
+  Level of Impact: 10
 
-How to Mitigate: Stay on track with school and manage time.
+  How to Mitigate: Stay on track with school and manage time.
 
-Likelihood: 2
+  Likelihood: 2
 
 10.	Members not working together/getting along.
 
-Priority Level: 2
+  Priority Level: 2
 
-Level of Impact: 8
+  Level of Impact: 8
 
-How to Mitigate: Be team players.
+  How to Mitigate: Be team players.
 
-Likelihood: 1
+  Likelihood: 1
 
 Requirements
+
   1.  Users will be able to create an account, either a Student, Teacher, or Administrator.
   2.  Students will be able to add Courses to there schedule.
   3.  Students will be able to participate in Survey’s provided by the Teachers of their Course.
