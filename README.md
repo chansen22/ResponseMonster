@@ -143,64 +143,105 @@ before { @user = User.new(first_name: "Test",
 Software Development Risks
 --------------------------
 1.	Users (Difficulty of using application, users don't have laptops/smartphones, etc)
--Priority Level: 1
--Level of Impact: 1
--How to Mitigate: Reverse engineer a clicker for cheaper production
--Likelihood: 1
+
+Priority Level: 1
+
+Level of Impact: 1
+
+How to Mitigate: Reverse engineer a clicker for cheaper production
+
+Likelihood: 1
 
 2.	Incorrect estimation of completion time.  This would affect the quality of the final product.
--Priority Level: 8
--Level of Impact: 8
--How to Mitigate: Constantly reassess our progress and evaluate our goals accordingly.
--Likelihood: 3
+
+Priority Level: 8
+
+Level of Impact: 8
+
+How to Mitigate: Constantly reassess our progress and evaluate our goals accordingly.
+
+Likelihood: 3
 
 3.	Ability to learn “Ruby on Rails”. The learning curve could be challenging for us.
--Priority Level: 8
--Level of Impact: 7
--How to Mitigate: Keep up on tutorials and reading.
--Likelihood: 2
+
+Priority Level: 8
+
+Level of Impact: 7
+
+How to Mitigate: Keep up on tutorials and reading.
+
+Likelihood: 2
 
 4.	Not enough testing, software could have bugs at release.
--Priority Level: 6
--Level of Impact: 6
--How to Mitigate: Test frequently and often, especially after new implementations of key elements.
--Likelihood: 4
+
+Priority Level: 6
+
+Level of Impact: 6
+
+How to Mitigate: Test frequently and often, especially after new implementations of key elements.
+
+Likelihood: 4
 
 5.	Not enough features after completion.
--Priority Level: 10
--Level of Impact: 10
--How to Mitigate: Keep work/motivation up throughout the semester.
--Likelihood: 2
+
+Priority Level: 10
+
+Level of Impact: 10
+
+How to Mitigate: Keep work/motivation up throughout the semester.
+
+Likelihood: 2
 
 6.	No professional design experience.
--Priority Level: 1
--Level of Impact: 1
--How to Mitigate: Keep astestics simple.
--Likelihood: 1
+
+Priority Level: 1
+
+Level of Impact: 1
+
+How to Mitigate: Keep astestics simple.
+
+Likelihood: 1
 
 7.	Application not being used.
--Priority Level: 8
--Level of Impact: 7
--How to Mitigate: Keep application user friendly and design simple.
--Likelihood: 5
+
+Priority Level: 8
+
+Level of Impact: 7
+
+How to Mitigate: Keep application user friendly and design simple.
+How to Mitigate: Keep application user friendly and design simple.
+
+Likelihood: 5
 
 8.	Planning unnecessary features that may not be used. 
--Priority Level: 6
--Level of Impact: 6
--How to Mitigate: We shouldn’t try to anticipate what we need, before we need it.
--Likelihood: 5
+
+Priority Level: 6
+
+Level of Impact: 6
+
+How to Mitigate: We shouldn’t try to anticipate what we need, before we need it.
+
+Likelihood: 5
 
 9.	Schoolwork load becomes too heavy.
--Priority Level: 6
--Level of Impact: 10
--How to Mitigate: Stay on track with school and manage time.
--Likelihood: 2
+
+Priority Level: 6
+
+Level of Impact: 10
+
+How to Mitigate: Stay on track with school and manage time.
+
+Likelihood: 2
 
 10.	Members not working together/getting along.
--Priority Level: 2
--Level of Impact: 8
--How to Mitigate: Be team players.
--Likelihood: 1
+
+Priority Level: 2
+
+Level of Impact: 8
+
+How to Mitigate: Be team players.
+
+Likelihood: 1
 
 Requirements
   1.  Users will be able to create an account, either a Student, Teacher, or Administrator.
@@ -221,6 +262,7 @@ Requirements
   16. Users should be able to access and interact with the site from a mobile device.
 
 Cases
+
   1.  Create Account  
 
     Actors: All Users
@@ -232,36 +274,69 @@ Cases
     The user will provide the information required to make a user. i.e. Name, Username, Email, Password. The information will then populate the database, and the user will have a new account.
 
   2.  Course Creation
+
   Actors: Administrator
+
   Goal: Create a new Course
+
   Action: Create course and assign teacher to admin course.
+
   The administrator will provide the information require to make a new course, i.e. Name, Term, Start-End Dates, Teacher, Subject. The information will then populate the database, and the administrator will now have a new course.
+
   3.  Survey Creation
+
   Actors: Teachers
+
   Goal: Create new survey
+
   Action: Create multiple choice or short answer surveys.
+
   The Teachers will be able to create a new Survey, and populate that Survey will Questions and then provide Answers to those Questions.
+
   4.  Take Survey
+
   Actors: Student
+
   Action: Ability to take surveys of courses they're enrolled in.
+
   The Student will be able to take part in a Survey, by providing Answers to the Questions that in the Survey.
+
   5.  Add/Drop Course
+
   Actors: Student/Administrator
+
   Action: Users should be able to add or remove courses from the application.
+
   Students will be able to add new Courses to their schedule, and drop Courses from their schedule. With this, Administrators will also be able to add and drop Students from Courses.
+
   6.  Edit Course
+
   Actors: Teacher/Administrator
+
   Action: Users should be able to add/remove users, add/remove description/surveys
+
   Teachers and Administrator will be able to control the Students that are part of a Course, and also Delete Surveys that are part of these Courses.
+
   7.  Edit Survey
+
   Actors: Teacher/Administrator
+
   Action: Users should be able to change survey details
+
   Teachers and Administrators will be able to edit a Survey that is part of a Courses.
+
   8.  Delete User
+
   Actors: Administrator
+
   Action: Administrators should be able to delete users
+
   Administrators will be able to Delete users. Administrators will be able to delete Administrators.
+
   9.  Grade Surveys
+
   Actors: Teachers
+
   Action: Teachers should be able to grade surveys for a score
-   Teachers will be able to grade Surveys, and provide a score for the Survey.
+
+  Teachers will be able to grade Surveys, and provide a score for the Survey.
