@@ -221,11 +221,12 @@ Requirements
   16. Users should be able to access and interact with the site from a mobile device.
 
 Cases
-  1.  Create Account
-  Actors: All Users
-  Goal: Create a new account
-  Action: Populate database record with user’s info
-  The user will provide the information required to make a user. i.e. Name, Username, Email, Password. The information will then populate the database, and the user will have a new account.
+  1.  Create Account  
+
+    Actors: All Users
+    Goal: Create a new account
+    Action: Populate database record with user’s info
+    The user will provide the information required to make a user. i.e. Name, Username, Email, Password. The information will then populate the database, and the user will have a new account.
   2.  Course Creation
   Actors: Administrator
   Goal: Create a new Course
