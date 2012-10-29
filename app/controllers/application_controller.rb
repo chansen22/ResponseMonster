@@ -24,14 +24,18 @@ class ApplicationController < ActionController::Base
 
     def check_attempts(survey)
       has_more_attempts = false
-      current_user.responses.each do |response|
-        if survey.polls.first.id == response.poll_id
-          if survey.attempts_allowed.nil?
-            has_more_attempts = true
-          elsif response.times_submitted < survey.attempts_allowed
-            has_more_attempts = true
+      if current_user.responses.count == 0
+        has_more_attempts = true
+      else
+        current_user.responses.each do |response|
+          if survey.polls.first.id == response.poll_id
+            if survey.attempts_allowed.nil? || survey.attempts_allowed == 0
+              has_more_attempts = true
+            elsif response.times_submitted < survey.attempts_allowed
+              has_more_attempts = true
+            end
+            break
           end
-          break
         end
       end
       redirect_to course_path(survey.course), notice: "You cannot take this quiz anymore 
