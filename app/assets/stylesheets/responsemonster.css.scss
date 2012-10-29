@@ -104,8 +104,8 @@ p {
 
 #form {
   text-align: center;
-  margin-left:  150px;
-  margin-right: 150px;
+  margin-left:  350px;
+  margin-right: 350px;
   background-color: $grayMediumLight;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -203,3 +203,13 @@ footer {
   width: 50%;
   padding: 10px;
 }
+
+#session_email {
+  width: 290px;
+}
+
+#session_password {
+  width: 290px;
+}
+
+
