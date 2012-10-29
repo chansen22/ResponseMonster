@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_and_belongs_to_many :courses
+  has_many :enrollments
+  has_many :courses, through: :enrollments
   has_many :responses, dependent: :destroy
   has_secure_password
   attr_accessible :email, 
