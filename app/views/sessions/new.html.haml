@@ -2,50 +2,25 @@
 %h1
   Sign In
 
-/ #form
-/   = form_for(:session, url: sessions_path) do |f|
+#form
+  = form_for(:session, url: sessions_path) do |f|
     
-/     = f.label :email
-/     %br
-/     = f.text_field :email, autofocus: "autofocus"
-/     %br
+    = f.label :email
+    %br
+    = f.text_field :email, autofocus: "autofocus"
+    %br
 
-/     %br
-/     = f.label :password
-/     %br
-/     = f.password_field :password
-/     %br
-/     %br
-
-/     = f.submit "Sign In"
-
-.row
-  .well.offset4.span4
-    = form_for(:session, url: sessions_path) do |f|
-      
-      = f.label :email
-
-      = f.text_field :email, autofocus: "autofocus"
-      %br
-
-      %br
-      = f.label :password
-
-      = f.password_field :password
-      %br
-      %br
-
-      = f.submit "Sign In"
-
-.row
-  .offset4.span4
-    New user?
+    %br
+    = f.label :password
+    %br
+    = f.password_field :password
     %br
     %br
-    .btn.btn-large.btn-primary= link_to "Sign up now!", signup_path
 
-  / #newUser
-  / New user? 
-  / %br
-  / %br
-  / .btn.btn-large.btn-primary= link_to "Sign up now!", signup_path
+    = f.submit "Sign In"
+
+#newUser
+  New user? 
+  %br
+  %br
+  .btn.btn-large.btn-primary= link_to "Sign up now!", signup_path
