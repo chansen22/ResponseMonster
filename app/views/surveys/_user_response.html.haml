@@ -11,7 +11,7 @@
       %b
         Attempts
       %br
-      - if @survey.attempts_allowed.nil?
+      - if @survey.attempts_allowed.nil? || @survey.attempts_allowed == 0
         = @old_submitted
       - else
         = "#{@old_submitted} / #{@survey.attempts_allowed}"
