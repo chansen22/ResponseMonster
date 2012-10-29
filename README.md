@@ -222,41 +222,41 @@ Requirements
 
 Cases
   1.  Create Account
-  - Actors: All Users
-  - Goal: Create a new account
-  - Action: Populate database record with user’s info
-  - The user will provide the information required to make a user. i.e. Name, Username, Email, Password. The information will then populate the database, and the user will have a new account.
+  Actors: All Users
+  Goal: Create a new account
+  Action: Populate database record with user’s info
+  The user will provide the information required to make a user. i.e. Name, Username, Email, Password. The information will then populate the database, and the user will have a new account.
   2.  Course Creation
-  - Actors: Administrator
-  - Goal: Create a new Course
-  - Action: Create course and assign teacher to admin course.
-  - The administrator will provide the information require to make a new course, i.e. Name, Term, Start-End Dates, Teacher, Subject. The information will then populate the database, and the administrator will now have a new course.
+  Actors: Administrator
+  Goal: Create a new Course
+  Action: Create course and assign teacher to admin course.
+  The administrator will provide the information require to make a new course, i.e. Name, Term, Start-End Dates, Teacher, Subject. The information will then populate the database, and the administrator will now have a new course.
   3.  Survey Creation
-  - Actors: Teachers
-  - Goal: Create new survey
-  - Action: Create multiple choice or short answer surveys.
-  - The Teachers will be able to create a new Survey, and populate that Survey will Questions and then provide Answers to those Questions.
+  Actors: Teachers
+  Goal: Create new survey
+  Action: Create multiple choice or short answer surveys.
+  The Teachers will be able to create a new Survey, and populate that Survey will Questions and then provide Answers to those Questions.
   4.  Take Survey
-  - Actors: Student
-  - Action: Ability to take surveys of courses they're enrolled in.
-  - The Student will be able to take part in a Survey, by providing Answers to the Questions that in the Survey.
+  Actors: Student
+  Action: Ability to take surveys of courses they're enrolled in.
+  The Student will be able to take part in a Survey, by providing Answers to the Questions that in the Survey.
   5.  Add/Drop Course
-  - Actors: Student/Administrator
-  - Action: Users should be able to add or remove courses from the application.
-  - Students will be able to add new Courses to their schedule, and drop Courses from their schedule. With this, Administrators will also be able to add and drop Students from Courses.
+  Actors: Student/Administrator
+  Action: Users should be able to add or remove courses from the application.
+  Students will be able to add new Courses to their schedule, and drop Courses from their schedule. With this, Administrators will also be able to add and drop Students from Courses.
   6.  Edit Course
-  - Actors: Teacher/Administrator
-  - Action: Users should be able to add/remove users, add/remove description/surveys
-  - Teachers and Administrator will be able to control the Students that are part of a Course, and also Delete Surveys that are part of these Courses.
+  Actors: Teacher/Administrator
+  Action: Users should be able to add/remove users, add/remove description/surveys
+  Teachers and Administrator will be able to control the Students that are part of a Course, and also Delete Surveys that are part of these Courses.
   7.  Edit Survey
-  - Actors: Teacher/Administrator
-  - Action: Users should be able to change survey details
-  - Teachers and Administrators will be able to edit a Survey that is part of a Courses.
+  Actors: Teacher/Administrator
+  Action: Users should be able to change survey details
+  Teachers and Administrators will be able to edit a Survey that is part of a Courses.
   8.  Delete User
-  - Actors: Administrator
-  - Action: Administrators should be able to delete users
-  - Administrators will be able to Delete users. Administrators will be able to delete Administrators.
+  Actors: Administrator
+  Action: Administrators should be able to delete users
+  Administrators will be able to Delete users. Administrators will be able to delete Administrators.
   9.  Grade Surveys
-  - Actors: Teachers
-  - Action: Teachers should be able to grade surveys for a score
+  Actors: Teachers
+  Action: Teachers should be able to grade surveys for a score
    Teachers will be able to grade Surveys, and provide a score for the Survey.
