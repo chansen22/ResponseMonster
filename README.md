@@ -260,4 +260,3 @@ o Administrators will be able to Delete users. Administrators will be able to de
 o Actors: Teachers
 o Action: Teachers should be able to grade surveys for a score
 o Teachers will be able to grade Surveys, and provide a score for the Survey.
-
