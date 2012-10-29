@@ -23,12 +23,14 @@ class ApplicationController < ActionController::Base
     end
 
     def check_attempts(survey)
+      has_taken_survey = false
       has_more_attempts = false
       if current_user.responses.count == 0
         has_more_attempts = true
       else
         current_user.responses.each do |response|
           if survey.polls.first.id == response.poll_id
+            has_taken_survey = true
             if survey.attempts_allowed.nil? || survey.attempts_allowed == 0
               has_more_attempts = true
             elsif response.times_submitted < survey.attempts_allowed
@@ -39,7 +41,7 @@ class ApplicationController < ActionController::Base
         end
       end
       redirect_to course_path(survey.course), notice: "You cannot take this quiz anymore 
-      times" unless has_more_attempts || is_admin? || current_user.id == survey.course.teacher_id
+      times" unless !has_taken_survey || has_more_attempts || is_admin? || current_user.id == survey.course.teacher_id
     end
 
     def member_of_course(course)
