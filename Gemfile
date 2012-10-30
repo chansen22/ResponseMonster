@@ -10,6 +10,7 @@ gem 'bootstrap-sass', '2.0.4'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'debugger'
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'capybara', '1.1.2'
