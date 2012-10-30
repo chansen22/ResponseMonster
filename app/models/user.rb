@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :enrollments
+  has_many :enrollments, dependent: :destroy
   has_many :courses, through: :enrollments
+  has_many :assessments, dependent: :destroy
+  has_many :surveys, through: :assessments
   has_many :responses, dependent: :destroy
   has_secure_password
   attr_accessible :email, 
@@ -18,6 +20,14 @@ class User < ActiveRecord::Base
             format: { with: VALID_EMAIL_REGEX })
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
+
+  def self.find_last_assessment(survey, user)
+    user.assessments.each do |assessment|
+      if assessment.survey_id == survey.id
+        assessment.delete
+      end
+    end
+  end
 
   private
 

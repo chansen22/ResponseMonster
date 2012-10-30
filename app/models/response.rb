@@ -2,6 +2,7 @@ class Response < ActiveRecord::Base
   belongs_to :users
   belongs_to :polls
   attr_accessible :choiceId, :short_answer, :times_submitted
+  require 'debugger'
 
   def self.remove_old_responses(current_user, survey)
     current_user.responses.each do |response|
@@ -43,5 +44,43 @@ class Response < ActiveRecord::Base
       @poll.responses << @response
     end
     complete
+  end
+
+  def self.grade_surveys(survey, current_user, assessment)
+    is_finished = true
+    number_correct = 0
+    number_wrong = 0
+    total_questions = survey.polls.count
+    choices = []
+    survey.polls.each do |poll|
+      if poll.answer_type != "Multiple Choice"
+        is_finished = false
+      end
+      poll.answers.each do |answer|
+        choices << answer.id
+      end
+    end
+    user_responses = current_user.responses.where(choiceId: choices)
+    survey.polls.each do |poll|
+      poll.answers.each do |answer|
+        user_responses.each do |response|
+          if answer.id == response.choiceId
+            if answer.is_right
+              number_correct += 1
+              response.is_right = true
+            else
+              number_wrong += 1
+              response.is_right = false
+            end
+          end
+        end
+      end
+    end
+    assessment.score = number_correct
+    if is_finished
+      assessment.total_points = number_correct + number_wrong
+      assessment.is_graded = true
+    end
+    assessment.save!
   end
 end

@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  has_many :enrollments
+  has_many :enrollments, dependent: :destroy
   has_many :users, through: :enrollments
   has_many :surveys, dependent: :destroy
   attr_accessible :name, :section, :term, :title, :teacher_id

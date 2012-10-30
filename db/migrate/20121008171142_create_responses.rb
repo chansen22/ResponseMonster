@@ -4,6 +4,7 @@ class CreateResponses < ActiveRecord::Migration
       t.integer :choiceId
       t.string :short_answer
       t.integer :times_submitted
+      t.boolean :is_right
 
       t.timestamps
     end

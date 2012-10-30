@@ -12,7 +12,7 @@ class SurveysController < ApplicationController
     @responses = []
     @survey.polls.each do |poll|
       poll.answers.each do |answer|
-        @responses << Response.new()
+        @responses << Response.new
       end
     end
   end

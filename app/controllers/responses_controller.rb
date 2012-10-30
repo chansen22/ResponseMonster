@@ -22,12 +22,16 @@ class ResponsesController < ApplicationController
   end
 
   def create
-  @survey = Survey.find(params[:survey])
+    @survey = Survey.find(params[:survey])
     @course = Course.find(@survey.course_id)
     times_submitted = Response.get_times_submitted(current_user, @survey)
     Response.remove_old_responses(current_user, @survey)
     if params.keys.count >= 7
       if Response.create_response(params, current_user, times_submitted)
+        User.find_last_assessment(@survey, current_user)
+        current_user.surveys << @survey
+        assessment = current_user.assessments.last
+        Response.grade_surveys(@survey, current_user, assessment)
         redirect_to summary_course_survey_path(@course, @survey), notice: 'Response was successfully created'
       else
         redirect_to course_survey_path(@course, @survey), notice: "Response was not successfully created"
