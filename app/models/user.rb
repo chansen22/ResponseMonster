@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   def self.find_last_assessment(survey, user)
     user.assessments.each do |assessment|
       if assessment.survey_id == survey.id
-        assessment.delete
+        return assessment
       end
     end
   end

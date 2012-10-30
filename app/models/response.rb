@@ -46,7 +46,7 @@ class Response < ActiveRecord::Base
     complete
   end
 
-  def self.grade_surveys(survey, current_user, assessment)
+  def self.grade_surveys(survey, current_user, assessment, old_assessment)
     is_finished = true
     number_correct = 0
     number_wrong = 0
@@ -81,6 +81,8 @@ class Response < ActiveRecord::Base
       assessment.total_points = number_correct + number_wrong
       assessment.is_graded = true
     end
-    assessment.save!
+    if assessment.save
+      old_assessment.delete
+    end
   end
 end
