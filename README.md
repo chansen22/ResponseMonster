@@ -162,17 +162,7 @@ Software Development Risks
 
   Likelihood: 3
 
-3.	Ability to learn “Ruby on Rails”. The learning curve could be challenging for us.
-
-  Priority Level: 8
-
-  Level of Impact: 7
-
-  How to Mitigate: Keep up on tutorials and reading.
-
-  Likelihood: 2
-
-4.	Not enough testing, software could have bugs at release.
+3.	Not enough testing, software could have bugs at release.
 
   Priority Level: 6
 
@@ -182,7 +172,7 @@ Software Development Risks
 
   Likelihood: 4
 
-5.	Not enough features after completion.
+4.	Not enough features after completion.
 
   Priority Level: 10
 
@@ -192,7 +182,7 @@ Software Development Risks
 
   Likelihood: 2
 
-6.	No professional design experience.
+5.	No professional design experience.
 
   Priority Level: 1
 
@@ -202,7 +192,7 @@ Software Development Risks
 
   Likelihood: 1
 
-7.	Application not being used.
+6.	Application not being used.
 
   Priority Level: 8
 
@@ -212,7 +202,7 @@ Software Development Risks
 
   Likelihood: 5
 
-8.	Planning unnecessary features that may not be used. 
+7.	Planning unnecessary features that may not be used. 
 
   Priority Level: 6
 
@@ -222,7 +212,7 @@ Software Development Risks
 
   Likelihood: 5
 
-9.	Schoolwork load becomes too heavy.
+10.	Schoolwork load becomes too heavy.
 
   Priority Level: 6
 
@@ -232,7 +222,7 @@ Software Development Risks
 
   Likelihood: 2
 
-10.	Members not working together/getting along.
+11.	Members not working together/getting along.
 
   Priority Level: 2
 
