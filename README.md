@@ -144,13 +144,13 @@ Software Development Risks
 --------------------------
 1.	Schoolwork load becomes too heavy.
 
-  Priority Level: 6
+  Priority Level: 8
 
   Level of Impact: 10
 
   How to Mitigate: Stay on track with school and manage time.
 
-  Likelihood: 2
+  Likelihood: 5
 
 2.	Users (Difficulty of using application, users don't have laptops/smartphones, etc)
 
@@ -170,7 +170,7 @@ Software Development Risks
 
   How to Mitigate: Constantly reassess our progress and evaluate our goals accordingly.
 
-  Likelihood: 3
+  Likelihood: 5
 
 4.	Not enough testing, software could have bugs at release.
 
@@ -198,7 +198,7 @@ Software Development Risks
 
   Level of Impact: 1
 
-  How to Mitigate: Keep astestics simple.
+  How to Mitigate: Keep aesthetics simple.
 
   Likelihood: 1
 
