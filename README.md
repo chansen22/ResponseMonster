@@ -233,6 +233,7 @@ Software Development Risks
   Likelihood: 1
 
 Requirements
+------------
 
   1.  Users will be able to create an account, either a Student, Teacher, or Administrator.
   2.  Students will be able to add Courses to there schedule.
@@ -252,6 +253,7 @@ Requirements
   16. Users should be able to access and interact with the site from a mobile device.
 
 Cases
+-----
 
   1.  Create Account  
 
