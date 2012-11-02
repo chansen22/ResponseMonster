@@ -142,77 +142,7 @@ before { @user = User.new(first_name: "Test",
 
 Software Development Risks
 --------------------------
-1.	Users (Difficulty of using application, users don't have laptops/smartphones, etc)
-
-  Priority Level: 1
-
-  Level of Impact: 1
-
-  How to Mitigate: Reverse engineer a clicker for cheaper production
-
-  Likelihood: 1
-
-2.	Incorrect estimation of completion time.  This would affect the quality of the final product.
-
-  Priority Level: 8
-
-  Level of Impact: 8
-
-  How to Mitigate: Constantly reassess our progress and evaluate our goals accordingly.
-
-  Likelihood: 3
-
-3.	Not enough testing, software could have bugs at release.
-
-  Priority Level: 6
-
-  Level of Impact: 6
-
-  How to Mitigate: Test frequently and often, especially after new implementations of key elements.
-
-  Likelihood: 4
-
-4.	Not enough features after completion.
-
-  Priority Level: 10
-
-  Level of Impact: 10
-
-  How to Mitigate: Keep work/motivation up throughout the semester.
-
-  Likelihood: 2
-
-5.	No professional design experience.
-
-  Priority Level: 1
-
-  Level of Impact: 1
-
-  How to Mitigate: Keep astestics simple.
-
-  Likelihood: 1
-
-6.	Application not being used.
-
-  Priority Level: 8
-
-  Level of Impact: 7
-
-  How to Mitigate: Keep application user friendly and design simple.
-
-  Likelihood: 5
-
-7.	Planning unnecessary features that may not be used. 
-
-  Priority Level: 6
-
-  Level of Impact: 6
-
-  How to Mitigate: We shouldn’t try to anticipate what we need, before we need it.
-
-  Likelihood: 5
-
-10.	Schoolwork load becomes too heavy.
+1.	Schoolwork load becomes too heavy.
 
   Priority Level: 6
 
@@ -222,7 +152,77 @@ Software Development Risks
 
   Likelihood: 2
 
-11.	Members not working together/getting along.
+2.	Users (Difficulty of using application, users don't have laptops/smartphones, etc)
+
+  Priority Level: 1
+
+  Level of Impact: 1
+
+  How to Mitigate: Reverse engineer a clicker for cheaper production
+
+  Likelihood: 1
+
+3.	Incorrect estimation of completion time.  This would affect the quality of the final product.
+
+  Priority Level: 8
+
+  Level of Impact: 8
+
+  How to Mitigate: Constantly reassess our progress and evaluate our goals accordingly.
+
+  Likelihood: 3
+
+4.	Not enough testing, software could have bugs at release.
+
+  Priority Level: 6
+
+  Level of Impact: 6
+
+  How to Mitigate: Test frequently and often, especially after new implementations of key elements.
+
+  Likelihood: 4
+
+5.	Not enough features after completion.
+
+  Priority Level: 10
+
+  Level of Impact: 10
+
+  How to Mitigate: Keep work/motivation up throughout the semester.
+
+  Likelihood: 2
+
+6.	No professional design experience.
+
+  Priority Level: 1
+
+  Level of Impact: 1
+
+  How to Mitigate: Keep astestics simple.
+
+  Likelihood: 1
+
+7.	Application not being used.
+
+  Priority Level: 8
+
+  Level of Impact: 7
+
+  How to Mitigate: Keep application user friendly and design simple.
+
+  Likelihood: 5
+
+8.	Planning unnecessary features that may not be used. 
+
+  Priority Level: 6
+
+  Level of Impact: 6
+
+  How to Mitigate: We shouldn’t try to anticipate what we need, before we need it.
+
+  Likelihood: 5
+
+9.	Members not working together/getting along.
 
   Priority Level: 2
 
