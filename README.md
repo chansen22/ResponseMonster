@@ -232,6 +232,16 @@ Software Development Risks
 
   Likelihood: 1
 
+10.	No production server is set up to host the final product.
+
+  Priority Level: 3
+
+  Level of Impact: 10
+
+  How to Mitigate: Find a hosting service or host it ourselves.
+
+  Likelihood: 2
+
 Requirements
 ------------
 
