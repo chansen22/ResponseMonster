@@ -18,9 +18,11 @@ class CoursesController < ApplicationController
     @finished_surveys = []
     @surveys.each do |survey|
       poll = survey.polls.first
-      poll.responses.each do |response|
-        if response.user_id == current_user.id
-          @finished_surveys << [ [survey.id, survey.name, response.updated_at ] ]
+      if poll && poll.responses.any?
+        poll.responses.each do |response|
+          if response.user_id == current_user.id
+            @finished_surveys << [ [survey.id, survey.name, response.updated_at ] ]
+          end
         end
       end
     end

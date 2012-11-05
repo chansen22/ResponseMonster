@@ -19,20 +19,22 @@ class SurveysController < ApplicationController
 
   def new
     @survey = Survey.new
+    @course = Course.find(params[:course_id])
   end
 
   def edit
     @survey = Survey.find(params[:id])
+    @course = Course.find(params[:course_id])
   end
 
   def create
     @course = Course.find(params[:course_id])
-    @survey = @course.surveys.create(params[:survey])
+    @survey = @course.surveys.new(params[:survey])
 
     if @survey.save
       redirect_to course_path(@course), notice: "Survey was successfully created"
     else
-      render new_course_survey_path(@course.id), notice: "There were some errors"
+      render new_course_survey_path(@course), notice: "There were some errors"
     end
   end
 

@@ -1,5 +1,5 @@
 = javascript_include_tag "add_and_remove_helpers"
-= form_for([:course, @survey]) do |f|
+= form_for([@course, @survey]) do |f|
   - if @survey.errors.any?
     #error_explanation
       %h2= pluralize(@survey.errors.count, "Error")
@@ -11,8 +11,10 @@
 
   = f.label :name, "Survey Name, eg: Quiz 1"
   = f.text_field :name, autofocus: "autofocus"
-  = f.label :attempts_allowed
+  = f.label :attempts_allowed, "Attempts Allowed, Enter 0 for unlimited attempts"
   = f.number_field :attempts_allowed, required: true
+  = f.label :password, "Password, If a password isn't needed, leave these fields blank"
+  = f.text_field :password
 
   .questions
     = f.fields_for :polls do |builder|
