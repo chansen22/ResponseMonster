@@ -91,6 +91,9 @@ class SurveysController < ApplicationController
   def login
     @survey = Survey.find(params[:id])
     @course = @survey.course
+    if @course.teacher_id == current_user.id || current_user.is_admin?
+      redirect_to course_survey_path(@course, @survey)
+    end
   end
 
   def check

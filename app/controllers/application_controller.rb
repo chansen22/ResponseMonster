@@ -62,6 +62,6 @@ class ApplicationController < ActionController::Base
 
     def check_password(survey)
       redirect_to course_path(survey.course), notice: "The password you entered was not valid or you 
-      aren't authorized to visit this quiz" unless !survey.password || params[:pass] == survey.password
+      aren't authorized to visit this quiz" unless !survey.password || params[:pass] == survey.password || survey.course.teacher_id == current_user.id || current_user.is_admin?
     end
 end
