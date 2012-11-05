@@ -142,7 +142,17 @@ before { @user = User.new(first_name: "Test",
 
 Software Development Risks
 --------------------------
-1.	Users (Difficulty of using application, users don't have laptops/smartphones, etc)
+1.	Schoolwork load becomes too heavy.
+
+  Priority Level: 8
+
+  Level of Impact: 10
+
+  How to Mitigate: Stay on track with school and manage time.
+
+  Likelihood: 5
+
+2.	Users (Difficulty of using application, users don't have laptops/smartphones, etc)
 
   Priority Level: 1
 
@@ -152,7 +162,7 @@ Software Development Risks
 
   Likelihood: 1
 
-2.	Incorrect estimation of completion time.  This would affect the quality of the final product.
+3.	Incorrect estimation of completion time.  This would affect the quality of the final product.
 
   Priority Level: 8
 
@@ -160,17 +170,7 @@ Software Development Risks
 
   How to Mitigate: Constantly reassess our progress and evaluate our goals accordingly.
 
-  Likelihood: 3
-
-3.	Ability to learn “Ruby on Rails”. The learning curve could be challenging for us.
-
-  Priority Level: 8
-
-  Level of Impact: 7
-
-  How to Mitigate: Keep up on tutorials and reading.
-
-  Likelihood: 2
+  Likelihood: 5
 
 4.	Not enough testing, software could have bugs at release.
 
@@ -198,7 +198,7 @@ Software Development Risks
 
   Level of Impact: 1
 
-  How to Mitigate: Keep astestics simple.
+  How to Mitigate: Keep aesthetics simple.
 
   Likelihood: 1
 
@@ -222,17 +222,7 @@ Software Development Risks
 
   Likelihood: 5
 
-9.	Schoolwork load becomes too heavy.
-
-  Priority Level: 6
-
-  Level of Impact: 10
-
-  How to Mitigate: Stay on track with school and manage time.
-
-  Likelihood: 2
-
-10.	Members not working together/getting along.
+9.	Members not working together/getting along.
 
   Priority Level: 2
 
@@ -242,26 +232,49 @@ Software Development Risks
 
   Likelihood: 1
 
-Requirements
+10.	No production server is set up to host the final product.
 
-  1.  Users will be able to create an account, either a Student, Teacher, or Administrator.
-  2.  Students will be able to add Courses to there schedule.
-  3.  Students will be able to participate in Survey’s provided by the Teachers of their Course.
-  4.  Students will be able to answer Questions that are parts of Surveys.
-  5.  Students will/might be able to view answer to Questions after Survey is over, depending on Teacher preference.
-  6.  Administrators will be able to create Courses.
-  7.  Administrators will be able to assign Teachers to Courses.
-  8.  Administrator will be able to assign Students to Courses.
-  9.  Teachers will be able to create Surveys for their Courses.
-  10. Teachers will be able to create Questions, inside Surveys for their Courses.
-  11. Teachers will be able to create Answers for these Questions.
-  12. Teachers will be able to administer Surveys for their Courses.
-  13. Teachers will be able to display Answers to Questions of Surveys.
-  14. Surveys will be able to support different question types, i.e. Short answer, multiple choice, essay, etc.
-  15. Users will have the ability to see statistics for Surveys they have access to able the Surveys have been completed.
-  16. Users should be able to access and interact with the site from a mobile device.
+  Priority Level: 3
+
+  Level of Impact: 10
+
+  How to Mitigate: Find a hosting service or host it ourselves.
+
+  Likelihood: 2
+
+Requirements
+------------
+
+  1. Users will be able to create an account.
+  2. Users will be able to sign in to their accounts.
+  3. Users will be able to edit their account information.
+  4. Users will be able to access and interact with the site from a mobile device.
+  5. Students will be able to add/drop Courses.
+  6. Students will be able to participate in Survey’s provided by the Teachers of their Course.
+  7. Students will be able to answer Questions that are parts of Surveys.
+  8. Students will/might be able to view answer to Questions after Survey is over, depending on Teacher preference.
+  9. Students will have the ability to see grades for Surveys they have access to able the Surveys have been completed.
+  10. Students will be able to view courses they are enrolled in.
+  11. Administrators will be able to create Courses.
+  12. Administrators will be able to assign Teachers to Courses.
+  13. Administrators will be able to assign Students to Courses.
+  14. Administrators will be able to delete courses, teachers, and users.
+  15. Teachers will be able to create Surveys for their Courses.
+  16. Teachers will be able to create Questions, inside Surveys for their Courses.
+  17. Teachers will be able to create Answers for these Questions.
+  18. Teachers will be able to administer Surveys for their Courses.
+  19. Teachers will be able to display Answers to Questions of Surveys.
+  20. Teachers will be able to set passwords on their surveys.
+  21. Teachers will be able to grade responses.
+  22. Teachers will be able to view students' responses to their surveys.
+  23. Teachers will be able to view statistics for responses their courses.
+  24. Teachers will be able to edit surveys after creation.
+  25. Teachers will be able to activate and deactivate their classes' surveys.
+  26. Teachers will be able to view courses that they are teaching.
+  27. Surveys will be able to support different question types, i.e. Short answer, multiple choice, essay, etc.
 
 Cases
+-----
 
   1.  Create Account  
 
