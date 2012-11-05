@@ -22,6 +22,8 @@ ResponseMonster::Application.routes.draw do
         get 'activate'
         get 'deactivate'
         get 'summary'
+        get 'login'
+        post 'check'
       end
       resources :polls do
         resources :answers

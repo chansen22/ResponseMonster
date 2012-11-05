@@ -1,0 +1,8 @@
+#form
+  = form_for(:pass, url: { action: "check" } ) do |f|
+    %p
+      = f.label :password
+      %br
+      = f.text_field :password, autofocus: "autofocus"
+    %br
+    = f.submit "Proceed"

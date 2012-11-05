@@ -2,6 +2,7 @@ class SurveysController < ApplicationController
   before_filter :authenticate
   before_filter(only: [:show]) { |controller| controller.check_activated(Survey.find(params[:id])) }
   before_filter(only: [:show]) { |controller| controller.check_attempts(Survey.find(params[:id])) }
+  before_filter(only: [:show]) { |controller| controller.check_password(Survey.find(params[:id])) }
   before_filter(except: [:show, :summary]) { |controller| controller.check_permissions(Course.find(params[:course_id])) }
   before_filter :admin_user, only: [:index]
 
@@ -85,5 +86,21 @@ class SurveysController < ApplicationController
     @course = @survey.course
     @polls = @survey.polls.all
     @responses = current_user.responses.all
+  end
+
+  def login
+    @survey = Survey.find(params[:id])
+    @course = @survey.course
+  end
+
+  def check
+    @survey = Survey.find(params[:id])
+    @course = @survey.course
+    if params["pass"][:password] && params["pass"][:password] == @survey.password
+      redirect_to course_survey_path(@course, @survey, pass: params["pass"][:password])
+    else
+      flash.now[:error] = "The password you entered was incorrect"
+      render "login"
+    end
   end
 end

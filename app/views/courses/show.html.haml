@@ -36,7 +36,10 @@
       %tr
         %td
           - if survey.is_active || is_admin? || is_teacher?(@course)
-            .btn= link_to survey.name, course_survey_path(@course, survey)
+            - if survey.password
+              .btn= link_to survey.name, login_course_survey_path(@course, survey)
+            - else
+              .btn= link_to survey.name, course_survey_path(@course, survey)
           - else
             = survey.name
         %td

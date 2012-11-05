@@ -59,4 +59,9 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, notice: "You must be enrolled in a course to view
       it." unless is_enrolled || is_teacher || is_admin?
     end
+
+    def check_password(survey)
+      redirect_to course_path(survey.course), notice: "The password you entered was not valid or you 
+      aren't authorized to visit this quiz" unless !survey.password || params[:pass] == survey.password
+    end
 end
