@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
   before_filter(only: [:show]) { |controller| controller.check_activated(Survey.find(params[:id])) }
   before_filter(only: [:show]) { |controller| controller.check_attempts(Survey.find(params[:id])) }
   before_filter(only: [:show]) { |controller| controller.check_password(Survey.find(params[:id])) }
-  before_filter(except: [:show, :summary]) { |controller| controller.check_permissions(Course.find(params[:course_id])) }
+  before_filter(except: [:show, :summary, :login, :check]) { |controller| controller.check_permissions(Course.find(params[:course_id])) }
   before_filter :admin_user, only: [:index]
 
   def show
@@ -91,7 +91,7 @@ class SurveysController < ApplicationController
   def login
     @survey = Survey.find(params[:id])
     @course = @survey.course
-    if @course.teacher_id == current_user.id || current_user.is_admin?
+    if @course.teacher_id == current_user.id || is_admin?
       redirect_to course_survey_path(@course, @survey)
     end
   end
