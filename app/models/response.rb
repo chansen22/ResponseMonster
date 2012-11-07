@@ -82,7 +82,9 @@ class Response < ActiveRecord::Base
       assessment.is_graded = true
     end
     if assessment.save
-      old_assessment.delete
+      if old_assessment
+        old_assessment.delete
+      end
     end
   end
 end

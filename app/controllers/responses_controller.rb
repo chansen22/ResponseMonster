@@ -32,7 +32,7 @@ class ResponsesController < ApplicationController
         current_user.surveys << @survey
         assessment = current_user.assessments.last
         Response.grade_surveys(@survey, current_user, assessment, old_assessment)
-        redirect_to summary_course_survey_path(@course, @survey), notice: 'Response was successfully created'
+        redirect_to summary_course_survey_path(@course, @survey), notice: 'Quiz was successfully saved'
       else
         redirect_to course_survey_path(@course, @survey), notice: "Response was not successfully created"
       end
