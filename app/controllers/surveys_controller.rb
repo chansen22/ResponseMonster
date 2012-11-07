@@ -96,6 +96,12 @@ class SurveysController < ApplicationController
     end
   end
 
+  def grade
+    @survey = Survey.find(params[:id])
+    @course = @survey.course
+    @assessments = @survey.assessments
+  end
+
   def check
     @survey = Survey.find(params[:id])
     @course = @survey.course

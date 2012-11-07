@@ -1,0 +1,26 @@
+%h1
+  Assessments
+%table.table
+  %tr
+    %th
+      Name
+    %th
+      Time Submitted
+    %th
+      Time Spent
+    %th
+      Score
+    %th
+      Grade
+  - @assessments.each do |assessment|
+    %tr
+      %td
+        = "#{assessment.user.first_name} #{assessment.user.last_name}"
+      %td
+        = assessment.created_at
+      %td
+        Time spent
+      %td
+        = assessment.score
+      %td
+        = link_to "Grade", summary_course_survey_path(@course, @survey), class: "btn"
