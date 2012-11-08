@@ -1,4 +1,5 @@
 class SurveysController < ApplicationController
+  require 'debugger'
   before_filter :authenticate
   before_filter(only: [:show]) { |controller| controller.check_activated(Survey.find(params[:id])) }
   before_filter(only: [:show]) { |controller| controller.check_attempts(Survey.find(params[:id])) }
@@ -9,7 +10,14 @@ class SurveysController < ApplicationController
   def show
     @survey = Survey.find(params[:id])
     @course = @survey.course
-    @old_submitted = Response.get_times_submitted(current_user, @survey)
+    @old_assessment = @survey.assessments.where(user_id: current_user.id)
+    if !@old_assessment.empty?
+      @times_submitted = @old_assessment.first.times_submitted 
+    else
+      @times_submitted = 0
+    end
+    @assessment = Assessment.create_assessment(current_user, @times_submitted, @survey)
+    @assessment.save
     @responses = []
     @survey.polls.each do |poll|
       poll.answers.each do |answer|

@@ -1,7 +1,7 @@
 %center
-  %h3=@course.title + "-" + @course.section
-  %h3=@course.name
-  %h4="#{User.find(@course.teacher_id).first_name} #{User.find(@course.teacher_id).last_name}"
+  %h3= @course.title + "-" + @course.section
+  %h3= @course.name
+  %h4= "#{User.find(@course.teacher_id).first_name} #{User.find(@course.teacher_id).last_name}"
   %h4
     - if Date.new(Date.today.year, 8, 1) == @course.term
       Fall

@@ -23,27 +23,29 @@ class ResponsesController < ApplicationController
 
   def create
     @survey = Survey.find(params[:survey])
-    @old_assessment = Survey.assessments.where(user_id: current_user.id)
-    @assessment = @survey.assessments.build
-    @assessment.user = current_user
-    
+    @old_assessment = Assessment.where(user_id: current_user.id, survey_id: @survey.id)
+    if @old_assessment.count == 1
+      @assessment = @old_assessment.first
+      @old_assessment = nil
+    else
+      @assessment = @old_assessment.last
+      @old_assessment = @old_assessment.first
+    end
 
-
-
-    times_submitted = Response.get_times_submitted(current_user, @survey)
-    Response.remove_old_responses(current_user, @survey)
     if params.keys.count >= 7
-      if Response.create_response(params, current_user, times_submitted)
-        old_assessment = User.find_last_assessment(@survey, current_user)
-        current_user.surveys << @survey
-        assessment = current_user.assessments.last
-        Response.grade_surveys(@survey, current_user, assessment, old_assessment)
-        redirect_to summary_course_survey_path(@course, @survey), notice: 'Quiz was successfully saved'
+      if Response.create_responses(params, current_user, @assessment)
+        Assessment.taken(@assessment, @old_assessment)
+        Assessment.remove_old_assessment(@old_assessment)
+        Assessment.grade(@assessment)
+        redirect_to summary_course_survey_path(@survey.course, @survey), notice: "#{@survey.name} was 
+        successfully saved"
       else
-        redirect_to course_survey_path(@course, @survey), notice: "Response was not successfully created"
+        redirect_to course_survey_path(@survey.course, @survey), notice: "#{@survey.name} was 
+        not successfully saved"
       end
     else
-      redirect_to course_survey_path(@course, @survey), notice: "Please answer at least one question"
+      redirect_to course_survey_path(@survey.course, @survey), notice: "Please answer at least one
+      question"
     end
   end
 
