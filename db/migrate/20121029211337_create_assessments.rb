@@ -4,6 +4,7 @@ class CreateAssessments < ActiveRecord::Migration
       t.integer :score
       t.integer :total_points
       t.boolean :is_graded, default: false
+      t.integer :times_submitted
       t.integer :user_id
       t.integer :survey_id
 

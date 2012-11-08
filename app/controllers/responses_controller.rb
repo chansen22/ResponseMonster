@@ -26,6 +26,7 @@ class ResponsesController < ApplicationController
     @old_assessment = Survey.assessments.where(user_id: current_user.id)
     @assessment = @survey.assessments.build
     @assessment.user = current_user
+    
 
 
 
