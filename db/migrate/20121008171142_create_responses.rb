@@ -5,6 +5,7 @@ class CreateResponses < ActiveRecord::Migration
       t.string :short_answer
       t.boolean :is_right
       t.integer :assessment_id
+      t.integer :points
 
       t.timestamps
     end

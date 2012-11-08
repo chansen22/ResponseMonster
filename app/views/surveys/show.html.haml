@@ -29,12 +29,15 @@
                 = poll.question_text
               %td
                 Correct Answer?
+              %td
+                = "#{poll.points} points possible"
           - poll.answers.each do |answer|
             %tr
               %td
                 = answer.answer_text
               %td
                 = answer.is_right.to_s.capitalize
+              %td
           %br
 
 

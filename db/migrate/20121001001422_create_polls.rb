@@ -4,6 +4,7 @@ class CreatePolls < ActiveRecord::Migration
       t.string :answer_type
       t.string :is_radio
       t.string :question_text
+      t.integer :points
 
       t.timestamps
     end

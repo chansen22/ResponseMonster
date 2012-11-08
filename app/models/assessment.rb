@@ -26,8 +26,10 @@ class Assessment < ActiveRecord::Base
         answer = response.poll.answers.where(id: response.choiceId).first
         if answer.is_right
           response.is_right = true
+          response.points = response.poll.points
         else
           response.is_right = false
+          response.points = 0
         end
         response.save
       end

@@ -1,7 +1,7 @@
 class Response < ActiveRecord::Base
   belongs_to :assessment
   belongs_to :poll
-  attr_accessible :choiceId, :short_answer, :times_submitted
+  attr_accessible :choiceId, :short_answer, :times_submitted, :points
 
   def self.create_responses(params, user, assessment)
     complete = true

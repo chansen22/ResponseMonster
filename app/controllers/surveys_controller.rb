@@ -39,6 +39,13 @@ class SurveysController < ApplicationController
   def create
     @course = Course.find(params[:course_id])
     @survey = @course.surveys.new(params[:survey])
+    if @survey.total_points.nil? || @survey.total_points == 0
+      total = 0
+      @survey.polls.each do |poll|
+        total += poll.points
+      end
+      @survey.total_points = total
+    end
 
     if @survey.save
       redirect_to course_path(@course), notice: "Survey was successfully created"
@@ -99,8 +106,8 @@ class SurveysController < ApplicationController
   def login
     @survey = Survey.find(params[:id])
     @course = @survey.course
-    if @course.teacher_id == current_user.id || is_admin? || @survey.password.nil?
-      redirect_to course_survey_path(@course, @survey)
+    if @course.teacher_id == current_user.id || is_admin? || @survey.password.nil? || @survey.password.empty?
+      redirect_to course_survey_path(@course, @survey, pass: "")
     end
   end
 

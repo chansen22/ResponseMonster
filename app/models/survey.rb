@@ -8,7 +8,8 @@ class Survey < ActiveRecord::Base
                         :start_time, 
                         :is_active, 
                         :polls_attributes, 
-                        :attempts_allowed, 
+                        :attempts_allowed,
+                        :total_points,
                         :password
 
   validates(:name, presence: true)

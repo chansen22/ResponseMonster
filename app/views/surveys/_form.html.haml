@@ -15,6 +15,8 @@
   = f.number_field :attempts_allowed, required: true
   = f.label :password, "Password, If a password isn't needed, leave these fields blank"
   = f.text_field :password
+  = f.label :points_possible, "Points Possible, Leave blank or enter 0 if you want the app to calculate this for you"
+  = f.number_field :total_points
 
   .questions
     = f.fields_for :polls do |builder|

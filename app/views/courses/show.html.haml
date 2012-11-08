@@ -51,8 +51,9 @@
             = survey.end_time
         - if is_teacher?(@course)
           %td
-            = link_to "Edit", edit_course_survey_path(@course, survey), class: "pill-button-right btn pill-button-fix"
-            = link_to "Grade", grade_course_survey_path(@course, survey), class: "pill-button-left btn"
+            = link_to "View", course_survey_path(@course, survey), class: "pill-button-right btn pill-button-fix"
+            = link_to "Edit", edit_course_survey_path(@course, survey), class: "pill-button-middle btn"
+            = link_to "Grade", grade_course_survey_path(@course, survey), class: "pill-button-left btn pill-button-fix-right"
           %td
             - if survey.is_active
               .btn= link_to "Deactive Survey", deactivate_course_survey_path(@course, survey)
