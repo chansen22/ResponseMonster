@@ -2,8 +2,7 @@ class User < ActiveRecord::Base
   has_many :enrollments, dependent: :destroy
   has_many :courses, through: :enrollments
   has_many :assessments, dependent: :destroy
-  has_many :surveys, through: :assessments
-  has_many :responses, dependent: :destroy
+  has_many :responses, through: :assessments, dependent: :destroy
   has_secure_password
   attr_accessible :email, 
             :first_name, 

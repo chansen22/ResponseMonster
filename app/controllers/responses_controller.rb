@@ -23,7 +23,12 @@ class ResponsesController < ApplicationController
 
   def create
     @survey = Survey.find(params[:survey])
-    @course = Course.find(@survey.course_id)
+    @old_assessment = Survey.assessments.where(user_id: current_user.id)
+    @assessment = @survey.assessments.build
+    @assessment.user = current_user
+
+
+
     times_submitted = Response.get_times_submitted(current_user, @survey)
     Response.remove_old_responses(current_user, @survey)
     if params.keys.count >= 7

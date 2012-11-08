@@ -1,6 +1,6 @@
 class Response < ActiveRecord::Base
-  belongs_to :users
-  belongs_to :polls
+  belongs_to :assessment
+  belongs_to :poll
   attr_accessible :choiceId, :short_answer, :times_submitted
   require 'debugger'
 

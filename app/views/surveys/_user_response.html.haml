@@ -24,6 +24,7 @@
       - if !poll.answers.any?
         %br
         = text_field_tag "short_answer#{poll.id}"
+        %br
       - poll.answers.each do |answer|
         .well
           - if poll.answer_type == "Multiple Choice"
