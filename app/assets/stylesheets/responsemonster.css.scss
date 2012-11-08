@@ -175,8 +175,16 @@ footer {
   border-bottom-right-radius: 0px;
 }
 
-.pill-button-fix{
-  margin-right: -4px;
+.pill-button-middle {
+  border-radius: 0px;
+}
+
+.pill-button-fix {
+  margin-right: -5px;
+}
+
+.pill-button-fix-right {
+  margin-left: -4px;
 }
 
 .correct-answer {

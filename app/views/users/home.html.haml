@@ -31,7 +31,8 @@
                   %td= survey.end_time
                 %td
                   = link_to "Close quiz", deactivate_course_survey_path(course, survey), class: "btn pill-button-right pill-button-fix"
-                  = link_to "View Quiz", course_survey_path(course, survey), class: "btn pill-button-left"
+                  = link_to "View Quiz", course_survey_path(course, survey), class: "btn pill-button-middle"
+                  = link_to "See Responses", grade_course_survey_path(course, survey), class: "btn pill-button-left pill-button-fix-right"
       - if !current_user.courses.nil?
         - current_user.courses.each do |course|
           - course.surveys.each do |survey|
