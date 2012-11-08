@@ -1,26 +1,27 @@
 - provide(:title, "Sign In")
-%h1
-  Sign In
 
-#form
-  = form_for(:session, url: sessions_path) do |f|
-    
-    = f.label :email
-    %br
-    = f.text_field :email, autofocus: "autofocus"
-    %br
+.row
+  .span5
+  .span7
+    #form
+      = form_for(:session, url: sessions_path, html: {class: "form-signin"} ) do |f|
 
-    %br
-    = f.label :password
-    %br
-    = f.password_field :password
-    %br
-    %br
+        %h2.form-signin.heading
+          Sign In
+        
+        %br
+        = f.text_field :email, autofocus: "autofocus", placeholder: "Email Address"
 
-    = f.submit "Sign In"
+        %br
+        %br
+        = f.password_field :password, placeholder: "Password"
 
-#newUser
-  New user? 
-  %br
-  %br
-  .btn.btn-large.btn-primary= link_to "Sign up now!", signup_path
+        %br
+        %br
+        %button.btn.bth-large.btn-primary{ type: "submit" } Sign In
+
+    #newUser
+      New user? 
+      %br
+      %br
+      %button.btn.btn-large.btn-primary= link_to "Sign up now!", signup_path

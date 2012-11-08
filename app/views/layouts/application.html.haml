@@ -16,8 +16,9 @@
             %div{:class => "alert alert-#{key}" }= value
       .row
         .span12
+          =yield
+      // Need to add a break or something here
+      .row
+        .span12
           = render "layouts/footer"
 
-//      .row
-//        .span12
-//          =yield
