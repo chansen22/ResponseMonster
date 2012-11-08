@@ -15,7 +15,10 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @surveys = @course.surveys.all
-    @finished_surveys = current_user.assessments.all
+    @finished_assessments = []
+    current_user.assessments.each do |assessment|
+      @finished_assessments << assessment
+    end
   end
 
   def new
