@@ -11,6 +11,8 @@
     %th
       Score
     %th
+      Finished
+    %th
       Grade
   - @assessments.each do |assessment|
     %tr
@@ -23,4 +25,7 @@
       %td
         = assessment.score
       %td
-        = link_to "Grade", summary_course_survey_path(@course, @survey), class: "btn"
+      %td
+        = link_to "Grade", summary_course_survey_path(@course, @survey, assessment_id: assessment.id), class: "btn"
+
+= link_to "Back", course_path(@course)

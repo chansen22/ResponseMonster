@@ -191,6 +191,7 @@ footer {
   background-color: $correctGreen;
   border-radius: 5px;
   padding-left: 5px;
+  width: auto;
 }
 
 .wrong-answer {
@@ -202,6 +203,10 @@ footer {
 .not-picked-answer {
   border-radius: 5px;
   padding-left: 5px;
+}
+
+.summary-number-field {
+  width: 40px;
 }
 
 /* Tables */

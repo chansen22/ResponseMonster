@@ -24,6 +24,7 @@ ResponseMonster::Application.routes.draw do
         get 'summary'
         get 'login'
         post 'check'
+        post 'newgrade'
         get 'grade'
       end
       resources :polls do
