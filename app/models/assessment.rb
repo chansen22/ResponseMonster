@@ -19,6 +19,7 @@ class Assessment < ActiveRecord::Base
 
   def self.grade(assessment)
     needs_more_grading = false
+    assessment.score = 0
     assessment.responses.each do |response|
       if response.choiceId.nil?
         needs_more_grading = true
@@ -32,7 +33,14 @@ class Assessment < ActiveRecord::Base
           response.points = 0
         end
         response.save
+        assessment.score += response.points 
       end
+      if !needs_more_grading
+        assessment.is_graded = true
+      else
+        assessment.is_graded = false
+      end
+      assessment.save
     end
 
     assessment.is_graded = !needs_more_grading

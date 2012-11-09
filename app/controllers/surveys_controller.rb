@@ -100,6 +100,7 @@ class SurveysController < ApplicationController
     @survey = Survey.find(params[:id])
     @course = @survey.course
     @polls = @survey.polls.all
+    @student_assessment = Assessment.where(user_id: current_user.id, survey_id: @survey.id).first
     @grades = []
     if !params[:assessment_id].nil? && current_user.id == @course.teacher_id
       @assessment = Assessment.find(params[:assessment_id])
@@ -130,6 +131,12 @@ class SurveysController < ApplicationController
       response.points = params[key]
       response.save
     end
+    assessment.score = 0
+    assessment.responses.each do |response|
+      assessment.score += response.points
+    end
+    assessment.is_graded = true
+    assessment.save
     redirect_to grade_course_survey_path(@survey.course, @survey), notice: "Successfully graded #{assessment.user.first_name}'s quiz"
   end
 

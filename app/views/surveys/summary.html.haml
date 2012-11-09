@@ -1,7 +1,12 @@
 %h1
   Summary
 
-= @survey.name
+%h3
+  = @survey.name
+%br
+%p
+  Score:
+  = "#{@student_assessment.score} / #{@survey.total_points}"
 
 %h2
   Questions

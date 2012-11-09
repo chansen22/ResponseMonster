@@ -91,7 +91,7 @@
           %td
             = assessment.created_at
           %td
-            = "#{assessment.score} / assessment.survey.total_points"
+            = "#{assessment.score} / #{assessment.survey.total_points}"
           %td
             - if assessment.survey.is_active?
               = link_to "Retake", login_course_survey_path(@course, assessment.survey), class: "pill-button-right btn"

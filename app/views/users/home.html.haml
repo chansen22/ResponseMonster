@@ -39,7 +39,7 @@
             - if survey.is_active?
               %tr
                 %td= link_to course.name, course_path(course)
-                %td= link_to survey.name, course_survey_path(course, survey)
+                %td= survey.name
                 - if survey.end_time.nil?
                   %td Unknown
                 - else
