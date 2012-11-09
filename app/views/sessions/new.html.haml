@@ -1,8 +1,7 @@
 - provide(:title, "Sign In")
 
 .row
-  .span5
-  .span7
+  .span4.offset5
     #form
       = form_for(:session, url: sessions_path, html: {class: "form-signin"} ) do |f|
 
@@ -18,10 +17,8 @@
 
         %br
         %br
-        %button.btn.bth-large.btn-primary{ type: "submit" } Sign In
+        %input.btn.btn-large.btn-primary{ type: "submit", value: "Sign In" }
 
-    #newUser
-      New user? 
-      %br
-      %br
-      %button.btn.btn-large.btn-primary= link_to "Sign up now!", signup_path
+    .newUser
+      %h3 New user? 
+      = link_to "Sign Up!", signup_path, class: "btn btn-large btn-primary"

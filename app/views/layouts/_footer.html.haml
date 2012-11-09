@@ -2,7 +2,8 @@
   .navbar.navbar-inverse
     .navbar-inner
       .container
-        = link_to "Response Monster", root_path, class: "brand white"
+        .nav-collapse.collapse
+          = link_to "Response Monster", root_path, class: "brand white"
         %ul{ class: "nav" }
           %li= link_to "About", about_path
           %li= link_to "Contact", "#"

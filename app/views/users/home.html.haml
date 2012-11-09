@@ -1,44 +1,46 @@
-%h1
-  ResponseMonster
-%br
-- open_surveys = false
-- current_user.courses.each do |course|
-  - course.surveys.each do |survey|
-    - open_surveys = survey.is_active? || open_surveys
-- @courses.each do |course|
-  - course.surveys.each do |survey|
-    - open_surveys = survey.is_active? || open_surveys
-- if open_surveys
-  %h2 Open surveys in your classes
-  %table.table.table-hover.table-condensed.wide
-    %thead
-      %tr
-        %th Class
-        %th Survey
-        %th Closes
-    %tbody
-      - if !@courses.empty?
-        - @courses.each do |course|
-          - course.surveys.each do |survey|
-            - if survey.is_active?
-              %tr
-                %td= link_to course.name, course
-                %td= link_to survey.name, course_survey_path(course, survey)
-                - if survey.end_time.nil?
-                  %td= link_to "Close quiz", deactivate_course_survey_path(course, survey)
-      - if !current_user.courses.nil?
-        - current_user.courses.each do |course|
-          - course.surveys.each do |survey|
-            - if survey.is_active?
-              %tr
-                %td= link_to course.name, course_path(course)
-                %td= link_to survey.name, course_survey_path(course, survey)
-                - if !survey.end_time.nil?
-                  %td=  survey.end_time
-                - else
-                  %td Unknown
-%table.wide
-  %tr
+.row
+  .span12
+    %h1
+      ResponseMonster
+    %br
+    - open_surveys = false
+    - current_user.courses.each do |course|
+      - course.surveys.each do |survey|
+        - open_surveys = survey.is_active? || open_surveys
+    - @courses.each do |course|
+      - course.surveys.each do |survey|
+        - open_surveys = survey.is_active? || open_surveys
+    - if open_surveys
+      %h2 Open surveys in your classes
+      %table.table.table-hover.table-condensed.wide
+        %thead
+          %tr
+            %th Class
+            %th Survey
+            %th Closes
+        %tbody
+          - if !@courses.empty?
+            - @courses.each do |course|
+              - course.surveys.each do |survey|
+                - if survey.is_active?
+                  %tr
+                    %td= link_to course.name, course
+                    %td= link_to survey.name, course_survey_path(course, survey)
+                    - if survey.end_time.nil?
+                      %td= link_to "Close quiz", deactivate_course_survey_path(course, survey)
+          - if !current_user.courses.nil?
+            - current_user.courses.each do |course|
+              - course.surveys.each do |survey|
+                - if survey.is_active?
+                  %tr
+                    %td= link_to course.name, course_path(course)
+                    %td= link_to survey.name, course_survey_path(course, survey)
+                    - if !survey.end_time.nil?
+                      %td=  survey.end_time
+                    - else
+                      %td Unknown
+.row
+  .span6
     - if !current_user.courses.empty? || Course.where(teacher_id: current_user.id).empty?
       %td.half-cell
         %h2 Classes you're enrolled in
@@ -68,6 +70,7 @@
                 - if is_admin?
                   %td
                     .btn= link_to "Edit", edit_course_path(course)
+  .span6
     - if !Course.where(teacher_id: current_user.id).empty?
       %td.half-cell
         %h2 Classes you teach
@@ -98,9 +101,9 @@
                   - if is_admin?
                     %td
                       .btn= link_to "Edit", edit_course_path(course)
-    %tr
-      %td
-        - if is_admin?
-          .btn= link_to "New Course", new_course_path
-%br
-.btn= link_to "Enroll/Drop Classes", courses_path
+.row
+  .span12
+    .btn-toolbar
+      - if is_admin?
+        .btn= link_to "Create Course", new_course_path
+      .btn= link_to "Enroll/Drop Classes", courses_path
