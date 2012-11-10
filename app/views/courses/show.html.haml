@@ -1,7 +1,7 @@
 %center
-  %h3=@course.title + "-" + @course.section
-  %h3=@course.name
-  %h4="#{User.find(@course.teacher_id).first_name} #{User.find(@course.teacher_id).last_name}"
+  %h3= @course.title + "-" + @course.section
+  %h3= @course.name
+  %h4= "#{User.find(@course.teacher_id).first_name} #{User.find(@course.teacher_id).last_name}"
   %h4
     - if Date.new(Date.today.year, 8, 1) == @course.term
       Fall
@@ -26,22 +26,19 @@
         End Time
       - if is_teacher?(@course)
         %th
-          Edit
+          Action
         %th
           Activate
         %th
           Delete
+      - else
+        %th
+          Action
   %tbody
     - @surveys.each do |survey|
       %tr
         %td
-          - if survey.is_active || is_admin? || is_teacher?(@course)
-            - if survey.password
-              = link_to survey.name, login_course_survey_path(@course, survey), class: "btn"
-            - else
-              = link_to survey.name, course_survey_path(@course, survey), class: "btn"
-          - else
-            = survey.name
+          = survey.name
         %td
           - if survey.start_time.nil?
             = @course.term
@@ -54,7 +51,9 @@
             = survey.end_time
         - if is_teacher?(@course)
           %td
-            = link_to "Edit", edit_course_survey_path(@course, survey), class: "btn"
+            = link_to "View", course_survey_path(@course, survey), class: "pill-button-right btn pill-button-fix"
+            = link_to "Edit", edit_course_survey_path(@course, survey), class: "pill-button-middle btn"
+            = link_to "Grade", grade_course_survey_path(@course, survey), class: "pill-button-left btn pill-button-fix-right"
           %td
             - if survey.is_active
               = link_to "Deactive Survey", deactivate_course_survey_path(@course, survey), class: "btn"
@@ -62,8 +61,15 @@
               = link_to "Activate Survey", activate_course_survey_path(@course, survey), class: "btn"
           %td
             = link_to "Delete", [@course, survey], method: :delete, confirm: "Are you sure you want to delete this survey?", title: "Delete #{survey.name}", class: "btn btn-warning"
+        - else
+          %td
+            - if survey.is_active
+              .btn= link_to "Take", login_course_survey_path(@course, survey)
+            - else
+              = link_to "Take", "#", class: "disabled btn"
 
-- if !is_teacher?(@course) && !@finished_surveys.empty?
+
+- if !is_teacher?(@course) && !@finished_assessments.empty?
   %h2
     Past Submissions
   %table.table
@@ -75,15 +81,23 @@
           Time Submitted
         %th
           Grade
+        %th
+          Action
     %tbody
-      - @finished_surveys.each do |survey|
-        - survey.each do |info|
-          %tr
-            %td
-              = link_to info[1], summary_course_survey_path(@course, info[0])
-            %td
-              = info[2]
-            %td
+      - @finished_assessments.each do |assessment|
+        %tr
+          %td
+            = assessment.survey.name
+          %td
+            = assessment.created_at
+          %td
+            = "#{assessment.score} / #{assessment.survey.total_points}"
+          %td
+            - if assessment.survey.is_active?
+              = link_to "Retake", login_course_survey_path(@course, assessment.survey), class: "pill-button-right btn"
+              = link_to "View", summary_course_survey_path(@course, assessment.survey), class: "pill-button-left btn pill-button-fix-right"
+            - else
+              = link_to "View", summary_course_survey_path(@course, assessment.survey), class: "btn"
 
 
 - if is_teacher?(@course)

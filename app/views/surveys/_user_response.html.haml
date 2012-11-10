@@ -12,9 +12,9 @@
         Attempts
       %br
       - if @survey.attempts_allowed.nil? || @survey.attempts_allowed == 0
-        = @old_submitted
+        = @times_submitted
       - else
-        = "#{@old_submitted} / #{@survey.attempts_allowed}"
+        = "#{@times_submitted} / #{@survey.attempts_allowed}"
 
   #surveyQuestions
     %h2
@@ -24,6 +24,7 @@
       - if !poll.answers.any?
         %br
         = text_field_tag "short_answer#{poll.id}"
+        %br
       - poll.answers.each do |answer|
         .well
           - if poll.answer_type == "Multiple Choice"

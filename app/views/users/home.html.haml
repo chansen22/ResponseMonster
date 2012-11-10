@@ -18,6 +18,7 @@
             %th Class
             %th Survey
             %th Closes
+            %th Action
         %tbody
           - if !@courses.empty?
             - @courses.each do |course|
@@ -25,20 +26,28 @@
                 - if survey.is_active?
                   %tr
                     %td= link_to course.name, course
-                    %td= link_to survey.name, course_survey_path(course, survey)
+                    %td= survey.name
                     - if survey.end_time.nil?
-                      %td= link_to "Close quiz", deactivate_course_survey_path(course, survey)
+                      %td Unknown
+                    - else
+                      %td= survey.end_time
+                    %td
+                      = link_to "Close quiz", deactivate_course_survey_path(course, survey), class: "btn pill-button-right pill-button-fix"
+                      = link_to "View Quiz", course_survey_path(course, survey), class: "btn pill-button-middle"
+                      = link_to "See Responses", grade_course_survey_path(course, survey), class: "btn pill-button-left pill-button-fix-right"
           - if !current_user.courses.nil?
             - current_user.courses.each do |course|
               - course.surveys.each do |survey|
                 - if survey.is_active?
                   %tr
                     %td= link_to course.name, course_path(course)
-                    %td= link_to survey.name, course_survey_path(course, survey)
-                    - if !survey.end_time.nil?
-                      %td=  survey.end_time
-                    - else
+                    %td= survey.name
+                    - if survey.end_time.nil?
                       %td Unknown
+                    - else
+                      %td=  survey.end_time
+                    %td
+                      = link_to "Take", login_course_survey_path(course, survey), class: "btn"
 .row
   .span6
     - if !current_user.courses.empty? || Course.where(teacher_id: current_user.id).empty?

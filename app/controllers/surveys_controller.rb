@@ -1,15 +1,23 @@
 class SurveysController < ApplicationController
+  require 'debugger'
   before_filter :authenticate
   before_filter(only: [:show]) { |controller| controller.check_activated(Survey.find(params[:id])) }
   before_filter(only: [:show]) { |controller| controller.check_attempts(Survey.find(params[:id])) }
   before_filter(only: [:show]) { |controller| controller.check_password(Survey.find(params[:id])) }
-  before_filter(except: [:show, :summary]) { |controller| controller.check_permissions(Course.find(params[:course_id])) }
+  before_filter(except: [:show, :summary, :login, :check]) { |controller| controller.check_permissions(Course.find(params[:course_id])) }
   before_filter :admin_user, only: [:index]
 
   def show
     @survey = Survey.find(params[:id])
     @course = @survey.course
-    @old_submitted = Response.get_times_submitted(current_user, @survey)
+    @old_assessment = @survey.assessments.where(user_id: current_user.id)
+    if !@old_assessment.empty?
+      @times_submitted = @old_assessment.first.times_submitted 
+    else
+      @times_submitted = 0
+    end
+    @assessment = Assessment.create_assessment(current_user, @times_submitted, @survey)
+    @assessment.save
     @responses = []
     @survey.polls.each do |poll|
       poll.answers.each do |answer|
@@ -31,6 +39,13 @@ class SurveysController < ApplicationController
   def create
     @course = Course.find(params[:course_id])
     @survey = @course.surveys.new(params[:survey])
+    if @survey.total_points.nil? || @survey.total_points == 0
+      total = 0
+      @survey.polls.each do |poll|
+        total += poll.points
+      end
+      @survey.total_points = total
+    end
 
     if @survey.save
       redirect_to course_path(@course), notice: "Survey was successfully created"
@@ -85,15 +100,44 @@ class SurveysController < ApplicationController
     @survey = Survey.find(params[:id])
     @course = @survey.course
     @polls = @survey.polls.all
+    @student_assessment = Assessment.where(user_id: current_user.id, survey_id: @survey.id).first
+    @grades = []
+    if !params[:assessment_id].nil? && current_user.id == @course.teacher_id
+      @assessment = Assessment.find(params[:assessment_id])
+    end
     @responses = current_user.responses.all
   end
 
   def login
     @survey = Survey.find(params[:id])
     @course = @survey.course
-    if @course.teacher_id == current_user.id || current_user.admin?
-      redirect_to course_survey_path(@course, @survey)
+    if @course.teacher_id == current_user.id || is_admin? || @survey.password.nil? || @survey.password.empty?
+      redirect_to course_survey_path(@course, @survey, pass: "")
     end
+  end
+
+  def grade
+    @survey = Survey.find(params[:id])
+    @course = @survey.course
+    @assessments = @survey.assessments
+  end
+
+  def newgrade
+    assessment = Assessment.find(params[:assessment_id])
+    @survey = assessment.survey
+    changing = []
+    params.keys[2..-7].each do |key|
+      response = Response.find(key.split("s")[1])
+      response.points = params[key]
+      response.save
+    end
+    assessment.score = 0
+    assessment.responses.each do |response|
+      assessment.score += response.points
+    end
+    assessment.is_graded = true
+    assessment.save
+    redirect_to grade_course_survey_path(@survey.course, @survey), notice: "Successfully graded #{assessment.user.first_name}'s quiz"
   end
 
   def check
