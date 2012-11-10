@@ -33,4 +33,4 @@
             - else
               = check_box_tag "pollId#{answer.id}", answer.id
             = answer.answer_text
-  = f.submit "Submit"
+  %input.btn.btn-large.btn-primary{ type: "submit", value: "Submit" }

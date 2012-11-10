@@ -23,8 +23,9 @@
       = render 'poll_fields', :f => builder 
     %br
     %br
+    // Need to figure out how to make this a better button
     .btn= link_to_add_fields "Add Question", f, :polls
 
   %br
   .actions
-    = f.submit
+    %input.btn.btn-large.btn-primary{ type: "submit", value: "Create Survey" }
