@@ -81,7 +81,7 @@ class UsersController < ApplicationController
   private
     def check_correct_user
       @user = User.find(params[:id])
-      if @user != current_user
+      if @user != current_user and not current_user.admin?
         redirect_to root_path, notice: "You cannot view other users' profiles."
       end
     end

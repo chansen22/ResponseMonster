@@ -10,8 +10,6 @@ ResponseMonster::Application.routes.draw do
 
   resources :users
 
-  resources :sessions, only: [:new, :create, :destroy]
-
   resources :courses do
     member do
       get 'add'
@@ -34,8 +32,9 @@ ResponseMonster::Application.routes.draw do
   resources :responses
 
   match '/signup',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy'
+  match '/signin',  to: 'sessions#new', via: :get
+  match '/signin',  to: 'sessions#create', via: :post, as: :post_sessions
+  match '/signout', to: 'sessions#destroy', via: :delete
   match '/about',   to: 'StaticPages#about'
   match '/home',    to: 'users#home'
   match '/types',   to: 'StaticPages#types'
