@@ -6,6 +6,6 @@
   %b Question:
   = @poll.question_text
 
-= link_to 'Edit', edit_course_survey_poll_path(@course, @survey, @poll)
+= link_to 'Edit', edit_course_survey_poll_path(@course, @survey, @poll), class: "btn"
 %br
-= link_to 'Back', course_survey_path(@course, @survey)
+= link_to 'Back', course_survey_path(@course, @survey), class: "btn"

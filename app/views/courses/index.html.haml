@@ -41,15 +41,15 @@
         %td= "#{User.find_by_id(course.teacher_id).first_name} #{User.find_by_id(course.teacher_id).last_name}"
         %td
           - if @enrolled
-            .btn= link_to "Drop Course", drop_course_path(course)
+            = link_to "Drop Course", drop_course_path(course), class: "btn"
           - else
-            .btn= link_to "Enroll in Course", add_course_path(course)
+            = link_to "Enroll in Course", add_course_path(course), class: "btn"
         - if is_admin?
           %td
-            .btn= link_to 'Edit', edit_course_path(course)
+            = link_to 'Edit', edit_course_path(course), class: "btn"
           %td
-            .btn= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
+            = link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
 %br
 
 - if is_admin?
-  .btn= link_to 'New Course', new_course_path
+  = link_to 'New Course', new_course_path, class: "btn"

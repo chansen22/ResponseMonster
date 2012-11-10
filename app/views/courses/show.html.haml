@@ -10,7 +10,7 @@
 
 %br
 - if is_teacher?(@course) || is_admin?
-  .btn= link_to 'Create New Survey', new_course_survey_path(@course)
+  = link_to 'Create New Survey', new_course_survey_path(@course), class: "btn"
 %br
 
 %h2
@@ -37,9 +37,9 @@
         %td
           - if survey.is_active || is_admin? || is_teacher?(@course)
             - if survey.password
-              .btn= link_to survey.name, login_course_survey_path(@course, survey)
+              = link_to survey.name, login_course_survey_path(@course, survey), class: "btn"
             - else
-              .btn= link_to survey.name, course_survey_path(@course, survey)
+              = link_to survey.name, course_survey_path(@course, survey), class: "btn"
           - else
             = survey.name
         %td
@@ -54,14 +54,14 @@
             = survey.end_time
         - if is_teacher?(@course)
           %td
-            .btn= link_to "Edit", edit_course_survey_path(@course, survey)
+            = link_to "Edit", edit_course_survey_path(@course, survey), class: "btn"
           %td
             - if survey.is_active
-              .btn= link_to "Deactive Survey", deactivate_course_survey_path(@course, survey)
+              = link_to "Deactive Survey", deactivate_course_survey_path(@course, survey), class: "btn"
             - else
-              .btn= link_to "Activate Survey", activate_course_survey_path(@course, survey)
+              = link_to "Activate Survey", activate_course_survey_path(@course, survey), class: "btn"
           %td
-            .btn.btn-warning= link_to "Delete", [@course, survey], method: :delete, confirm: "Are you sure you want to delete this survey?", title: "Delete #{survey.name}"
+            = link_to "Delete", [@course, survey], method: :delete, confirm: "Are you sure you want to delete this survey?", title: "Delete #{survey.name}", class: "btn btn-warning"
 
 - if !is_teacher?(@course) && !@finished_surveys.empty?
   %h2
@@ -87,10 +87,10 @@
 
 
 - if is_teacher?(@course)
-  .btn= link_to 'Create New Survey', new_course_survey_path(@course)
+  = link_to 'Create New Survey', new_course_survey_path(@course), class: "btn"
 
 - if is_admin?
-  .btn= link_to 'Edit', edit_course_path(@course)
+  = link_to 'Edit', edit_course_path(@course), class: "btn"
   %br
   %br
-  .btn= link_to 'Back', courses_path
+  = link_to 'Back', courses_path, class: "btn"

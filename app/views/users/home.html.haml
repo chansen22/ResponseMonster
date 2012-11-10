@@ -69,7 +69,7 @@
                 %td= "#{User.find_by_id(course.teacher_id).first_name} #{User.find_by_id(course.teacher_id).last_name}"
                 - if is_admin?
                   %td
-                    .btn= link_to "Edit", edit_course_path(course)
+                    = link_to "Edit", edit_course_path(course), class: "btn"
   .span6
     - if !Course.where(teacher_id: current_user.id).empty?
       %td.half-cell
@@ -100,10 +100,10 @@
                   %td=course.users.count
                   - if is_admin?
                     %td
-                      .btn= link_to "Edit", edit_course_path(course)
+                      = link_to "Edit", edit_course_path(course), class: "btn"
 .row
   .span12
     .btn-toolbar
       - if is_admin?
-        .btn= link_to "Create Course", new_course_path
-      .btn= link_to "Enroll/Drop Classes", courses_path
+        = link_to "Create Course", new_course_path, class: "btn"
+      = link_to "Enroll/Drop Classes", courses_path, class: "btn"
