@@ -21,9 +21,6 @@
   .questions
     = f.fields_for :polls do |builder|
       = render 'poll_fields', :f => builder 
-    %br
-    %br
-    // Need to figure out how to make this a better button
     = link_to_add_fields "Add Question", f, :polls
 
   %br
