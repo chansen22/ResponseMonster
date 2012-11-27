@@ -13,7 +13,7 @@
   = link_to 'Create New Survey', new_course_survey_path(@course), class: "btn"
 %br
 
-%h2
+%h3
   Surveys
 %table.table
   %thead
@@ -64,13 +64,13 @@
         - else
           %td
             - if survey.is_active
-              .btn= link_to "Take", login_course_survey_path(@course, survey)
+              = link_to "Take", login_course_survey_path(@course, survey), class: "btn"
             - else
               = link_to "Take", "#", class: "disabled btn"
 
 
 - if !is_teacher?(@course) && !@finished_assessments.empty?
-  %h2
+  %h3
     Past Submissions
   %table.table
     %thead
