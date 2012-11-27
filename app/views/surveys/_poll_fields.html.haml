@@ -1,4 +1,4 @@
-%h2 Question
+%h3 Question
 .well
   .fields
     = f.label :question_text, "Question Text, eg: What is my favorite color"
@@ -14,10 +14,9 @@
     %br
     = f.label :points, "How many points is this worth?"
     = f.number_field :points, required: true
-    %h2 Answer(s)
+    %h3 Answer(s)
     = f.fields_for :answers do |builder|
       = render 'answer_fields', f: builder
-    .btn= link_to_add_fields "Add Answer", f, :answers
-    %br
-    %br
-    .btn= link_to_remove_fields "Remove Question", f
+    .btn-toolbar
+      = link_to_add_fields "Add Answer", f, :answers
+      = link_to_remove_fields "Remove Question", f
