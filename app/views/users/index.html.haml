@@ -1,7 +1,7 @@
 %h1
   Listing users
 
-%table{:style => "text-align: left;"}
+%table.table.table-hover.table-condensed
   %tr
     %th
       Email
@@ -9,15 +9,17 @@
       First name
     %th
       Last name
-    %th{:colspan => "3"}
+    %th
       Actions
+    %th
+    %th
 
   - @users.each do |user|
     %tr
       %td= user.email
       %td= user.first_name
       %td= user.last_name
-      %td= link_to 'Show', user
-      %td= link_to 'Edit', edit_user_path(user)
-      %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+      %td= link_to 'Show', user, class: "btn"
+      %td= link_to 'Edit', edit_user_path(user), class: "btn"
+      %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
 %br

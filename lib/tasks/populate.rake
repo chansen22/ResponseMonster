@@ -12,8 +12,8 @@ namespace :dev do
                 ).toggle!(:admin)
 
     10.times do |n|
-      user = User.create!(first_name: "Test#{n+1}",
-                   last_name:  "User#{n+1}",
+      user = User.create!(first_name: "First#{n+1}",
+                   last_name:  "Last#{n+1}",
                    email:      "a#{n+1}@a.a",
                    password:   "password",
                    password_confirmation: "password"
