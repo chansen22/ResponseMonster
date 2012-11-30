@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
       has_taken_survey = true
       has_more_attempts = false
       assessments = current_user.assessments.where(:survey_id => survey.id)
-      if !assessments
+      if assessments.empty?
         has_taken_survey = false
       elsif assessments.length < survey.attempts_allowed
         has_more_attempts = true

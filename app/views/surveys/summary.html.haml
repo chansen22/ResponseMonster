@@ -4,10 +4,11 @@
 %h3
   Summary
 
-- if @survey.total_points?
-  %h4
-    Your Score:
-    = "#{@student_assessment.score} / #{@survey.total_points}"
+- if !@student_assessment.nil?
+  - if @survey.total_points?
+    %h4
+      Your Score:
+      = "#{@student_assessment.score} / #{@survey.total_points}"
 
 %h3
   Questions
@@ -34,7 +35,7 @@
           = number_field_tag "points#{response.id}", 0, in: 0...response.poll.points+1
         - else
           = number_field_tag "points#{response.id}", response.points, in:0...response.poll.points+1
-    = f.submit "Save Grades"
+    = f.submit "Save Grades", class: "btn"
 - else
   - @survey.polls.each do |poll|
     %h4

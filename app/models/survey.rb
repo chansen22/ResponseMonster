@@ -1,5 +1,5 @@
 class Survey < ActiveRecord::Base
-  belongs_to       :course
+  belongs_to      :course
   has_many        :polls, dependent: :destroy
   has_many        :assessments, dependent: :destroy
   has_many        :users, through: :assessments

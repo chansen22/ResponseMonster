@@ -1,10 +1,9 @@
-.well.answers
-  .fields
-    = f.label :answer_text
-    = f.text_field :answer_text
-    = f.label :is_right, "This is a correct answer"
-    = f.check_box :is_right
-    = f.hidden_field :_destroy
-    %br
-    %br
-    = link_to_function "Remove Answer", "remove_fields(this)", class: "btn"
+.subform
+  .well
+    %fieldset
+      = f.label :answer_text
+      = f.text_field :answer_text
+      %label.checkbox
+        Correct Answer?
+        = f.check_box :is_right
+      = link_to_remove_fields "Remove Answer", f

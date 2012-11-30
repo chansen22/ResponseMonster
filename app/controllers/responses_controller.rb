@@ -32,7 +32,7 @@ class ResponsesController < ApplicationController
 #      @assessment = @old_assessment.last
 #      @old_assessment = @old_assessment.first
 #    end
-
+    #TODO: How can we do this better
     if params.keys.count >= 7
       if Response.create_responses(params, current_user, @assessment)
 #        Assessment.taken(@assessment, @old_assessment)
