@@ -1,0 +1,30 @@
+- if !@taught.empty?
+  %td.half-cell
+    %h3 Classes you teach
+    %table.table.table-hover.table-condensed
+      %thead
+        %tr
+          %th Name
+          %th Title
+          %th Section
+          %th Term
+          %th Students
+          - if is_admin?
+            %th
+              Edit
+      %tbody
+        - @taught.each do |course|
+          - if course.teacher_id == current_user.id
+            %tr
+              %td=link_to course.name, course
+              %td=course.title
+              %td=course.section
+              %td
+                - if Date.new(Date.today.year, 8, 1)
+                  Fall
+                - else
+                  Spring
+              %td=course.users.count
+              - if is_admin?
+                %td
+                  = link_to "Edit", edit_course_path(course), class: "btn"

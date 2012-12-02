@@ -1,0 +1,28 @@
+%td.half-cell
+  %h3 Enrolled Classes
+  %table.table.table-hover.table-condensed
+    %thead
+      %tr
+        %th Name
+        %th Title
+        %th Section
+        %th Term
+        %th Teacher
+        - if is_admin?
+          %th
+            Edit
+    %tbody
+      - @enrolled.each do |course|
+        %tr
+          %td=link_to course.name, course
+          %td=course.title
+          %td=course.section
+          %td
+            - if Date.new(Date.today.year, 8, 1)
+              Fall
+            - else
+              Spring
+          %td= "#{User.find_by_id(course.teacher_id).first_name} #{User.find_by_id(course.teacher_id).last_name}"
+          - if is_admin?
+            %td
+              = link_to "Edit", edit_course_path(course), class: "btn"

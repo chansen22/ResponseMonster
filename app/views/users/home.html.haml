@@ -49,67 +49,17 @@
                     %td
                       = link_to "Take", login_course_survey_path(course, survey), class: "btn"
 .row
-  .span6
-    - if !@enrolled.empty? || @taught.empty?
-      %td.half-cell
-        %h3 Enrolled Classes
-        %table.table.table-hover.table-condensed
-          %thead
-            %tr
-              %th Name
-              %th Title
-              %th Section
-              %th Term
-              %th Teacher
-              - if is_admin?
-                %th
-                  Edit
-          %tbody
-            - @enrolled.each do |course|
-              %tr
-                %td=link_to course.name, course
-                %td=course.title
-                %td=course.section
-                %td
-                  - if Date.new(Date.today.year, 8, 1)
-                    Fall
-                  - else
-                    Spring
-                %td= "#{User.find_by_id(course.teacher_id).first_name} #{User.find_by_id(course.teacher_id).last_name}"
-                - if is_admin?
-                  %td
-                    = link_to "Edit", edit_course_path(course), class: "btn"
-  .span6
-    - if !@taught.empty?
-      %td.half-cell
-        %h3 Classes you teach
-        %table.table.table-hover.table-condensed
-          %thead
-            %tr
-              %th Name
-              %th Title
-              %th Section
-              %th Term
-              %th Students
-              - if is_admin?
-                %th
-                  Edit
-          %tbody
-            - @taught.each do |course|
-              - if course.teacher_id == current_user.id
-                %tr
-                  %td=link_to course.name, course
-                  %td=course.title
-                  %td=course.section
-                  %td
-                    - if Date.new(Date.today.year, 8, 1)
-                      Fall
-                    - else
-                      Spring
-                  %td=course.users.count
-                  - if is_admin?
-                    %td
-                      = link_to "Edit", edit_course_path(course), class: "btn"
+  - if !@enrolled.empty? && !@taught.empty?
+    .span6
+      = render 'enrolled_classes'
+    .span6
+      = render 'taught_classes'
+  - elsif @taught.empty?
+    .span12
+      = render 'enrolled_classes'
+  - else
+    .span12
+      = render 'taught_classes'
 .row
   .span12
     .btn-toolbar
