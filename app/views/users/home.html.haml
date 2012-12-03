@@ -3,14 +3,7 @@
     %h2
       Welcome to ResponseMonster
     %br
-    - open_surveys = false
-    - @enrolled.each do |course|
-      - course.surveys.each do |survey|
-        - open_surveys = survey.is_active? || open_surveys
-    - @taught.each do |course|
-      - course.surveys.each do |survey|
-        - open_surveys = survey.is_active? || open_surveys
-    - if open_surveys
+    - if @open_surveys
       %h3 Open surveys in your classes
       %table.table.table-hover.table-condensed.wide
         %thead
@@ -53,13 +46,13 @@
     .span6
       = render 'enrolled_classes'
     .span6
-      = render 'taught_classes'
+      = render 'teaching_classes'
   - elsif @taught.empty?
     .span12
       = render 'enrolled_classes'
   - else
     .span12
-      = render 'taught_classes'
+      = render 'teaching_classes'
 .row
   .span12
     .btn-toolbar

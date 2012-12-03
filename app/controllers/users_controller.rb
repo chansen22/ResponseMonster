@@ -73,6 +73,17 @@ class UsersController < ApplicationController
     if current_user
       @enrolled = current_user.courses.all
       @taught = Course.where(teacher_id: current_user.id)
+      @open_surveys = false
+      @enrolled.each do |course|
+        course.surveys.each do |survey|
+          @open_surveys = survey.is_active? || open_surveys
+        end
+      end
+      @taught.each do |course|
+        course.surveys.each do |survey|
+          @open_surveys = survey.is_active || open_surveys
+        end
+      end
       render 'home'
     else
       render 'sessions/new'
