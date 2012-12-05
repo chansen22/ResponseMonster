@@ -11,3 +11,14 @@
  *= require_self
  *= require_tree .
  */
+
+.footer {
+  border-top: 1px solid #DDD;
+}
+.footer a {
+  color: #555;
+}
+.footer-links li {
+  display: inline;
+  padding: 0 2px;
+}

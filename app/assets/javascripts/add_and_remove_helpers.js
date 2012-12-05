@@ -1,5 +1,5 @@
 function remove_fields(link) {
-        $(link).prev('[type="hidden"]').val("1");
+        $(link).prev().val("1");
         $(link).closest(".subform").hide();
 }
 
