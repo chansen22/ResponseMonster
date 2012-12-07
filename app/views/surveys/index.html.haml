@@ -7,14 +7,14 @@
     %th
     %th
 
-= @surveys.each do |survey|
-  %tr
-    %td
-      = link_to 'Show', survey, class: "btn"
-    %td
-      = link_to 'Edit', edit_survey_path(survey), class: "btn"
-    %td
-      = link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+  - @surveys.each do |survey|
+    %tr
+      %td
+        = link_to 'Show', survey, class: "btn"
+      %td
+        = link_to 'Edit', edit_survey_path(survey), class: "btn"
+      %td
+        = link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
 
 %br
 
