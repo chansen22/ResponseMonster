@@ -23,20 +23,19 @@ class ResponsesController < ApplicationController
 
   def create
     @survey = Survey.find(params[:survey])
-    @assessment = Assessment.create_assessment(current_user, 0, @survey)
-#    @old_assessment = Assessment.where(user_id: current_user.id, survey_id: @survey.id)
-#    if @old_assessment.count == 1
-#      @assessment = @old_assessment.first
-#      @old_assessment = nil
-#    else
-#      @assessment = @old_assessment.last
-#      @old_assessment = @old_assessment.first
-#    end
-    #TODO: How can we do this better
+    @old_assessment = Assessment.where(user_id: current_user.id, survey_id: @survey.id)
+    if @old_assessment.count == 1
+      @assessment = @old_assessment.first
+      @old_assessment = nil
+    else
+      @assessment = @old_assessment.last
+      @old_assessment = @old_assessment.first
+    end
+
     if params.keys.count >= 7
       if Response.create_responses(params, current_user, @assessment)
-#        Assessment.taken(@assessment, @old_assessment)
-#        Assessment.remove_old_assessment(@old_assessment)
+        Assessment.taken(@assessment, @old_assessment)
+        Assessment.remove_old_assessment(@old_assessment)
         Assessment.grade(@assessment)
         redirect_to summary_course_survey_path(@survey.course, @survey), notice: "#{@survey.name} was 
         successfully saved"
@@ -48,7 +47,7 @@ class ResponsesController < ApplicationController
       redirect_to course_survey_path(@survey.course, @survey), notice: "Please answer at least one
       question"
     end
-  end
+  end 
 
   def update
     @response = Response.find(params[:id])

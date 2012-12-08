@@ -11,11 +11,11 @@ class Assessment < ActiveRecord::Base
     assessment
   end
 
-#  def self.remove_old_assessment(assessment)
-#    if assessment
-#      delete(assessment)
-#    end
-#  end
+  def self.remove_old_assessment(assessment)
+    if assessment
+      delete(assessment)
+    end
+  end
 
   def self.grade(assessment)
     needs_more_grading = false
@@ -49,11 +49,11 @@ class Assessment < ActiveRecord::Base
     assessment.save
   end
 
-#  def self.taken(assessment, old_assessment)
-#    if old_assessment
-#      assessment.times_submitted = old_assessment.times_submitted + 1
-#    else
-#      assessment.times_submitted = 1
-#    end
-#  end
+  def self.taken(assessment, old_assessment)
+    if old_assessment
+      assessment.times_submitted = old_assessment.times_submitted + 1
+    else
+      assessment.times_submitted = 1
+    end
+  end
 end

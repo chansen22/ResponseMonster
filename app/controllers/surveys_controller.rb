@@ -10,14 +10,14 @@ class SurveysController < ApplicationController
   def show
     @survey = Survey.find(params[:id])
     @course = @survey.course
-    @times_submitted = @survey.assessments.where(user_id: current_user.id).length
-#    if @old_assessment
-#      @times_submitted = @old_assessment.times_submitted 
-#    else
-#      @times_submitted = 0
-#    end
-#    @assessment = Assessment.create_assessment(current_user, @times_submitted, @survey)
-#    @assessment.save
+    @old_assessment = @survey.assessments.where(user_id: current_user.id)
+    if !@old_assessment.empty?
+      @times_submitted = @old_assessment.first.times_submitted 
+    else
+      @times_submitted = 0
+    end
+    @assessment = Assessment.create_assessment(current_user, @times_submitted, @survey)
+    @assessment.save
     @responses = []
     @survey.polls.each do |poll|
       poll.answers.each do |answer|
