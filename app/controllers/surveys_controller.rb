@@ -100,7 +100,11 @@ class SurveysController < ApplicationController
     @survey = Survey.find(params[:id])
     @course = @survey.course
     @polls = @survey.polls.all
-    @student_assessment = Assessment.where(user_id: current_user.id, survey_id: @survey.id).first
+    if !params[:assessment_id].nil?
+      @student_assessment = Assessment.find(params[:assessment_id])
+    else
+      @student_assessment = Assessment.where(user_id: current_user.id, survey_id: @survey.id).first
+    end
     @grades = []
     if !params[:assessment_id].nil? && current_user.id == @course.teacher_id
       @assessment = Assessment.find(params[:assessment_id])

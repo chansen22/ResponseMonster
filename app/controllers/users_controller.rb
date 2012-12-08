@@ -76,12 +76,12 @@ class UsersController < ApplicationController
       @open_surveys = false
       @enrolled.each do |course|
         course.surveys.each do |survey|
-          @open_surveys = survey.is_active? || open_surveys
+          @open_surveys = survey.is_active? || @open_surveys
         end
       end
       @taught.each do |course|
         course.surveys.each do |survey|
-          @open_surveys = survey.is_active || open_surveys
+          @open_surveys = survey.is_active || @open_surveys
         end
       end
       render 'home'
