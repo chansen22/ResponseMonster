@@ -33,9 +33,7 @@ class Assessment < ActiveRecord::Base
           response.points = 0
         end
         response.save
-        if response.points
-          assessment.score += response.points
-        end
+        assessment.score += response.points 
       end
       if !needs_more_grading
         assessment.is_graded = true
