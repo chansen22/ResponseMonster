@@ -38,6 +38,7 @@ class SurveysController < ApplicationController
 
   def create
     @course = Course.find(params[:course_id])
+    debugger
     @survey = @course.surveys.new(params[:survey])
     if @survey.total_points.nil? || @survey.total_points == 0
       total = 0

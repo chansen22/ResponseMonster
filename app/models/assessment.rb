@@ -2,6 +2,9 @@ class Assessment < ActiveRecord::Base
   belongs_to :user
   belongs_to :survey
   has_many :responses, dependent: :destroy
+  attr_accessible :responses_attributes
+
+  accepts_nested_attributes_for :responses, allow_destroy: true
 
   def self.create_assessment(user, times_submitted, survey)
     assessment = user.assessments.build
@@ -10,12 +13,6 @@ class Assessment < ActiveRecord::Base
     assessment.times_submitted = times_submitted
     assessment
   end
-
-#  def self.remove_old_assessment(assessment)
-#    if assessment
-#      delete(assessment)
-#    end
-#  end
 
   def self.grade(assessment)
     needs_more_grading = false
@@ -49,11 +46,4 @@ class Assessment < ActiveRecord::Base
     assessment.save
   end
 
-#  def self.taken(assessment, old_assessment)
-#    if old_assessment
-#      assessment.times_submitted = old_assessment.times_submitted + 1
-#    else
-#      assessment.times_submitted = 1
-#    end
-#  end
 end
