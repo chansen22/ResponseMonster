@@ -16,8 +16,7 @@ class SurveysController < ApplicationController
     else
       @times_submitted = 0
     end
-    @assessment = Assessment.create_assessment(current_user, @times_submitted, @survey)
-    @assessment.save
+    @assessment = current_user.assessments.new
     @responses = []
     @survey.polls.each do |poll|
       poll.answers.each do |answer|

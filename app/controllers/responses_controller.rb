@@ -23,20 +23,23 @@ class ResponsesController < ApplicationController
 
   def create
     @survey = Survey.find(params[:survey])
-    @old_assessment = Assessment.where(user_id: current_user.id, survey_id: @survey.id)
-    if @old_assessment.count == 1
-      @assessment = @old_assessment.first
-      @old_assessment = nil
-    else
-      @assessment = @old_assessment.last
-      @old_assessment = @old_assessment.first
-    end
+    @old_assessment = Assessment.where(user_id: current_user.id, survey_id: @survey.id).first
+    @assessment = current_user.assessments.new
+    @assessment.survey = @survey
+
+    logger.info("\n\n\n\n\n\nParams is #{params.keys}")
+    logger.info("\n\n\n\n\n\nParams 2-4 is #{params.keys[2..-4]}")
 
     if params.keys.count >= 7
       if Response.create_responses(params, current_user, @assessment)
-        Assessment.taken(@assessment, @old_assessment)
-        Assessment.remove_old_assessment(@old_assessment)
+        if !@old_assessment.nil?
+          @assessment.times_submitted = @old_assessment.times_submitted+1
+          @old_assessment.delete
+        else
+          @assessment.times_submitted = 1
+        end
         Assessment.grade(@assessment)
+        @assessment.save
         redirect_to summary_course_survey_path(@survey.course, @survey), notice: "#{@survey.name} was 
         successfully saved"
       else

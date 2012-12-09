@@ -3,20 +3,6 @@ class Assessment < ActiveRecord::Base
   belongs_to :survey
   has_many :responses, dependent: :destroy
 
-  def self.create_assessment(user, times_submitted, survey)
-    assessment = user.assessments.build
-    assessment.user = user
-    assessment.survey = survey
-    assessment.times_submitted = times_submitted
-    assessment
-  end
-
-  def self.remove_old_assessment(assessment)
-    if assessment
-      delete(assessment)
-    end
-  end
-
   def self.grade(assessment)
     needs_more_grading = false
     assessment.score = 0
@@ -45,13 +31,5 @@ class Assessment < ActiveRecord::Base
 
     assessment.is_graded = !needs_more_grading
     assessment.save
-  end
-
-  def self.taken(assessment, old_assessment)
-    if old_assessment
-      assessment.times_submitted = old_assessment.times_submitted + 1
-    else
-      assessment.times_submitted = 1
-    end
   end
 end

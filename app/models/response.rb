@@ -5,7 +5,7 @@ class Response < ActiveRecord::Base
 
   def self.create_responses(params, user, assessment)
     complete = true
-    params.keys[2..-5].each do |key|
+    params.keys[2..-4].each do |key|
       if key =~ /short_answer/
         if !@response = Response.create(short_answer: params[key])
           complete = false
