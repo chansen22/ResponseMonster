@@ -27,10 +27,7 @@ class ResponsesController < ApplicationController
     @assessment = current_user.assessments.new
     @assessment.survey = @survey
 
-    logger.info("\n\n\n\n\n\nParams is #{params.keys}")
-    logger.info("\n\n\n\n\n\nParams 2-4 is #{params.keys[2..-4]}")
-
-    if params.keys.count >= 7
+    if params.keys.count >= 6
       if Response.create_responses(params, current_user, @assessment)
         if !@old_assessment.nil?
           @assessment.times_submitted = @old_assessment.times_submitted+1
