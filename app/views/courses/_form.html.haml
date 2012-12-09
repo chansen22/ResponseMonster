@@ -26,4 +26,4 @@
       = select("teacher", "user_id", @users.collect { |user| ["#{user.first_name} #{user.last_name} - #{user.email}", user.id] })
     %br
     .actions
-      %input.btn.btn-primary{ type: "submit", value: "Create Course" }
+      %input.btn.btn-primary{ type: "submit", value: "Save Course" }

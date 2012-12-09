@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
     end
 
     def check_permissions(course)
+      debugger
       redirect_to root_path, notice: "You don't have the correct permissions to
        visit this page/do this action" unless is_admin? || course.teacher_id == current_user.id
     end
@@ -23,39 +24,18 @@ class ApplicationController < ActionController::Base
     end
     
     def check_attempts(survey)
-      has_taken_survey = true
-      has_more_attempts = false
-      assessments = current_user.assessments.where(:survey_id => survey.id)
-      if assessments.empty?
-        has_taken_survey = false
+      has_permission = false
+      assessments = current_user.assessments.where(survey_id: survey.id)
+      if survey.attempts_allowed.nil?
+        has_permission = true
+      elsif assessments.empty?
+        has_permission = true
       elsif assessments.length < survey.attempts_allowed
-        has_more_attempts = true
+        has_permissions = true
       end
       redirect_to course_path(survey.course), notice: "You cannot take this quiz anymore 
-      times" unless !has_taken_survey || has_more_attempts || is_admin? || current_user.id == survey.course.teacher_id
+      times" unless has_permission || is_admin? || current_user.id == survey.course.teacher_id
     end
-
-#    def check_attempts(survey)
-#      has_taken_survey = false
-#      has_more_attempts = false
-#      if current_user.responses.count == 0
-#        has_more_attempts = true
-#      else
-#        current_user.responses.each do |response|
-#          if survey.polls.first.id == response.poll_id
-#            has_taken_survey = true
-#            if survey.attempts_allowed.nil? || survey.attempts_allowed == 0
-#              has_more_attempts = true
-#            elsif response.times_submitted < survey.attempts_allowed
-#              has_more_attempts = true
-#            end
-#            break
-#          end
-#        end
-#      end
-#      redirect_to course_path(survey.course), notice: "You cannot take this quiz anymore 
-#      times" unless !has_taken_survey || has_more_attempts || is_admin? || current_user.id == survey.course.teacher_id
-#    end
 
     def member_of_course(course)
       is_enrolled = false

@@ -15,10 +15,7 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @surveys = @course.surveys.all
-    @finished_assessments = []
-    current_user.assessments.each do |assessment|
-      @finished_assessments << assessment
-    end
+    @assessments_taken = Assessment.where(user_id: current_user, survey_id: @surveys)
   end
 
   def new

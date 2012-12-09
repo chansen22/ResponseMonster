@@ -32,7 +32,7 @@
         = poll.question_text
         - poll.answers.each do |a|
           .well
-            - if poll.is_radio
+            - if poll.is_radio == "Yes"
               = f.fields_for :responses_attributes, index: poll.id do |r|
                 %label.radio
                   = r.radio_button :choiceId, a.id

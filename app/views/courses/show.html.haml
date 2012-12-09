@@ -69,7 +69,7 @@
               = link_to "Take", "#", class: "disabled btn"
 
 
-- if !is_teacher?(@course) && !@finished_assessments.empty?
+- if !is_teacher?(@course) && !@assessments_taken.empty?
   %h3
     Past Submissions
   %table.table
@@ -84,7 +84,7 @@
         %th
           Action
     %tbody
-      - @finished_assessments.each do |assessment|
+      - @assessments_taken.each do |assessment|
         %tr
           %td
             = assessment.survey.name
