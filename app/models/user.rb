@@ -20,13 +20,13 @@ class User < ActiveRecord::Base
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
-  def self.find_last_assessment(survey, user)
-    user.assessments.each do |assessment|
-      if assessment.survey_id == survey.id
-        return assessment
-      end
-    end
-  end
+#  def self.find_last_assessment(survey, user)
+#    user.assessments.each do |assessment|
+#      if assessment.survey_id == survey.id
+#        return assessment
+#      end
+#    end
+#  end
 
   private
 

@@ -4,6 +4,7 @@
 - if is_teacher?(@course)
   = link_to "New Survey", new_course_survey_path(@course, @survey), class: "btn pull-right"
   = link_to "Edit Survey", edit_course_survey_path(@course, @survey), class: "btn pull-right"
+  = link_to 'Back', course_path(@course), class: "btn pull-right"
   %br
   %br
 
@@ -41,6 +42,7 @@
 
       = link_to "New Survey", new_course_survey_path(@course, @survey), class: "btn pull-right"
       = link_to "Edit Survey", edit_course_survey_path(@course, @survey), class: "btn pull-right"
+      = link_to 'Back', course_path(@course), class: "btn pull-right"
     %br
 - else
   = render 'user_response'

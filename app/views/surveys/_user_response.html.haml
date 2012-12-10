@@ -1,20 +1,21 @@
 = form_for("responses[]", url: { action: 'create', controller: 'responses', survey: params[:id] }) do |f|
-  #surveyDetails
-    %h2
-      Details
-    %p
-      %b
-        Name
-      %br
-      = @survey.name
-      %br
-      %b
-        Attempts
-      %br
-      - if @survey.attempts_allowed.nil? || @survey.attempts_allowed == 0
-        = @times_submitted
-      - else
-        = "#{@times_submitted} / #{@survey.attempts_allowed}"
+  .well
+    #surveyDetails
+      %h3
+        Details
+      %p
+        %b
+          Name
+        %br
+        = @survey.name
+        %br
+        %b
+          Attempts
+        %br
+        - if @survey.attempts_allowed.nil? || @survey.attempts_allowed == 0
+          = @times_submitted
+        - else
+          = "#{@times_submitted} / #{@survey.attempts_allowed}"
 
   #surveyQuestions
     %h2

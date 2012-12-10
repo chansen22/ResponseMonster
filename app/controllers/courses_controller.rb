@@ -5,7 +5,6 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
-
     respond_to do |format|
       format.html
       format.json { render json: @courses }
@@ -15,16 +14,12 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @surveys = @course.surveys.all
-    @finished_assessments = []
-    current_user.assessments.each do |assessment|
-      @finished_assessments << assessment
-    end
+    @assessments_taken = Assessment.where(user_id: current_user, survey_id: @surveys)
   end
 
   def new
     @course = Course.new
     @users = User.all
-
     respond_to do |format|
       format.html
       format.json { render json: @course }
@@ -38,9 +33,7 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(params[:course])
-
     @course.teacher_id = params[:teacher][:user_id]
-
     if params[:term] == "Fall"
       @course.term = Date.new(Date.today.year, 8, 1)
     else
@@ -55,9 +48,7 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
-
     @course.teacher_id = params[:teacher][:user_id]
-
     if params[:term] == "Fall"
       @course.term = Date.new(Date.today.year, 8, 1)
     else
@@ -73,7 +64,6 @@ class CoursesController < ApplicationController
   def destroy
     @course = Course.find(params[:id])
     @course.destroy
-
     respond_to do |format|
       format.html { redirect_to courses_url }
       format.json { head :no_content }
@@ -82,7 +72,9 @@ class CoursesController < ApplicationController
 
   def add
     @course = Course.find(params[:id])
-    if @course.add_user(current_user)
+    if current_user.courses.include? @course
+      redirect_to root_path, notice: "You're already in this Course"
+    elsif @course.add_user(current_user)
       redirect_to root_path, notice: "Successfully Enrolled"
     else
       redirect_to root_path, notice: "Could Not Enroll"

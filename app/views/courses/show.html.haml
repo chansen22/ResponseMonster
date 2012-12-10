@@ -13,7 +13,7 @@
   = link_to 'Create New Survey', new_course_survey_path(@course), class: "btn"
 %br
 
-%h3
+%h2
   Surveys
 %table.table
   %thead
@@ -60,16 +60,16 @@
             - else
               = link_to "Activate Survey", activate_course_survey_path(@course, survey), class: "btn"
           %td
-            = link_to "Delete", [@course, survey], method: :delete, confirm: "Are you sure you want to delete this survey?", title: "Delete #{survey.name}", class: "btn btn-danger"
+            = link_to "Delete", [@course, survey], method: :delete, confirm: "Are you sure you want to delete this survey?", title: "Delete #{survey.name}", class: "btn btn-warning"
         - else
           %td
             - if survey.is_active
-              = link_to "Take", login_course_survey_path(@course, survey), class: "btn"
+              .btn= link_to "Take", login_course_survey_path(@course, survey)
             - else
               = link_to "Take", "#", class: "disabled btn"
 
 
-- if !is_teacher?(@course) && !@finished_assessments.empty?
+- if !is_teacher?(@course) && !@assessments_taken.empty?
   %h3
     Past Submissions
   %table.table
@@ -84,20 +84,24 @@
         %th
           Action
     %tbody
-      - @finished_assessments.each do |assessment|
+      - @assessments_taken.each do |assessment|
         %tr
           %td
             = assessment.survey.name
           %td
             = assessment.created_at
-          %td
-            = "#{assessment.score} / #{assessment.survey.total_points}"
+          - if !assessment.survey.total_points.nil?
+            %td
+              = "#{assessment.score} / #{assessment.survey.total_points}"
+          - else
+            %td
+              N/A
           %td
             - if assessment.survey.is_active?
               = link_to "Retake", login_course_survey_path(@course, assessment.survey), class: "pill-button-right btn"
-              = link_to "View", summary_course_survey_path(@course, assessment.survey), class: "pill-button-left btn pill-button-fix-right"
+              = link_to "View", course_survey_assessment_path(@course, assessment.survey, assessment), class: "pill-button-left btn pill-button-fix-right"
             - else
-              = link_to "View", summary_course_survey_path(@course, assessment.survey), class: "btn"
+              = link_to "View", course_survey_assessment_path(@course, assessment.survey, assessment), class: "btn"
 
 
 - if is_teacher?(@course)

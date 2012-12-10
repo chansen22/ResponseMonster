@@ -13,7 +13,7 @@
     = f.select :is_radio, "<option>Yes</option><option>No</option>".html_safe
     %br
     = f.label :points, "How many points is this worth?"
-    = f.number_field :points, required: true
+    = f.number_field :points, required: true, min: 0
     %h3 Answer(s)
     = f.fields_for :answers do |builder|
       = render 'answer_fields', f: builder

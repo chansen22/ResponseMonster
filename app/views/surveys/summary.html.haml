@@ -1,23 +1,20 @@
-%h2
-  = @survey.name
-
-%h3
+%h1
   Summary
 
-- if !@student_assessment.nil?
-  - if @survey.total_points?
-    %h4
-      Your Score:
-      = "#{@student_assessment.score} / #{@survey.total_points}"
-
 %h3
+  = @survey.name
+%br
+%p
+  Score:
+  = "#{@student_assessment.score} / #{@survey.total_points}"
+
+%h2
   Questions
 
 - if !@assessment.nil?
   = form_for("grades[]", url: { action: "newgrade", assessment_id: @assessment.id } ) do |f|
     - @assessment.responses.each do |response|
-      %h4
-        = response.poll.question_text
+      = response.poll.question_text
       .well
         - response.poll.answers.each do |answer|
           - if response.choiceId == answer.id && response.is_right
@@ -38,8 +35,7 @@
     = f.submit "Save Grades", class: "btn"
 - else
   - @survey.polls.each do |poll|
-    %h4
-      = poll.question_text
+    = poll.question_text
     %br
     .well
       - if poll.answers.any?
