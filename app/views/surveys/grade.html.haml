@@ -11,8 +11,6 @@
     %th
       Score
     %th
-      Finished
-    %th
       Grade
   - @assessments.each do |assessment|
     %tr
@@ -24,8 +22,6 @@
         Time spent
       %td
         = "#{assessment.score} / #{assessment.survey.total_points}"
-      %td
-        = assessment.is_graded.to_s.capitalize
       %td
         = link_to "Grade", summary_course_survey_path(@course, @survey, assessment_id: assessment.id), class: "btn"
 
