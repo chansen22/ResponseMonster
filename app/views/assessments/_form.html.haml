@@ -1,0 +1,49 @@
+= form_for([@course, @survey, @assessment]) do |f|
+
+  - if @assessment.errors.any?
+    #error_explanation
+      %h2= pluralize(@assessment.errors.count, "Error")
+      Prohibited this survey from being saved:
+
+      %ul
+        - @assessment.errors.full_messages.each do |msg|
+          %li= msg
+
+  #surveyDetails
+    %h2
+      Details
+    %p
+      %b
+        Name
+      %br
+      = @survey.name
+      %br
+      %b
+        Attempts
+      %br
+      - if @survey.attempts_allowed.nil? || @survey.attempts_allowed == 0
+        = @times_submitted
+      - else
+        = "#{@times_submitted} / #{@survey.attempts_allowed}"
+
+  .questions
+    - @survey.polls.each do |poll|
+      %fieldset
+        = poll.question_text
+        - poll.answers.each do |a|
+          .well
+            - if poll.is_radio == "Yes"
+              = f.fields_for :responses_attributes, index: poll.id do |r|
+                %label.radio
+                  = r.radio_button :choiceId, a.id
+                  = a.answer_text
+                  = r.hidden_field :poll_id, value: poll.id
+            - else
+              = f.fields_for :responses_attributes, index: a.id do |r|
+                %label.checkbox
+                  = r.check_box :choiceId, value: a.id
+                  = a.answer_text
+                  = r.hidden_field :poll_id, value: poll.id
+  %br
+  .actions
+    %input.btn.btn-large.btn-primary{ type: "submit", value: "Submit" }

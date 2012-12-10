@@ -23,11 +23,9 @@ class ResponsesController < ApplicationController
 
   def create
     @survey = Survey.find(params[:survey])
-    @old_assessment = Assessment.where(user_id: current_user.id, survey_id: @survey.id).first
-    @assessment = current_user.assessments.new
-    @assessment.survey = @survey
-
-    if params.keys.count >= 6
+    @assessment = Assessment.create_assessment(current_user, 0, @survey)
+    #TODO: How can we do this better
+    if params.keys.count >= 7
       if Response.create_responses(params, current_user, @assessment)
         if !@old_assessment.nil?
           @assessment.times_submitted = @old_assessment.times_submitted+1

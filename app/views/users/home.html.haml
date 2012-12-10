@@ -3,7 +3,7 @@
     %h2
       Welcome to ResponseMonster
     %br
-    - if @open_surveys
+    - if !@open_surveys.empty?
       %h3 Open surveys in your classes
       %table.table.table-hover.table-condensed.wide
         %thead
@@ -13,34 +13,29 @@
             %th Closes
             %th Action
         %tbody
-          - if !@taught.empty?
-            - @taught.each do |course|
-              - course.surveys.each do |survey|
-                - if survey.is_active?
-                  %tr
-                    %td= link_to course.name, course
-                    %td= survey.name
-                    - if survey.end_time.nil?
-                      %td Unknown
-                    - else
-                      %td= survey.end_time
-                    %td
-                      = link_to "Close quiz", deactivate_course_survey_path(course, survey), class: "btn pill-button-right pill-button-fix"
-                      = link_to "View Quiz", course_survey_path(course, survey), class: "btn pill-button-middle"
-                      = link_to "See Responses", grade_course_survey_path(course, survey), class: "btn pill-button-left pill-button-fix-right"
-          - if !@enrolled.nil?
-            - @enrolled.each do |course|
-              - course.surveys.each do |survey|
-                - if survey.is_active?
-                  %tr
-                    %td= link_to course.name, course_path(course)
-                    %td= survey.name
-                    - if survey.end_time.nil?
-                      %td Unknown
-                    - else
-                      %td=  survey.end_time
-                    %td
-                      = link_to "Take", login_course_survey_path(course, survey), class: "btn"
+          - @open_surveys.each do |survey|
+            - if @taught.include? survey.course_id
+              %tr
+                %td= link_to survey.course.id, survey.course
+                %td= survey.name
+                - if survey.end_time.nil?
+                  %td Unknown
+                - else
+                  %td= survey.end_time
+                %td
+                  = link_to "Close quiz", deactivate_course_survey_path(course, survey), class: "btn pill-button-right pill-button-fix"
+                  = link_to "View Quiz", course_survey_path(course, survey), class: "btn pill-button-middle"
+                  = link_to "See Responses", grade_course_survey_path(survey.course, survey), class: "btn pill-button-left pill-button-fix-right"
+            - else
+              %tr
+                %td= link_to survey.course.name, course_path(survey.course)
+                %td= survey.name
+                - if survey.end_time.nil?
+                  %td Unknown
+                - else
+                  %td=  survey.end_time
+                %td
+                  = link_to "Take", login_course_survey_path(survey.course, survey), class: "btn"
 .row
   - if !@enrolled.empty? && !@taught.empty?
     .span6

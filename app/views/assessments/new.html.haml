@@ -1,0 +1,6 @@
+%h1
+  = @survey.name
+
+= render 'form'
+
+= link_to 'Back', course_path(params[:course_id]), class: "btn"

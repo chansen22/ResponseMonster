@@ -10,13 +10,7 @@ class SurveysController < ApplicationController
   def show
     @survey = Survey.find(params[:id])
     @course = @survey.course
-    @old_assessment = @survey.assessments.where(user_id: current_user.id)
-    if !@old_assessment.empty?
-      @times_submitted = @old_assessment.first.times_submitted 
-    else
-      @times_submitted = 0
-    end
-    @assessment = current_user.assessments.new
+    @times_submitted = @survey.assessments.where(user_id: current_user.id).length
     @responses = []
     @survey.polls.each do |poll|
       poll.answers.each do |answer|
@@ -38,13 +32,12 @@ class SurveysController < ApplicationController
   def create
     @course = Course.find(params[:course_id])
     @survey = @course.surveys.new(params[:survey])
-    if @survey.total_points.nil? || @survey.total_points == 0
-      total = 0
-      @survey.polls.each do |poll|
-        total += poll.points
-      end
-      @survey.total_points = total
+
+    total = 0
+    @survey.polls.each do |poll|
+      total += poll.points
     end
+    @survey.total_points = total
 
     if @survey.save
       redirect_to course_path(@course), notice: "Survey was successfully created"
@@ -115,7 +108,7 @@ class SurveysController < ApplicationController
     @survey = Survey.find(params[:id])
     @course = @survey.course
     if @course.teacher_id == current_user.id || is_admin? || @survey.password.nil? || @survey.password.empty?
-      redirect_to course_survey_path(@course, @survey, pass: "")
+      redirect_to new_course_survey_assessment_path(@course, @survey)
     end
   end
 
@@ -147,7 +140,7 @@ class SurveysController < ApplicationController
     @survey = Survey.find(params[:id])
     @course = @survey.course
     if params["pass"][:password] && params["pass"][:password] == @survey.password
-      redirect_to course_survey_path(@course, @survey, pass: params["pass"][:password])
+      redirect_to new_course_survey_assessment_path(@course, @survey)
     else
       flash.now[:error] = "The password you entered was incorrect"
       render "login"

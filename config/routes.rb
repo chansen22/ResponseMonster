@@ -28,6 +28,9 @@ ResponseMonster::Application.routes.draw do
       resources :polls do
         resources :answers
       end
+      resources :assessments do
+        resources :responses
+      end
     end
   end
 

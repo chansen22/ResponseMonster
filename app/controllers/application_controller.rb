@@ -23,12 +23,17 @@ class ApplicationController < ActionController::Base
     end
 
     def check_attempts(survey)
-      assessment = survey.assessments.where(user_id: current_user.id, survey_id: survey.id).first
-      if !assessment.nil?
-        if assessment.times_submitted >= survey.attempts_allowed && survey.attempts_allowed != 0
-          redirect_to course_path(survey.course), notice: "You cannot take this quiz anymore times" 
-        end
+      has_permission = false
+      assessments = current_user.assessments.where(survey_id: survey.id)
+      if survey.attempts_allowed.nil? or survey.attempts_allowed == 0
+        has_permission = true
+      elsif assessments.empty?
+        has_permission = true
+      elsif assessments.length < survey.attempts_allowed
+        has_permissions = true
       end
+      redirect_to course_path(survey.course), notice: "You cannot take this quiz anymore 
+      times" unless has_permission || is_admin? || current_user.id == survey.course.teacher_id
     end
 
     def member_of_course(course)
@@ -47,8 +52,23 @@ class ApplicationController < ActionController::Base
       it." unless is_enrolled || is_teacher || is_admin?
     end
 
+    # This should be deprovated
     def check_password(survey)
+      can_access = false
+      if is_admin?
+        can_access = true
+      elsif survey.password.nil? || survey.password.empty?
+        can_access = true
+      elsif current_user.id == survey.course.teacher_id
+        can_access = true
+      elsif params[:pass] == survey.password
+        can_access = true
+      end
       redirect_to course_path(survey.course), notice: "The password you entered was not valid or you 
+<<<<<<< HEAD
       aren't authorized to visit this quiz" unless !survey.password || survey.password.empty? || params[:pass] == survey.password || survey.course.teacher_id == current_user.id || is_admin?
+=======
+      aren't authorized to visit this quiz" unless can_access
+>>>>>>> 4251cba06df6d4427cb584d4b1aab22eebe878e8
     end
 end
