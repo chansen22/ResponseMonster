@@ -6,6 +6,7 @@ class Assessment < ActiveRecord::Base
   accepts_nested_attributes_for :responses, allow_destroy: true
 
   def grade
+    #this case shouldn't really happen
     if survey.total_points.nil?
       return self.save
     end

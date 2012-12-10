@@ -11,13 +11,13 @@
 
     .field
       = f.label :name, "Name (e.g. Software Engineering)"
-      = f.text_field :name, autofocus: "autofocus"
+      = f.text_field :name, autofocus: "autofocus", required: true
     .field
       = f.label :title, "Title (e.g. CSCI 430)"
-      = f.text_field :title
+      = f.text_field :title, required: true
     .field
       = f.label :section, "Section (e.g. 01)"
-      = f.text_field :section
+      = f.text_field :section, required: true
     .field
       = f.label :term
       = select_tag "term", "<option>Fall</option><option>Spring</option>".html_safe

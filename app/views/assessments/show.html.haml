@@ -1,46 +1,31 @@
 %h2
-  Survey
+  = @survey.name
 
-- if is_teacher?(@course)
-  = link_to "New Survey", new_course_survey_path(@course, @survey), class: "btn pull-right"
-  = link_to "Edit Survey", edit_course_survey_path(@course, @survey), class: "btn pull-right"
+%h3
+  Summary
+
+%h4
+  Your Score:
+  = "#{@assessment.score} / #{@survey.total_points}"
+
+%h3
+  Questions
+
+- @survey.polls.each do |poll|
+  %h4
+    = poll.question_text
   %br
-  %br
+  .well
+    %ul
+    - poll.answers.each do |answer|
+      - @is_choice = false
+      - @assessment.responses.each do |response|
+        - if answer.id == response.choiceId
+          - @is_choice = true
+      - if @is_choice && answer.is_right?
+        %li.alert.alert-success= answer.answer_text
+      - elsif @is_choice && !answer.is_right?
+        %li.alert.alert-warning= answer.answer_text
+      - else
+        %li.alert.alert-info= answer.answer_text
 
-  #surveyDetails
-    %h3
-      Details
-    %p
-      %b
-        Name
-      %br
-      = @survey.name
-
-    #surveyQuestions
-      %h3
-        Questions
-      - @survey.polls.each do |poll|
-        %table.table
-          %thead
-            %tr
-              %td
-                = poll.question_text
-              %td
-                Correct Answer?
-              %td
-                = "#{poll.points} points possible"
-          - poll.answers.each do |answer|
-            %tr
-              %td
-                = answer.answer_text
-              %td
-                = answer.is_right.to_s.capitalize
-              %td
-          %br
-
-
-      = link_to "New Survey", new_course_survey_path(@course, @survey), class: "btn pull-right"
-      = link_to "Edit Survey", edit_course_survey_path(@course, @survey), class: "btn pull-right"
-    %br
-- else
-  = render 'user_response'

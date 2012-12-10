@@ -6,6 +6,8 @@ class AssessmentsController < ApplicationController
   before_filter(only: [:index]) { |controller| controller.check_permissions(Course.find(params[:course_id])) }
 
   def show
+    @assessment = Assessment.find(params[:id])
+    @survey = @assessment.survey
   end
 
   def new

@@ -72,7 +72,9 @@ class CoursesController < ApplicationController
 
   def add
     @course = Course.find(params[:id])
-    if @course.add_user(current_user)
+    if current_user.courses.include? @course
+      redirect_to root_path, notice: "You're already in this Course"
+    elsif @course.add_user(current_user)
       redirect_to root_path, notice: "Successfully Enrolled"
     else
       redirect_to root_path, notice: "Could Not Enroll"

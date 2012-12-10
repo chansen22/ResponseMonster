@@ -28,11 +28,12 @@ namespace :dev do
     end
     puts "Creating dummy surveys, polls, and answers..."
     Course.all.each do |course|
-      survey = course.surveys.create!(name: "Test survey")
+      survey = course.surveys.create!(name: "Test survey", total_points: 30)
       3.times do |n|
         poll = survey.polls.create(question_text: "Test question #{n}?",
                                    answer_type: "Multiple Choice",
-                                   is_radio: "Yes"
+                                   is_radio: "Yes",
+                                   points: 10
                                   )
         3.times do |n|
           poll.answers.create(answer_text: "Test answer #{n}",
