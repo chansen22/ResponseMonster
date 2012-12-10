@@ -3,47 +3,39 @@ class Assessment < ActiveRecord::Base
   belongs_to :survey
   has_many :responses, dependent: :destroy
   attr_accessible :responses_attributes
-
   accepts_nested_attributes_for :responses, allow_destroy: true
 
-  def self.create_assessment(user, times_submitted, survey)
-    assessment = user.assessments.build
-    assessment.user = user
-    assessment.survey = survey
-    assessment.times_submitted = times_submitted
-    assessment
-  end
-
-  def self.grade(assessment)
-    needs_more_grading = false
-    assessment.score = 0
-    assessment.responses.each do |response|
-      if response.choiceId.nil?
-        needs_more_grading = true
-      else
-        answer = response.poll.answers.where(id: response.choiceId).first
-        if answer.is_right
-          response.is_right = true
-          response.points = response.poll.points
-        else
-          response.is_right = false
-          response.points = 0
-        end
-        response.save
-        if response.points
-          assessment.score += response.points
-        end
-      end
-      if !needs_more_grading
-        assessment.is_graded = true
-      else
-        assessment.is_graded = false
-      end
-      assessment.save
+  def grade
+    if survey.total_points.nil?
+      return self.save
     end
-
-    assessment.is_graded = !needs_more_grading
-    assessment.save
+    self.score = 0
+    # for each survey question
+    self.survey.polls.each do |poll|
+      # get number correct needed
+      if poll.is_radio == "Yes"
+        correct_needed = 1
+      else
+        correct_needed = Answer.where(poll_id: poll, is_right: true).length
+      end
+      num_correct = 0
+      # Get responses for question
+      to_grade = self.responses.where(poll_id: poll)
+      to_grade.each do |r|
+        # check if response->answer is correct
+        if !Answer.where(id: r.choiceId, is_right: true).empty?
+          r.is_right = true
+          r.save
+          num_correct += 1
+        else
+          r.is_right = false
+          r.save
+        end
+      end
+      if num_correct == correct_needed
+        self.score += poll.points
+      end
+    end
+    self.save
   end
-
 end

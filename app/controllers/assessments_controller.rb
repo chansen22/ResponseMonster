@@ -3,7 +3,6 @@ class AssessmentsController < ApplicationController
   before_filter :authenticate
   before_filter(only: [:new]) { |controller| controller.check_activated(Survey.find(params[:survey_id])) }
   before_filter(only: [:new]) { |controller| controller.check_attempts(Survey.find(params[:survey_id])) }
-  before_filter(only: [:new]) { |controller| controller.check_password(Survey.find(params[:survey_id])) }
   before_filter(only: [:index]) { |controller| controller.check_permissions(Course.find(params[:course_id])) }
 
   def show
@@ -23,6 +22,8 @@ class AssessmentsController < ApplicationController
     @assessment.times_submitted = current_user.assessments.where(survey_id: @survey).length + 1
     @assessment.survey = @survey
     if @assessment.save
+      @assessment.grade
+      @assessment.save
       redirect_to course_path(@course), notice: "Assessment was successfully submitted!"
     else
       render new_course_survey_path(@course), notice: "There were some errors submitting your Assessment."

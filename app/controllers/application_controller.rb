@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
     end
 
     def check_permissions(course)
-      debugger
       redirect_to root_path, notice: "You don't have the correct permissions to
        visit this page/do this action" unless is_admin? || course.teacher_id == current_user.id
     end
@@ -26,7 +25,7 @@ class ApplicationController < ActionController::Base
     def check_attempts(survey)
       has_permission = false
       assessments = current_user.assessments.where(survey_id: survey.id)
-      if survey.attempts_allowed.nil?
+      if survey.attempts_allowed.nil? or survey.attempts_allowed == 0
         has_permission = true
       elsif assessments.empty?
         has_permission = true
@@ -53,8 +52,19 @@ class ApplicationController < ActionController::Base
       it." unless is_enrolled || is_teacher || is_admin?
     end
 
+    # This should be deprovated
     def check_password(survey)
+      can_access = false
+      if is_admin?
+        can_access = true
+      elsif survey.password.nil? || survey.password.empty?
+        can_access = true
+      elsif current_user.id == survey.course.teacher_id
+        can_access = true
+      elsif params[:pass] == survey.password
+        can_access = true
+      end
       redirect_to course_path(survey.course), notice: "The password you entered was not valid or you 
-      aren't authorized to visit this quiz" unless !survey.password || params[:pass] == survey.password || survey.course.teacher_id == current_user.id || is_admin?
+      aren't authorized to visit this quiz" unless can_access
     end
 end

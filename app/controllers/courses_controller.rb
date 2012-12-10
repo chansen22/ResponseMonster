@@ -5,7 +5,6 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
-
     respond_to do |format|
       format.html
       format.json { render json: @courses }
@@ -21,7 +20,6 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
     @users = User.all
-
     respond_to do |format|
       format.html
       format.json { render json: @course }
@@ -35,9 +33,7 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(params[:course])
-
     @course.teacher_id = params[:teacher][:user_id]
-
     if params[:term] == "Fall"
       @course.term = Date.new(Date.today.year, 8, 1)
     else
@@ -52,9 +48,7 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
-
     @course.teacher_id = params[:teacher][:user_id]
-
     if params[:term] == "Fall"
       @course.term = Date.new(Date.today.year, 8, 1)
     else
@@ -70,7 +64,6 @@ class CoursesController < ApplicationController
   def destroy
     @course = Course.find(params[:id])
     @course.destroy
-
     respond_to do |format|
       format.html { redirect_to courses_url }
       format.json { head :no_content }

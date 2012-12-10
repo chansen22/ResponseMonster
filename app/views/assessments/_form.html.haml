@@ -37,11 +37,13 @@
                 %label.radio
                   = r.radio_button :choiceId, a.id
                   = a.answer_text
+                  = r.hidden_field :poll_id, value: poll.id
             - else
               = f.fields_for :responses_attributes, index: a.id do |r|
                 %label.checkbox
-                  = r.check_box :choiceId, a.id
+                  = r.check_box :choiceId, value: a.id
                   = a.answer_text
+                  = r.hidden_field :poll_id, value: poll.id
   %br
   .actions
     %input.btn.btn-large.btn-primary{ type: "submit", value: "Submit" }

@@ -32,13 +32,12 @@ class SurveysController < ApplicationController
   def create
     @course = Course.find(params[:course_id])
     @survey = @course.surveys.new(params[:survey])
-    if @survey.total_points.nil? || @survey.total_points == 0
-      total = 0
-      @survey.polls.each do |poll|
-        total += poll.points
-      end
-      @survey.total_points = total
+
+    total = 0
+    @survey.polls.each do |poll|
+      total += poll.points
     end
+    @survey.total_points = total
 
     if @survey.save
       redirect_to course_path(@course), notice: "Survey was successfully created"

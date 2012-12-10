@@ -24,14 +24,6 @@ class ResponsesController < ApplicationController
   def create
     @survey = Survey.find(params[:survey])
     @assessment = Assessment.create_assessment(current_user, 0, @survey)
-#    @old_assessment = Assessment.where(user_id: current_user.id, survey_id: @survey.id)
-#    if @old_assessment.count == 1
-#      @assessment = @old_assessment.first
-#      @old_assessment = nil
-#    else
-#      @assessment = @old_assessment.last
-#      @old_assessment = @old_assessment.first
-#    end
     #TODO: How can we do this better
     if params.keys.count >= 7
       if Response.create_responses(params, current_user, @assessment)
