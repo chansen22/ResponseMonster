@@ -65,10 +65,6 @@ class ApplicationController < ActionController::Base
         can_access = true
       end
       redirect_to course_path(survey.course), notice: "The password you entered was not valid or you 
-<<<<<<< HEAD
-      aren't authorized to visit this quiz" unless !survey.password || survey.password.empty? || params[:pass] == survey.password || survey.course.teacher_id == current_user.id || is_admin?
-=======
       aren't authorized to visit this quiz" unless can_access
->>>>>>> 4251cba06df6d4427cb584d4b1aab22eebe878e8
     end
 end
