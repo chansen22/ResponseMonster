@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       elsif assessments.empty?
         has_permission = true
       elsif assessments.length < survey.attempts_allowed
-        has_permissions = true
+        has_permission = true
       end
       redirect_to course_path(survey.course), notice: "You cannot take this quiz anymore 
       times" unless has_permission || is_admin? || current_user.id == survey.course.teacher_id
