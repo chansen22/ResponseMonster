@@ -14,4 +14,3 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
-//= require add_and_remove_helpers.js

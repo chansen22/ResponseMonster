@@ -1,1 +1,0 @@
-function remove_fields(e){$(e).prev().val("1"),$(e).closest(".subform").hide()}function add_fields(e,t,n){var r=(new Date).getTime(),i=new RegExp("new_"+t,"g");$(e).parent().before(n.replace(i,r))};

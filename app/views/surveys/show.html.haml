@@ -1,48 +1,44 @@
 %h2
   Survey
 
-- if is_teacher?(@course)
-  = link_to "New Survey", new_course_survey_path(@course, @survey), class: "btn pull-right"
-  = link_to "Edit Survey", edit_course_survey_path(@course, @survey), class: "btn pull-right"
-  = link_to 'Back', course_path(@course), class: "btn pull-right"
-  %br
-  %br
+= link_to "New Survey", new_course_survey_path(@course, @survey), class: "btn pull-right"
+= link_to "Edit Survey", edit_course_survey_path(@course, @survey), class: "btn pull-right"
+= link_to 'Back', course_path(@course), class: "btn pull-right"
+%br
+%br
 
-  #surveyDetails
-    %h3
-      Details
-    %p
-      %b
-        Name
-      %br
-      = @survey.name
-
-    #surveyQuestions
-      %h3
-        Questions
-      - @survey.polls.each do |poll|
-        %table.table
-          %thead
-            %tr
-              %td
-                = poll.question_text
-              %td
-                Correct Answer?
-              %td
-                = "#{poll.points} points possible"
-          - poll.answers.each do |answer|
-            %tr
-              %td
-                = answer.answer_text
-              %td
-                = answer.is_right.to_s.capitalize
-              %td
-          %br
-
-
-      = link_to "New Survey", new_course_survey_path(@course, @survey), class: "btn pull-right"
-      = link_to "Edit Survey", edit_course_survey_path(@course, @survey), class: "btn pull-right"
-      = link_to 'Back', course_path(@course), class: "btn pull-right"
+#surveyDetails
+  %h3
+    Details
+  %p
+    %b
+      Name
     %br
-- else
-  = render 'user_response'
+    = @survey.name
+
+  #surveyQuestions
+    %h3
+      Questions
+    - @survey.polls.each do |poll|
+      %table.table
+        %thead
+          %tr
+            %td
+              = poll.question_text
+            %td
+              Correct Answer?
+            %td
+              = "#{poll.points} points possible"
+        - poll.answers.each do |answer|
+          %tr
+            %td
+              = answer.answer_text
+            %td
+              = answer.is_right.to_s.capitalize
+            %td
+        %br
+
+    = link_to "New Survey", new_course_survey_path(@course, @survey), class: "btn pull-right"
+    = link_to "Edit Survey", edit_course_survey_path(@course, @survey), class: "btn pull-right"
+    = link_to 'Back', course_path(@course), class: "btn pull-right"
+  %br

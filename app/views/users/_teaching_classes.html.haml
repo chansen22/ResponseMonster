@@ -8,7 +8,7 @@
           %th Title
           %th Section
           %th Term
-          %th Students
+          %th.hidden-phone Students
           - if is_admin?
             %th
               Edit
@@ -24,7 +24,7 @@
                   Fall
                 - else
                   Spring
-              %td=course.users.count
+              %td.hidden-phone=course.users.count
               - if is_admin?
                 %td
                   = link_to "Edit", edit_course_path(course), class: "btn"
