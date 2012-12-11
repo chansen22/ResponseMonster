@@ -64,7 +64,7 @@
         - else
           %td
             - if survey.is_active
-              .btn= link_to "Take", login_course_survey_path(@course, survey)
+              = link_to "Take", login_course_survey_path(@course, survey), class: "btn"
             - else
               = link_to "Take", "#", class: "disabled btn"
 
