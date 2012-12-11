@@ -9390,70 +9390,89 @@ footer {
         </div>
       </div>
     </div>
-    <div class='container'>
-      <div class='row'>
-        <div class='span12'>
-        </div>
-      </div>
-      <div class='row'>
-        <div class='span12'>
-          <div class='row'>
-            <div class='span6 offset1'>
-              <h1>
-                About ResponseMonster
-              </h1>
-              <p>
-              ResponseMonster is an attempt to replace classroom-based audience response
-              systems with open source software.
-              </p>
-              <p>
-              For teachers, ResponseMonster is a way to provide realtime survey/quiz
-              questions to students with live data and pretty charts reflecting answers.
-              Teachers can create anonymous questions, and can choose to share response data
-              with students.
-              </p>
-              <p>
-              For students, ResponseMonster can be accessed from any laptop, personal
-              computer, smartphone, or tablet. In the future, we hope to support existing
-              clicker hardware.
-              </p>
+    <div class="container">
+
+      <div id="this-carousel-id" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="screenshots/signin.png"/>
+            </a>
+            <div class="carousel-caption">
+              <p>Signin Page</p>
             </div>
           </div>
+
+          <div class="item">
+            <img src="screenshots/survey_assessments.png"/>
+              </a>
+              <div class="carousel-caption">
+                <p>Survey Assessments</p>
+              </div>
+          </div>
+
+          <div class="item">
+            <img src="screenshots/teach_class.png"/>
+              </a>
+              <div class="carousel-caption">
+                <p>Teacher Classes</p>
+              </div>
+          </div>
+
+          <div class="item">
+            <img src="screenshots/teach_home.png"/>
+              </a>
+              <div class="carousel-caption">
+                <p>Teacher Home</p>
+              </div>
+          </div>
+
+          <div class="item">
+            <img src="screenshots/teach_newsurvey.png"/>
+              </a>
+              <div class="carousel-caption">
+                <p>Teacher Survey</p>
+              </div>
+          </div>
+        </div><!-- .carousel-inner -->
+        <!--  next and previous controls here
+              href values must reference the id for this carousel -->
+          <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+          <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+      </div><!-- .carousel -->
+      <!-- end carousel -->
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span4">
+          <h2>About</h2>
+           <p>ResponseMonster is an attempt to replace classroom-based audience response systems with open source software.</p>
+        </div>
+        <div class="span4">
+          <h2>Teachers</h2>
+           <p>For teachers, ResponseMonster is a way to provide realtime survey/quiz questions to students with live data and pretty charts reflecting answers. Teachers can create anonymous questions, and can choose to share response data with students.</p>
+       </div>
+        <div class="span4">
+          <h2>Students</h2>
+          <p>For students, ResponseMonster can be accessed from any laptop, personal computer, smartphone, or tablet. In the future, we hope to support existing clicker hardware.</p>
         </div>
       </div>
-    </div>
-    <div class='container'>
-      <!-- / Footer -->
-      <footer class='footer'>
-      <a href="http://responsemonster.org/" class="brand">Response Monster</a>
-      <ul class='footer-links pull-right'>
-      </ul>
+
+      <hr>
+      <footer>
       </footer>
-    </div>
-    <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
-    <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap/bootstrap-transition.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap/bootstrap-alert.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap/bootstrap-modal.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap/bootstrap-dropdown.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap/bootstrap-scrollspy.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap/bootstrap-tab.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap/bootstrap-tooltip.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap/bootstrap-popover.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap/bootstrap-button.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap/bootstrap-collapse.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap/bootstrap-carousel.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap/bootstrap-typeahead.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap/bootstrap-affix.js?body=1" type="text/javascript"></script>
-    <script src="/assets/twitter/bootstrap.js?body=1" type="text/javascript"></script>
-    <script src="/assets/add_and_remove_helpers.js?body=1" type="text/javascript"></script>
-    <script src="/assets/answers.js?body=1" type="text/javascript"></script>
-    <script src="/assets/bootstrap.js?body=1" type="text/javascript"></script>
-    <script src="/assets/courses.js?body=1" type="text/javascript"></script>
-    <script src="/assets/polls.js?body=1" type="text/javascript"></script>
-    <script src="/assets/sessions.js?body=1" type="text/javascript"></script>
-    <script src="/assets/static_pages.js?body=1" type="text/javascript"></script>
-    <script src="/assets/application.js?body=1" type="text/javascript"></script>
+
+    </div> <!-- /container -->
+
+    <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
+    <!-- Bootstrap jQuery plugins compiled and minified -->
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('.carousel').carousel({
+          interval: 4000
+        });
+      });
+    </script>
+
   </body>
 </html>
-
