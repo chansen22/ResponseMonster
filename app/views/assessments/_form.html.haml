@@ -39,9 +39,10 @@
                   = a.answer_text
                   = r.hidden_field :poll_id, value: poll.id
             - else
-              = f.fields_for :responses_attributes, index: a.id do |r|
+              = f.fields_for :responses_attributes, index: poll.id * a.id do |r|
                 %label.checkbox
-                  = r.check_box :choiceId, value: a.id
+                  = check_box_tag "assessment[responses_attributes][" + String(poll.id * a.id) + "][choiceId]", a.id
+                  -#= r.check_box :choiceId, value: a.id
                   = a.answer_text
                   = r.hidden_field :poll_id, value: poll.id
   %br

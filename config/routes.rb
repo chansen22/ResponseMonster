@@ -24,6 +24,7 @@ ResponseMonster::Application.routes.draw do
         post 'check'
         post 'newgrade'
         get 'grade'
+        get 'stats'
       end
       resources :polls do
         resources :answers

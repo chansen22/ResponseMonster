@@ -109,10 +109,48 @@ class SurveysController < ApplicationController
     end
   end
 
+  def stats
+    @survey = Survey.find(params[:id])
+    @course = @survey.course
+    @assessments = @survey.assessments
+
+    # get all the scores
+    graph_data = @assessments.collect{|a| a.score}
+    # isolate unique scores
+    graph_cats = []
+    graph_data.each{|g| graph_cats << g unless g.in? graph_cats}
+    # sort isolated scores to make grapher happy
+    graph_cats = graph_cats.sort
+    # count individual scores
+    graph_map = graph_cats.collect{|g| graph_data.select{|y| y==g}.length}
+    graph_cats = graph_cats.each{|g| String(g)}
+
+    @gd_chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.options[:chart][:type] = "column"
+      f.options[:title][:text] = "Grade Distribution"
+      f.series(showInLegend: false, data: graph_map)
+      f.options[:xAxis][:categories] = graph_cats
+      f.options[:yAxis][:allowDecimals] = false
+    end
+    @answer_charts = []
+    @survey.polls.each do |p|
+      # Get answer data for each
+      answer_data = p.answers.collect{|a| [a.answer_text, Response.where(choiceId: a.id).length]}
+      a_chart = LazyHighCharts::HighChart.new('graph') do |f|
+        f.options[:chart][:type] = "pie"
+        f.options[:title][:text] = p.question_text
+        f.series(type: "pie", data: answer_data)
+      end
+      @answer_charts << a_chart
+    end
+
+  end
+
   def grade
     @survey = Survey.find(params[:id])
     @course = @survey.course
     @assessments = @survey.assessments
+
   end
 
   def newgrade

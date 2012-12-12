@@ -2,7 +2,7 @@ class AssessmentsController < ApplicationController
   require 'debugger'
   before_filter :authenticate
   before_filter(only: [:new]) { |controller| controller.check_activated(Survey.find(params[:survey_id])) }
-  before_filter(only: [:new]) { |controller| controller.check_attempts(Survey.find(params[:survey_id])) }
+  before_filter(only: [:new, :create]) { |controller| controller.check_attempts(Survey.find(params[:survey_id])) }
   before_filter(only: [:index]) { |controller| controller.check_permissions(Course.find(params[:course_id])) }
 
   def show

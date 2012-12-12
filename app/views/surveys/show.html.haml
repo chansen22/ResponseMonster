@@ -1,10 +1,6 @@
 %h2
   Survey
 
-= link_to "New Survey", new_course_survey_path(@course, @survey), class: "btn pull-right"
-= link_to "Edit Survey", edit_course_survey_path(@course, @survey), class: "btn pull-right"
-= link_to 'Back', course_path(@course), class: "btn pull-right"
-%br
 %br
 
 #surveyDetails
@@ -15,6 +11,9 @@
       Name
     %br
     = @survey.name
+
+  = link_to "Edit Survey", edit_course_survey_path(@course, @survey), class: "btn pull-right"
+  = link_to 'Back', course_path(@course), class: "btn pull-right"
 
   #surveyQuestions
     %h3
@@ -38,7 +37,5 @@
             %td
         %br
 
-    = link_to "New Survey", new_course_survey_path(@course, @survey), class: "btn pull-right"
-    = link_to "Edit Survey", edit_course_survey_path(@course, @survey), class: "btn pull-right"
-    = link_to 'Back', course_path(@course), class: "btn pull-right"
-  %br
+= link_to "Edit Survey", edit_course_survey_path(@course, @survey), class: "btn"
+= link_to 'Back', course_path(@course), class: "btn"
