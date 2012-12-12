@@ -49,7 +49,7 @@
           %td
             = link_to "View", course_survey_path(@course, survey), class: "pill-button-right btn pill-button-fix"
             = link_to "Edit", edit_course_survey_path(@course, survey), class: "pill-button-middle btn"
-            = link_to "Grade", grade_course_survey_path(@course, survey), class: "pill-button-left btn pill-button-fix-right"
+            = link_to "Grade", course_survey_assessments_path(@course, survey), class: "pill-button-left btn pill-button-fix-right"
           %td
             - if survey.is_active
               = link_to "Deactive Survey", deactivate_course_survey_path(@course, survey), class: "btn"

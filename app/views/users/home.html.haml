@@ -1,7 +1,7 @@
 .row
   .span12
-    %h2
-      Welcome to ResponseMonster
+    %h1
+      ResponseMonster
     %br
     - if !@open_surveys.empty?
       %h3 Open surveys in your classes
@@ -25,7 +25,7 @@
                 %td
                   = link_to "Close quiz", deactivate_course_survey_path(survey.course, survey), class: "btn pill-button-right pill-button-fix"
                   = link_to "View Quiz", course_survey_path(survey.course, survey), class: "btn pill-button-middle"
-                  = link_to "See Responses", grade_course_survey_path(survey.course, survey), class: "btn pill-button-left pill-button-fix-right"
+                  = link_to "See Responses", course_survey_assessments_path(survey.course, survey), class: "btn pill-button-left pill-button-fix-right"
             - else
               %tr
                 %td= link_to survey.course.name, course_path(survey.course)
