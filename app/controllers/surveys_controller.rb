@@ -85,22 +85,6 @@ class SurveysController < ApplicationController
     end
   end
 
-  def summary
-    @survey = Survey.find(params[:id])
-    @course = @survey.course
-    @polls = @survey.polls.all
-    if !params[:assessment_id].nil?
-      @student_assessment = Assessment.find(params[:assessment_id])
-    else
-      @student_assessment = Assessment.where(user_id: current_user.id, survey_id: @survey.id).first
-    end
-    @grades = []
-    if !params[:assessment_id].nil? && current_user.id == @course.teacher_id
-      @assessment = Assessment.find(params[:assessment_id])
-    end
-    @responses = current_user.responses.all
-  end
-
   def login
     @survey = Survey.find(params[:id])
     @course = @survey.course
@@ -130,7 +114,9 @@ class SurveysController < ApplicationController
       f.options[:title][:text] = "Grade Distribution"
       f.series(showInLegend: false, data: graph_map)
       f.options[:xAxis][:categories] = graph_cats
+      f.options[:xAxis][:title] = { text: "Grades" }
       f.options[:yAxis][:allowDecimals] = false
+      f.options[:yAxis][:title] = { text: "Amount" }
     end
     @answer_charts = []
     @survey.polls.each do |p|
@@ -138,37 +124,13 @@ class SurveysController < ApplicationController
       answer_data = p.answers.collect{|a| [a.answer_text, Response.where(choiceId: a.id).length]}
       a_chart = LazyHighCharts::HighChart.new('graph') do |f|
         f.options[:chart][:type] = "pie"
-        f.options[:title][:text] = p.question_text
-        f.series(type: "pie", data: answer_data)
+        f.options[:title][:text] = "<b>" + p.question_text + "</b>"
+        f.options[:plotOptions][:pie] = { allowPointSelect: true }
+        f.series(type: "pie", name: "Count", data: answer_data)
       end
       @answer_charts << a_chart
     end
 
-  end
-
-  def grade
-    @survey = Survey.find(params[:id])
-    @course = @survey.course
-    @assessments = @survey.assessments
-
-  end
-
-  def newgrade
-    assessment = Assessment.find(params[:assessment_id])
-    @survey = assessment.survey
-    changing = []
-    params.keys[2..-7].each do |key|
-      response = Response.find(key.split("s")[1])
-      response.points = params[key]
-      response.save
-    end
-    assessment.score = 0
-    assessment.responses.each do |response|
-      assessment.score += response.points
-    end
-    assessment.is_graded = true
-    assessment.save
-    redirect_to grade_course_survey_path(@survey.course, @survey), notice: "Successfully graded #{assessment.user.first_name}'s quiz"
   end
 
   def check
@@ -181,4 +143,49 @@ class SurveysController < ApplicationController
       render "login"
     end
   end
+
 end
+
+####################
+# Depreciated methods
+####################
+#  def summary
+#    @survey = Survey.find(params[:id])
+#    @course = @survey.course
+#    @polls = @survey.polls.all
+#    if !params[:assessment_id].nil?
+#      @student_assessment = Assessment.find(params[:assessment_id])
+#    else
+#      @student_assessment = Assessment.where(user_id: current_user.id, survey_id: @survey.id).first
+#    end
+#    @grades = []
+#    if !params[:assessment_id].nil? && current_user.id == @course.teacher_id
+#      @assessment = Assessment.find(params[:assessment_id])
+#    end
+#    @responses = current_user.responses.all
+#  end
+
+
+#  def grade
+#    @survey = Survey.find(params[:id])
+#    @course = @survey.course
+#    @assessments = @survey.assessments
+#  end
+#
+#  def newgrade
+#    assessment = Assessment.find(params[:assessment_id])
+#    @survey = assessment.survey
+#    changing = []
+#    params.keys[2..-7].each do |key|
+#      response = Response.find(key.split("s")[1])
+#      response.points = params[key]
+#      response.save
+#    end
+#    assessment.score = 0
+#    assessment.responses.each do |response|
+#      assessment.score += response.points
+#    end
+#    assessment.is_graded = true
+#    assessment.save
+#    redirect_to grade_course_survey_path(@survey.course, @survey), notice: "Successfully graded #{assessment.user.first_name}'s quiz"
+#  end

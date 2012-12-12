@@ -1,4 +1,15 @@
+%h2
+  Survey Statistics
+
+%br
+
+%h3
+  = @survey.name
+
+%br
 = high_chart("GradeDistribution", @gd_chart)
 - x = 0
 - @answer_charts.each do |a|
   = high_chart("ans_chart" + String(x+=1), a)
+
+= link_to 'Back', course_path(@course), class: "btn"

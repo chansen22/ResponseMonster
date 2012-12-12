@@ -1,8 +1,9 @@
-#form
-  = form_for(:pass, url: { action: "check" } ) do |f|
-    %p
-      = f.label :password
+.span4.offset5
+  #form
+    = form_for(:pass, url: { action: "check" } ) do |f|
+      %p
+        = f.label :password
+        %br
+        = f.text_field :password, autofocus: "autofocus"
       %br
-      = f.text_field :password, autofocus: "autofocus"
-    %br
-    %input.btn.btn-large.btn-primary{ type: "submit", value: "Proceed" }
+      %input.btn.btn-large.btn-primary{ type: "submit", value: "Proceed" }
