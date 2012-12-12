@@ -1,0 +1,30 @@
+%h2
+  Assessments
+
+
+%table.table
+  %tr
+    %th
+      Name
+    %th
+      Time Submitted
+    %th
+      Time Spent
+    %th
+      Score
+    %th
+      Grade
+  - @assessments.each do |assessment|
+    %tr
+      %td
+        = "#{assessment.user.first_name} #{assessment.user.last_name}"
+      %td
+        = assessment.created_at
+      %td
+        Time spent
+      %td
+        = "#{assessment.score} / #{assessment.survey.total_points}"
+      %td
+        = link_to "Grade", edit_course_survey_assessment_path(@course, @survey, assessment), class: "btn"
+
+= link_to "Back", course_path(@course), class: "btn"

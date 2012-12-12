@@ -21,31 +21,31 @@ class ResponsesController < ApplicationController
     @response = Response.find(params[:id])
   end
 
-  def create
-    @survey = Survey.find(params[:survey])
-    @assessment = Assessment.create_assessment(current_user, 0, @survey)
-    #TODO: How can we do this better
-    if params.keys.count >= 7
-      if Response.create_responses(params, current_user, @assessment)
-        if !@old_assessment.nil?
-          @assessment.times_submitted = @old_assessment.times_submitted+1
-          @old_assessment.delete
-        else
-          @assessment.times_submitted = 1
-        end
-        Assessment.grade(@assessment)
-        @assessment.save
-        redirect_to summary_course_survey_path(@survey.course, @survey), notice: "#{@survey.name} was 
-        successfully saved"
-      else
-        redirect_to course_survey_path(@survey.course, @survey), notice: "#{@survey.name} was 
-        not successfully saved"
-      end
-    else
-      redirect_to course_survey_path(@survey.course, @survey), notice: "Please answer at least one
-      question"
-    end
-  end 
+#  def create
+#    @survey = Survey.find(params[:survey])
+#    @assessment = Assessment.create_assessment(current_user, 0, @survey)
+#    #TODO: How can we do this better
+#    if params.keys.count >= 7
+#      if Response.create_responses(params, current_user, @assessment)
+#        if !@old_assessment.nil?
+#          @assessment.times_submitted = @old_assessment.times_submitted+1
+#          @old_assessment.delete
+#        else
+#          @assessment.times_submitted = 1
+#        end
+#        Assessment.grade(@assessment)
+#        @assessment.save
+#        redirect_to summary_course_survey_path(@survey.course, @survey), notice: "#{@survey.name} was 
+#        successfully saved"
+#      else
+#        redirect_to course_survey_path(@survey.course, @survey), notice: "#{@survey.name} was 
+#        not successfully saved"
+#      end
+#    else
+#      redirect_to course_survey_path(@survey.course, @survey), notice: "Please answer at least one
+#      question"
+#    end
+#  end 
 
   def update
     @response = Response.find(params[:id])

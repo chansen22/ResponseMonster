@@ -1,0 +1,43 @@
+%h2
+  = @survey.name
+
+%h3
+  Summary
+
+%h4
+  Student Name:
+  = "#{@assessment.user.first_name} #{@assessment.user.last_name}"
+
+-# = form_for([@course, @survey, @assessment]) do |f|
+= form_for(:new_score, url: { action: "update"}, method: "put" ) do |f|
+  %h4
+    Student Score:
+    = "#{@assessment.score} / #{@survey.total_points}"
+
+  %h4
+    New Student Score:
+    = f.number_field :score, min: 0, max: @survey.total_points, required: true
+
+  %h3
+    Questions
+
+  - @survey.polls.each do |poll|
+    %h4
+      = poll.question_text
+    %br
+    .well
+      %ul
+      - poll.answers.each do |answer|
+        - @is_choice = false
+        - @assessment.responses.each do |response|
+          - if answer.id == response.choiceId
+            - @is_choice = true
+        - if @is_choice && answer.is_right?
+          %li.alert.alert-success= answer.answer_text
+        - elsif @is_choice && !answer.is_right?
+          %li.alert.alert-warning= answer.answer_text
+        - else
+          %li.alert.alert-info= answer.answer_text
+  
+  = f.submit "Save Grade", class: "btn"
+= link_to 'Back', course_path(params[:course_id]), class: "btn"
