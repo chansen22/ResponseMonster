@@ -19,12 +19,12 @@
       = @survey.name
       %br
       %b
-        Attempts
+        Attempt
       %br
       - if @survey.attempts_allowed.nil? || @survey.attempts_allowed == 0
-        = @times_submitted
+        = @times_submitted + 1
       - else
-        = "#{@times_submitted} / #{@survey.attempts_allowed}"
+        = "#{@times_submitted + 1} / #{@survey.attempts_allowed}"
 
   .questions
     - @survey.polls.each do |poll|
