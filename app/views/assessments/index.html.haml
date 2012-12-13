@@ -9,8 +9,6 @@
     %th
       Time Submitted
     %th
-      Time Spent
-    %th
       Score
     %th
       Grade
@@ -20,8 +18,6 @@
         = "#{assessment.user.first_name} #{assessment.user.last_name}"
       %td
         = assessment.created_at
-      %td
-        Time spent
       %td
         = "#{assessment.score} / #{assessment.survey.total_points}"
       %td
