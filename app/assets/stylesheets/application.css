@@ -22,3 +22,19 @@
   display: inline;
   padding: 0 2px;
 }
+
+.correct-answer {
+  background-color: lightgreen;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.not-picked-answer {
+  padding: 5px;
+}
+
+.wrong-answer {
+  background-color: lightpink;
+  padding: 5px;
+  border-radius: 5px;
+}

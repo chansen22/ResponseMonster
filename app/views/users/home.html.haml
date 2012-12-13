@@ -18,10 +18,10 @@
                 %td= link_to survey.course.name, course_path(survey.course)
                 %td= survey.name
                 %td
-                  = link_to "Close quiz", deactivate_course_survey_path(survey.course, survey), class: "btn"
                   = link_to "View Quiz", course_survey_path(survey.course, survey), class: "btn"
                   = link_to "See Responses", course_survey_assessments_path(survey.course, survey), class: "btn"
                   = link_to "See Stats", stats_course_survey_path(survey.course, survey), class: "btn"
+                  = link_to "Deactive Survey", deactivate_course_survey_path(survey.course, survey), class: "btn"
             - else
               %tr
                 %td= link_to survey.course.name, course_path(survey.course)
@@ -31,7 +31,7 @@
                 - else
                   %td=  survey.end_time
                 %td
-                  = link_to "Take", login_course_survey_path(survey.course, survey), class: "btn"
+                  = link_to "Take Quiz", login_course_survey_path(survey.course, survey), class: "btn"
 .row
   - if !@enrolled.empty? && !@taught.empty?
     .span6
