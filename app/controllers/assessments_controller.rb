@@ -6,7 +6,7 @@ class AssessmentsController < ApplicationController
   before_filter(only: [:index]) { |controller| controller.check_permissions(Course.find(params[:course_id])) }
 
   def index
-    @assessments = Assessment.where(survey_id: params[:survey_id])
+    @assessments = Assessment.where(survey_id: params[:survey_id]).sort_by{|a| a.user.last_name}
     @course = Course.find(params[:course_id])
     @survey = Survey.find(params[:survey_id])
   end
