@@ -24,8 +24,6 @@
         %th
           Action
         %th
-          Activate
-        %th
           Delete
       - else
         %th
@@ -47,10 +45,9 @@
             = survey.end_time
         - if is_teacher?(@course)
           %td
-            = link_to "View", course_survey_path(@course, survey), class: "pill-button-right btn pill-button-fix"
-            = link_to "Edit", edit_course_survey_path(@course, survey), class: "pill-button-middle btn"
-            = link_to "Responses", course_survey_assessments_path(@course, survey), class: "pill-button-left btn pill-button-fix-right"
-          %td
+            = link_to "View Quiz", course_survey_path(@course, survey), class: "btn"
+            = link_to "See Responses", course_survey_assessments_path(@course, survey), class: "btn"
+            = link_to "See Stats", stats_course_survey_path(@course, survey), class: "btn"
             - if survey.is_active
               = link_to "Deactive Survey", deactivate_course_survey_path(@course, survey), class: "btn"
             - else
