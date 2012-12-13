@@ -26,18 +26,18 @@
       = poll.question_text
     %br
     .well
-      %ul
       - poll.answers.each do |answer|
         - @is_choice = false
         - @assessment.responses.each do |response|
           - if answer.id == response.choiceId
             - @is_choice = true
         - if @is_choice && answer.is_right?
-          %li.alert.alert-success= answer.answer_text
+          .correct-answer= answer.answer_text
         - elsif @is_choice && !answer.is_right?
-          %li.alert.alert-warning= answer.answer_text
+          .wrong-answer= answer.answer_text
         - else
-          %li.alert.alert-info= answer.answer_text
+          .not-picked-answer= answer.answer_text
+        %br
   
   = f.submit "Save Grade", class: "btn"
 = link_to 'Back', course_path(params[:course_id]), class: "btn"
